@@ -1,4 +1,30 @@
 ---
-layout: home
-author_profile: true
+layout: splash
+title: "Welcome to My Portfolio"
+excerpt: "Showcasing my engineering projects and achievements."
+header:
+  overlay_image: /assets/images/hero-banner.jpg
+  overlay_filter: 0.5
+  caption: "A showcase of my engineering projects, expertise, and passion."
+  actions:
+    - label: "View Projects"
+      url: "/projects/"
+      class: "btn btn--primary btn--large"
 ---
+
+<section class="my-projects">
+    <h2>My Projects</h2>
+    <div class="projects-grid">
+      {% assign projects = site.projects | slice: 0, 2 %}
+      {% for project in projects %}
+      <div class="project-item">
+        <h3><a href="{{ project.url }}">{{ project.title }}</a></h3>
+        <img src="{{ project.header.image }}" alt="{{ project.header.caption }}">
+        <p>{{ project.excerpt }}</p>
+        <a href="{{ project.url }}" class="btn">Read More</a>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  
+
