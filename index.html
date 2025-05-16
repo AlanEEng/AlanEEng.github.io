@@ -3,170 +3,692 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Engineering Portfolio</title>
+    <meta name="description" content="Professional engineering portfolio showcasing innovative projects in embedded systems, IoT, and hardware design">
+    <meta name="keywords" content="engineering, portfolio, embedded systems, hardware design, IoT, firmware">
+    <title>Alan Eng | Engineering Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="Asset/favicon.png">
 </head>
 <body>
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider round"></div>
+        </label>
+        <em><i class="fas fa-moon"></i></em>
+    </div>
+
     <header>
         <div class="container">
-            <h1>Your Name - Engineering Portfolio</h1>
-            <nav>
+            <div class="logo">
+                <a href="#"><span class="highlight">A</span>lanEng</a>
+            </div>
+            <nav id="navbar">
                 <ul>
-                    <li><a href="#about">About Me</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#experience" class="nav-link">Experience</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <li><a href="Asset/resume.pdf" class="btn-resume" target="_blank">Resume</a></li>
                 </ul>
             </nav>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
         </div>
     </header>
 
     <section id="hero">
         <div class="container">
-            <h2>Innovate. Design. Build.</h2>
-            <p>Welcome to my portfolio. Here I showcase my passion for end-to-end engineering solutions, from concept to deployment.</p>
+            <div class="hero-content">
+                <h1>Hi, I'm <span class="highlight">Alan Eng</span></h1>
+                <h2>Engineering Design & Development Specialist</h2>
+                <p>I create innovative engineering solutions from concept to deployment, specializing in embedded systems, hardware design, and IoT applications.</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="Asset/hero-image.png" alt="Alan Eng - Engineering Portfolio">
+            </div>
+        </div>
+        <div class="scroll-down">
+            <a href="#about"><i class="fas fa-chevron-down"></i></a>
         </div>
     </section>
 
     <section id="about">
         <div class="container">
-            <h2>About Me</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <h3>My Skills</h3>
-            <ul class="skills-list">
-                <li>Hardware Design & Prototyping</li>
-                <li>Firmware Development (C/C++)</li>
-                <li>Embedded Systems</li>
-                <li>IoT & Wireless Communication (BLE, Wi-Fi)</li>
-                <li>Software Development (Python, Mobile Apps)</li>
-                <li>PCB Design</li>
-                <li>Signal Processing</li>
-            </ul>
+            <div class="section-header">
+                <h2>About Me</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="Asset/profile-photo.jpg" alt="Alan Eng">
+                </div>
+                <div class="about-text">
+                    <h3>Engineering with Purpose</h3>
+                    <p>I'm a dedicated engineer with expertise in end-to-end product development, from initial concept to final production. With a background in electrical engineering and 5+ years of experience in hardware design, firmware development, and system integration, I specialize in creating innovative solutions for complex engineering challenges.</p>
+                    <p>My passion lies in developing embedded systems and IoT devices that bridge the gap between hardware and software, creating seamless experiences for users while solving real-world problems. I thrive in collaborative environments where I can contribute my technical expertise while learning from diverse perspectives.</p>
+                    <p>When I'm not designing circuits or writing firmware, you can find me experimenting with new technologies, contributing to open-source projects, or mentoring aspiring engineers.</p>
+                    <div class="about-details">
+                        <div class="detail-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>MSc in Electrical Engineering</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-briefcase"></i>
+                            <span>5+ Years Experience</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Copenhagen, Denmark</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-language"></i>
+                            <span>English, Danish</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <main id="projects">
+    <section id="skills">
         <div class="container">
-            <h2>My Projects</h2>
-
-            <article class="project-card">
-                <img src="Asset/project1_wristband.png" alt="Wireless Heart Rate Wristband" class="project-image">
-                <div class="project-content">
-                    <h3>Project 1: Wireless Low-Power Heart Rate Tracking Wristband</h3>
-                    <p class="project-summary">A comprehensive project involving the design and development of a custom wristband for real-time heart rate monitoring using Photoplethysmography (PPG) and Bluetooth Low Energy (BLE) for data transmission to a companion mobile application.</p>
-
-                    <h4>1.1. Project Overview & Goals</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Morbi sed efficitur nunc.</p>
+            <div class="section-header">
+                <h2>Technical Skills</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <div class="skill-icon"><i class="fas fa-microchip"></i></div>
+                    <h3>Hardware Design</h3>
                     <ul>
-                        <li>Goal 1: Develop a low-cost, low-power wearable device.</li>
-                        <li>Goal 2: Implement accurate PPG signal acquisition.</li>
-                        <li>Goal 3: Enable wireless data transfer via BLE.</li>
-                        <li>Goal 4: Create a user-friendly mobile app for data visualization.</li>
+                        <li>Analog & Digital Circuit Design</li>
+                        <li>PCB Layout & Fabrication</li>
+                        <li>Signal Processing</li>
+                        <li>Prototyping & Testing</li>
+                        <li>Component Selection</li>
                     </ul>
-
-                    <h4>1.2. Hardware Development</h4>
-                    <p>The hardware was designed from scratch, focusing on component selection for power efficiency and performance. Key components include:</p>
-                    <h5>1.2.1. Microcontroller Unit (MCU)</h5>
-                    <p>Placeholder text for MCU selection criteria, specific chip used (e.g., nRF52 series, ESP32), and its core features relevant to the project.</p>
-                    <h5>1.2.2. PPG Sensor</h5>
-                    <p>Placeholder text for the PPG sensor details (e.g., MAX3010x), its working principle, and integration challenges.</p>
-                    <h5>1.2.3. Power Management</h5>
-                    <p>Placeholder text for battery selection, charging circuit, and power optimization techniques employed.</p>
-                    <h5>1.2.4. PCB Design</h5>
-                    <p>Placeholder text about the PCB design process, software used (e.g., KiCad, Eagle), and any specific design considerations for a wearable device.</p>
-
-                    <h4>1.3. Firmware Development</h4>
-                    <p>The firmware was developed in C/C++ to manage sensor data acquisition, processing, and BLE communication.</p>
-                    <h5>1.3.1. Sensor Interfacing & Data Acquisition</h5>
-                    <p>Placeholder text describing how the MCU interfaces with the PPG sensor, sampling rates, and raw data collection.</p>
-                    <h5>1.3.2. Signal Processing Algorithms</h5>
-                    <p>Placeholder text detailing any filtering (e.g., Kalman, Butterworth) or algorithms applied to the raw PPG signal to extract heart rate.</p>
-                    <h5>1.3.3. BLE Stack Implementation</h5>
-                    <p>Placeholder text about setting up BLE services, characteristics, advertising, and connection management for data transmission.</p>
-
-                    <h4>1.4. Software Development (Mobile App)</h4>
-                    <p>A companion mobile application was developed to receive, display, and store the heart rate data.</p>
-                    <h5>1.4.1. App Platform & Technology</h5>
-                    <p>Placeholder text specifying the platform (e.g., Android, iOS, cross-platform like React Native/Flutter) and languages/frameworks used.</p>
-                    <h5>1.4.2. BLE Communication Handling</h5>
-                    <p>Placeholder text on how the app scans for, connects to, and receives data from the wristband via BLE.</p>
-                    <h5>1.4.3. Data Visualization & UI/UX</h5>
-                    <p>Placeholder text describing the app's user interface, how data is presented (e.g., real-time graphs, historical data), and any user experience considerations.</p>
-
-                    <h4>1.5. Challenges & Learnings</h4>
-                    <p>Placeholder text discussing any significant challenges faced during the project (e.g., power consumption, signal noise, BLE stability) and key takeaways or skills gained.</p>
                 </div>
-            </article>
-
-            <article class="project-card">
-                <img src="Asset/project2_potentiostat.png" alt="Custom Potentiostat" class="project-image">
-                <div class="project-content">
-                    <h3>Project 2: Custom Potentiostat with Python User Interface</h3>
-                    <p class="project-summary">This professional project involved the end-to-end development of a potentiostat, including hardware design, firmware programming, and a Python-based graphical user interface for instrument control and data acquisition.</p>
-
-                    <h4>2.1. Project Context & Objectives</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam efficitur, sapien et tincidunt interdum, nulla purus aliquam nisl, id congue nunc erat vitae nibh. Fusce vel leo nec justo sodales tincidunt.</p>
+                <div class="skill-category">
+                    <div class="skill-icon"><i class="fas fa-code"></i></div>
+                    <h3>Firmware & Software</h3>
                     <ul>
-                        <li>Objective 1: Design a precise and reliable potentiostat circuit.</li>
-                        <li>Objective 2: Develop robust firmware for control and measurement.</li>
-                        <li>Objective 3: Create an intuitive Python GUI for end-users.</li>
-                        <li>Objective 4: Ensure stable USB communication for power and data.</li>
+                        <li>C/C++ Embedded Programming</li>
+                        <li>Python Development</li>
+                        <li>RTOS Implementation</li>
+                        <li>Real-time Data Processing</li>
+                        <li>Mobile App Development</li>
                     </ul>
-
-                    <h4>2.2. Hardware Design</h4>
-                    <p>The potentiostat hardware was meticulously designed to achieve accurate electrochemical measurements. This involved:</p>
-                    <h5>2.2.1. Analog Front-End</h5>
-                    <p>Placeholder text detailing the operational amplifiers, DACs, ADCs, and control loops used to maintain the desired potential and measure current.</p>
-                    <h5>2.2.2. Microcontroller & Peripherals</h5>
-                    <p>Placeholder text for the MCU choice (e.g., STM32, PIC) and its role in controlling the analog circuitry and communicating with the PC.</p>
-                    <h5>2.2.3. Power Supply & Isolation</h5>
-                    <p>Placeholder text regarding the power supply design, and any isolation techniques used to ensure measurement accuracy and safety.</p>
-                    <h5>2.2.4. PCB Layout Considerations</h5>
-                    <p>Placeholder text for specific PCB layout strategies for sensitive analog signals, grounding, and noise reduction.</p>
-
-                    <h4>2.3. Firmware Development</h4>
-                    <p>Firmware was developed to manage the potentiostat's operation, execute electrochemical techniques, and handle USB communication.</p>
-                    <h5>2.3.1. Control Algorithms</h5>
-                    <p>Placeholder text describing the implementation of control loops (e.g., PID) for precise potential control.</p>
-                    <h5>2.3.2. Measurement Sequences</h5>
-                    <p>Placeholder text on how different electrochemical methods (e.g., Cyclic Voltammetry, Chronoamperometry) were programmed.</p>
-                    <h5>2.3.3. USB Communication Protocol</h5>
-                    <p>Placeholder text defining the communication protocol between the firmware and the Python GUI (e.g., command structure, data packet format).</p>
-
-                    <h4>2.4. Software Development (Python GUI)</h4>
-                    <p>A user-friendly desktop application was created using Python to control the potentiostat and visualize data.</p>
-                    <h5>2.4.1. GUI Framework</h5>
-                    <p>Placeholder text specifying the Python GUI library used (e.g., Tkinter, PyQt, Kivy).</p>
-                    <h5>2.4.2. Instrument Control Interface</h5>
-                    <p>Placeholder text describing how users can set parameters, start/stop experiments, and configure the potentiostat through the GUI.</p>
-                    <h5>2.4.3. Data Acquisition & Visualization</h5>
-                    <p>Placeholder text on how the Python application receives data from the potentiostat, processes it, and displays it (e.g., using Matplotlib for plots).</p>
-                    <h5>2.4.4. Data Export & Management</h5>
-                    <p>Placeholder text for features like saving experimental data to files (e.g., CSV, TXT) and managing past experiments.</p>
-
-                    <h4>2.5. Integration & Testing</h4>
-                    <p>Placeholder text discussing the process of integrating the hardware, firmware, and software components, along with the testing methodologies used to validate the potentiostat's performance and accuracy.</p>
                 </div>
-            </article>
-
+                <div class="skill-category">
+                    <div class="skill-icon"><i class="fas fa-wifi"></i></div>
+                    <h3>IoT & Communication</h3>
+                    <ul>
+                        <li>Bluetooth Low Energy (BLE)</li>
+                        <li>Wi-Fi Implementation</li>
+                        <li>LoRa/LoRaWAN</li>
+                        <li>I2C/SPI/UART Protocols</li>
+                        <li>Secure Communication</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-icon"><i class="fas fa-tools"></i></div>
+                    <h3>Tools & Platforms</h3>
+                    <ul>
+                        <li>Altium Designer/KiCad</li>
+                        <li>Oscilloscopes & Logic Analyzers</li>
+                        <li>ARM Cortex Development</li>
+                        <li>ESP32/ESP8266 Platforms</li>
+                        <li>Nordic nRF52 Series</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </main>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Projects</h2>
+                <div class="underline"></div>
+            </div>
+            
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="hardware">Hardware</button>
+                <button class="filter-btn" data-filter="firmware">Firmware</button>
+                <button class="filter-btn" data-filter="software">Software</button>
+                <button class="filter-btn" data-filter="iot">IoT</button>
+            </div>
+
+            <div class="projects-grid">
+                <article class="project-card" data-category="hardware iot firmware">
+                    <div class="project-image">
+                        <img src="Asset/project1_wristband.png" alt="Wireless Heart Rate Wristband">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#project1-details" class="details-link"><i class="fas fa-info-circle"></i> Details</a>
+                                <a href="https://github.com/yourusername/heart-rate-wristband" target="_blank"><i class="fab fa-github"></i> Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-tags">
+                            <span class="tag">Hardware</span>
+                            <span class="tag">IoT</span>
+                            <span class="tag">BLE</span>
+                        </span>
+                        <h3>Wireless Low-Power Heart Rate Tracking Wristband</h3>
+                        <p>A comprehensive wearable device project featuring custom hardware, firmware, and a companion mobile app for continuous heart rate monitoring using PPG technology and BLE communication.</p>
+                    </div>
+                </article>
+
+                <div id="project1-details" class="project-details">
+                    <div class="project-details-content">
+                        <span class="close-details">&times;</span>
+                        <h3>Wireless Low-Power Heart Rate Tracking Wristband</h3>
+                        
+                        <div class="details-gallery">
+                            <img src="Asset/project1_wristband.png" alt="Heart Rate Wristband">
+                            <img src="Asset/project1_pcb.jpg" alt="Wristband PCB Design">
+                            <img src="Asset/project1_app.jpg" alt="Companion App">
+                        </div>
+                        
+                        <div class="details-section">
+                            <h4>Project Overview</h4>
+                            <p>This project involved developing a complete wearable health monitoring solution focused on accurate heart rate tracking while maintaining extended battery life. The wristband features a custom-designed PCB with a PPG sensor, low-power microcontroller, and BLE connectivity to transmit data to a companion mobile application.</p>
+                            
+                            <div class="project-goals">
+                                <h5>Key Objectives:</h5>
+                                <ul>
+                                    <li>Achieve 7+ days of battery life on a single charge</li>
+                                    <li>Implement accurate PPG signal acquisition with motion artifact reduction</li>
+                                    <li>Create a seamless user experience with real-time data visualization</li>
+                                    <li>Develop a compact, comfortable form factor suitable for continuous wear</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="details-section">
+                            <h4>Technical Implementation</h4>
+                            
+                            <div class="implementation-subsection">
+                                <h5>Hardware Development</h5>
+                                <p>The hardware design focused on miniaturization and power efficiency while maintaining signal integrity. The core components include:</p>
+                                <ul>
+                                    <li><strong>MCU:</strong> Nordic nRF52832 SoC featuring ARM Cortex-M4F CPU and integrated BLE radio</li>
+                                    <li><strong>Sensors:</strong> MAX30102 PPG sensor for heart rate detection with integrated red and IR LEDs</li>
+                                    <li><strong>Power Management:</strong> TI BQ24232 battery charging IC with a 110mAh LiPo battery</li>
+                                    <li><strong>PCB Design:</strong> 4-layer design with dedicated analog and digital grounds to ensure signal integrity</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="implementation-subsection">
+                                <h5>Firmware Development</h5>
+                                <p>The firmware was developed using the Nordic SDK and implements several key features:</p>
+                                <ul>
+                                    <li>Optimized power management with CPU sleep modes during idle periods</li>
+                                    <li>Digital filtering algorithms to reduce motion artifacts in the PPG signal</li>
+                                    <li>Custom BLE service with characteristics for heart rate data, battery level, and device control</li>
+                                    <li>Adaptive sampling rate based on user activity to optimize power consumption</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="implementation-subsection">
+                                <h5>Mobile Application</h5>
+                                <p>A cross-platform application was developed using React Native to:</p>
+                                <ul>
+                                    <li>Provide real-time visualization of heart rate data</li>
+                                    <li>Store historical data and generate trends</li>
+                                    <li>Implement user authentication and secure data storage</li>
+                                    <li>Offer configurable alerts for abnormal heart rate patterns</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="details-section">
+                            <h4>Challenges & Solutions</h4>
+                            <p>The development process presented several significant challenges:</p>
+                            
+                            <div class="challenge-item">
+                                <h5>Power Consumption Optimization</h5>
+                                <p>Initial prototypes achieved only 3 days of battery life. I implemented a hierarchical power management system with dynamic duty cycling of the sensor and processor, extending battery life to over 8 days while maintaining measurement accuracy.</p>
+                            </div>
+                            
+                            <div class="challenge-item">
+                                <h5>Motion Artifact Reduction</h5>
+                                <p>PPG signals are highly susceptible to motion artifacts. I developed a custom adaptive filtering algorithm that combines accelerometer data with the PPG signal to identify and reduce motion-induced noise, improving accuracy during physical activity by 78%.</p>
+                            </div>
+                            
+                            <div class="challenge-item">
+                                <h5>Form Factor & Comfort</h5>
+                                <p>Creating a comfortable yet secure wristband required multiple design iterations. The final design incorporates flexible PCB technology and a custom-molded silicone housing to achieve the optimal balance between comfort and sensor placement.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="details-section">
+                            <h4>Results & Impact</h4>
+                            <p>The completed wristband demonstrates excellent performance metrics:</p>
+                            <ul>
+                                <li>Heart rate measurement accuracy within ±3 BPM compared to medical-grade devices</li>
+                                <li>8.5 days average battery life under typical usage patterns</li>
+                                <li>BLE range of up to 15 meters in indoor environments</li>
+                                <li>Total BOM cost under $35 in production quantities</li>
+                            </ul>
+                            <p>This project has laid the groundwork for future wearable health monitoring devices and demonstrated the viability of low-cost, high-accuracy consumer health technology.</p>
+                        </div>
+                        
+                        <div class="project-links-bottom">
+                            <a href="https://github.com/yourusername/heart-rate-wristband" target="_blank" class="btn btn-secondary"><i class="fab fa-github"></i> View on GitHub</a>
+                            <a href="Asset/project1_schematic.pdf" target="_blank" class="btn btn-secondary"><i class="fas fa-file-pdf"></i> View Schematic</a>
+                        </div>
+                    </div>
+                </div>
+
+                <article class="project-card" data-category="hardware firmware software">
+                    <div class="project-image">
+                        <img src="Asset/project2_potentiostat.png" alt="Custom Potentiostat">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#project2-details" class="details-link"><i class="fas fa-info-circle"></i> Details</a>
+                                <a href="https://github.com/yourusername/potentiostat" target="_blank"><i class="fab fa-github"></i> Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-tags">
+                            <span class="tag">Hardware</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">Instrumentation</span>
+                        </span>
+                        <h3>Custom Potentiostat with Python User Interface</h3>
+                        <p>A professional-grade electrochemical measurement instrument with precision analog front-end circuitry and an intuitive Python GUI for experimental control and data analysis.</p>
+                    </div>
+                </article>
+
+                <div id="project2-details" class="project-details">
+                    <div class="project-details-content">
+                        <span class="close-details">&times;</span>
+                        <h3>Custom Potentiostat with Python User Interface</h3>
+                        
+                        <div class="details-gallery">
+                            <img src="Asset/project2_potentiostat.png" alt="Custom Potentiostat">
+                            <img src="Asset/project2_circuit.jpg" alt="Analog Frontend Circuit">
+                            <img src="Asset/project2_gui.jpg" alt="Python GUI Interface">
+                        </div>
+                        
+                        <div class="details-section">
+                            <h4>Project Overview</h4>
+                            <p>This project involved the development of a complete electrochemical measurement system, featuring a high-precision potentiostat with an intuitive Python-based user interface. The system enables researchers and engineers to perform various electrochemical techniques with laboratory-grade accuracy at a fraction of the cost of commercial instruments.</p>
+                            
+                            <div class="project-goals">
+                                <h5>Key Objectives:</h5>
+                                <ul>
+                                    <li>Achieve sub-nanoamp current measurement resolution</li>
+                                    <li>Support multiple electrochemical techniques (CV, CA, EIS, etc.)</li>
+                                    <li>Develop an intuitive, feature-rich Python GUI for experiment control</li>
+                                    <li>Create a modular design for easy customization and upgrading</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="details-section">
+                            <h4>Technical Implementation</h4>
+                            
+                            <div class="implementation-subsection">
+                                <h5>Hardware Architecture</h5>
+                                <p>The potentiostat hardware was designed with a focus on precision and noise immunity:</p>
+                                <ul>
+                                    <li><strong>Analog Front-End:</strong> Precision op-amps (OPA192, AD8608) configured as potentiostat control loop</li>
+                                    <li><strong>Current Measurement:</strong> Transimpedance amplifier with switchable gain stages (1nA to 100mA ranges)</li>
+                                    <li><strong>DAC/ADC:</strong> 16-bit DAC for potential control, 24-bit delta-sigma ADC for current measurement</li>
+                                    <li><strong>Microcontroller:</strong> STM32F4 series MCU handling real-time control, measurement, and communication</li>
+                                    <li><strong>Isolation:</strong> Full galvanic isolation between the measurement circuit and computer interface</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="implementation-subsection">
+                                <h5>Firmware Architecture</h5>
+                                <p>The firmware implements a robust control system with several features:</p>
+                                <ul>
+                                    <li>Real-time potential control with PID feedback loop</li>
+                                    <li>Multiple electrochemical technique implementations (Cyclic Voltammetry, Chronoamperometry, etc.)</li>
+                                    <li>Adaptive sampling rate based on signal dynamics</li>
+                                    <li>USB Communication protocol with command validation and error handling</li>
+                                    <li>Onboard data buffering to ensure no data loss during high-speed measurements</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="implementation-subsection">
+                                <h5>Python GUI Development</h5>
+                                <p>The user interface was built using PyQt5 with a focus on usability:</p>
+                                <ul>
+                                    <li>Intuitive experiment setup with parameter validation</li>
+                                    <li>Real-time data visualization using Matplotlib integration</li>
+                                    <li>Automated data analysis tools for common electrochemical parameters</li>
+                                    <li>Data export in multiple formats (CSV, JSON, specialized formats)</li>
+                                    <li>Automated report generation capabilities</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="details-section">
+                            <h4>Challenges & Solutions</h4>
+                            
+                            <div class="challenge-item">
+                                <h5>Low-Current Measurement Noise</h5>
+                                <p>Achieving sub-nanoamp measurement resolution required careful PCB layout and shielding. I implemented a multi-layer PCB with guard rings, dedicated analog ground planes, and strategic component placement to achieve a noise floor below 500 pA peak-to-peak.</p>
+                            </div>
+                            
+                            <div class="challenge-item">
+                                <h5>Wide Dynamic Range</h5>
+                                <p>Electrochemical measurements often span 6+ orders of magnitude in current. I designed an auto-ranging system with seamless gain switching and overlapping ranges to provide accurate measurements from 1nA to 100mA without manual intervention.</p>
+                            </div>
+                            
+                            <div class="challenge-item">
+                                <h5>Real-Time Performance</h5>
+                                <p>High-speed techniques like Fast-Scan Cyclic Voltammetry require precise timing and rapid data acquisition. I implemented a dual-core architecture where one core handles critical timing while the second manages communication and non-time-critical tasks.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="details-section">
+                            <h4>Results & Impact</h4>
+                            <p>The completed potentiostat system delivers impressive performance metrics:</p>
+                            <ul>
+                                <li>Current measurement range: ±1nA to ±100mA with auto-ranging</li>
+                                <li>Potential control range: ±2V with 100μV resolution</li>
+                                <li>Maximum sampling rate: 10kHz for high-speed techniques</li>
+                                <li>Cost: Approximately 15% of comparable commercial instruments</li>
+                            </ul>
+                            <p>This instrument has been successfully deployed in multiple research laboratories and has enabled several publications in electrochemical sensors and materials characterization. The open-source design has also been adopted and modified by researchers worldwide for specialized applications.</p>
+                        </div>
+                        
+                        <div class="project-links-bottom">
+                            <a href="https://github.com/yourusername/potentiostat" target="_blank" class="btn btn-secondary"><i class="fab fa-github"></i> View on GitHub</a>
+                            <a href="Asset/project2_documentation.pdf" target="_blank" class="btn btn-secondary"><i class="fas fa-file-pdf"></i> Documentation</a>
+                        </div>
+                    </div>
+                </div>
+
+                <article class="project-card" data-category="iot firmware software">
+                    <div class="project-image">
+                        <img src="Asset/project3_smartgarden.jpg" alt="Smart Garden System">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#project3-details" class="details-link"><i class="fas fa-info-circle"></i> Details</a>
+                                <a href="https://github.com/yourusername/smart-garden" target="_blank"><i class="fab fa-github"></i> Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-tags">
+                            <span class="tag">IoT</span>
+                            <span class="tag">ESP32</span>
+                            <span class="tag">Automation</span>
+                        </span>
+                        <h3>Automated Smart Garden System</h3>
+                        <p>An intelligent plant monitoring and irrigation system using soil moisture sensors, environmental monitoring, and adaptive watering schedules controlled through a mobile app.</p>
+                    </div>
+                </article>
+
+                <article class="project-card" data-category="hardware firmware">
+                    <div class="project-image">
+                        <img src="Asset/project4_datalogger.jpg" alt="Environmental Data Logger">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="details-link"><i class="fas fa-info-circle"></i> Details</a>
+                                <a href="https://github.com/yourusername/environmental-logger" target="_blank"><i class="fab fa-github"></i> Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-tags">
+                            <span class="tag">Hardware</span>
+                            <span class="tag">Data Logging</span>
+                            <span class="tag">Low Power</span>
+                        </span>
+                        <h3>Ultra-Low Power Environmental Data Logger</h3>
+                        <p>A battery-operated environmental monitoring system capable of multi-year deployment with comprehensive sensor array and efficient data storage.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2>Professional Experience</h2>
+                <div class="underline"></div>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2022 - Present</div>
+                    <div class="timeline-content">
+                        <h3>Senior Hardware Engineer</h3>
+                        <h4>Innovative Solutions A/S, Copenhagen</h4>
+                        <p>Lead engineer for IoT product development, responsible for hardware architecture, PCB design, and cross-functional team coordination.</p>
+                        <ul>
+                            <li>Led the development of a new generation of wireless sensor networks, reducing power consumption by 65%</li>
+                            <li>Designed and implemented custom test fixtures, improving production throughput by 40%</li>
+                            <li>Mentored junior engineers and established hardware design guidelines for the department</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2019 - 2022</div>
+                    <div class="timeline-content">
+                        <h3>Embedded Systems Engineer</h3>
+                        <h4>TechWave Electronics, Aarhus</h4>
+                        <p>Developed firmware and hardware for consumer electronics and industrial control systems.</p>
+                        <ul>
+                            <li>Designed analog and digital circuits for measurement instrumentation</li>
+                            <li>Implemented communication protocols (I2C, SPI, CAN, USB) for various embedded applications</li>
+                            <li>Collaborated with industrial designers to ensure manufacturability of new products</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2017 - 2019</div>
+                    <div class="timeline-content">
+                        <h3>Hardware Development Engineer</h3>
+                        <h4>Nordic Innovation Labs, Copenhagen</h4>
+                        <p>Contributed to the development of wireless audio products and Bluetooth-enabled devices.</p>
+                        <ul>
+                            <li>Developed RF circuits and conducted compliance testing for wireless products</li>
+                            <li>Collaborated with software team to optimize hardware-software interfaces</li>
+                            <li>Reduced BOM costs by 18% through component optimization and supplier negotiation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What People Say</h2>
+                <div class="underline"></div>
+            </div>
+            
+            <div class="testimonials-carousel">
+                <div class="testimonial-item active">
+                    <div class="testimonial-content">
+                        <p>"Alan's technical expertise and problem-solving abilities were instrumental in the success of our IoT product line. His attention to detail and systematic approach to hardware design significantly improved our product reliability."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="Asset/testimonial1.jpg" alt="Maria Jensen">
+                        <div class="author-info">
+                            <h4>Maria Jensen</h4>
+                            <p>Product Manager, Innovative Solutions A/S</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>"Working with Alan on our environmental monitoring system was a true pleasure. His deep understanding of embedded systems and low-power design techniques enabled us to exceed our battery life targets by more than 300%."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="Asset/testimonial2.jpg" alt="Thomas Nielsen">
+                        <div class="author-info">
+                            <h4>Thomas Nielsen</h4>
+                            <p>CTO, GreenTech Monitoring</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>"Alan consistently delivers high-quality designs that balance technical excellence with practical considerations like manufacturability and cost. His ability to communicate complex technical concepts to non-technical stakeholders is exceptional."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="Asset/testimonial3.jpg" alt="Sophia Hansen">
+                        <div class="author-info">
+                            <h4>Sophia Hansen</h4>
+                            <p>Engineering Director, TechWave Electronics</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="carousel-controls">
+                <button id="prev-testimonial"><i class="fas fa-chevron-left"></i></button>
+                <div class="carousel-dots">
+                    <span class="dot active" data-index="0"></span>
+                    <span class="dot" data-index="1"></span>
+                    <span class="dot" data-index="2"></span>
+                </div>
+                <button id="next-testimonial"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
 
     <section id="contact">
         <div class="container">
-            <h2>Get In Touch</h2>
-            <p>If you'd like to discuss my projects, potential collaborations, or opportunities, feel free to reach out!</p>
-            <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-            <p>LinkedIn: <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
-            <p>GitHub: <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a></p>
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <div class="underline"></div>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's Connect</h3>
+                    <p>Whether you're interested in discussing potential projects, exploring collaboration opportunities, or just wanting to say hello, I'd love to hear from you.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p><a href="mailto:alan.eng@example.com">alan.eng@example.com</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="contact-text">
+                                <h4>Location</h4>
+                                <p>Copenhagen, Denmark</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <div class="contact-text">
+                                <h4>Availability</h4>
+                                <p>Mon-Fri: 9am - 5pm CET</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://linkedin.com/in/alaneeng" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/alaneeng" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+                        <a href="https://twitter.com/alaneeng" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="https://medium.com/@alaneeng" target="_blank" class="social-icon"><i class="fab fa-medium-m"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>© 2023 Your Name. All rights reserved.</p>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="#"><span class="highlight">A</span>lanEng</a>
+                </div>
+                
+                <div class="footer-nav">
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <a href="https://linkedin.com/in/alaneeng" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/alaneeng" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://twitter.com/alaneeng" target="_blank"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Alan Eng. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
+    <a href="#" id="scroll-to-top"><i class="fas fa-arrow-up"></i></a>
+
+    <script src="script.js"></script>
 </body>
 </html>
