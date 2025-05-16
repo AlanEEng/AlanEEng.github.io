@@ -45,22 +45,58 @@
     </header>
 
     <section id="hero">
+        <div class="hero-background">
+            <div class="hero-shape"></div>
+            <div class="particles-container">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+        </div>
         <div class="container">
             <div class="hero-content">
-                <h1>Hi, I'm <span class="highlight">Alan Eng</span></h1>
-                <h2>Engineering Design & Development Specialist</h2>
-                <p>I create innovative engineering solutions from concept to deployment, specializing in embedded systems, hardware design, and IoT applications.</p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">View My Work</a>
-                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                <div class="hero-text-area">
+                    <div class="hero-greeting">Hello, World!</div>
+                    <h1>I'm <span class="highlight">Alan Eng</span></h1>
+                    <h2 class="typewriter">Engineering Design & Development Specialist</h2>
+                    <p>I create innovative engineering solutions from concept to deployment, specializing in embedded systems, hardware design, and IoT applications.</p>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">
+                            <span class="btn-text">View My Work</span>
+                            <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <span class="btn-text">Get In Touch</span>
+                            <span class="btn-icon"><i class="fas fa-envelope"></i></span>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="hero-image">
-                <img src="Asset/hero-image.png" alt="Alan Eng - Engineering Portfolio">
+                <div class="hero-image-container">
+                    <div class="hero-image">
+                        <img src="Asset/hero-image.png" alt="Alan Eng - Engineering Portfolio" loading="eager">
+                        <div class="hero-image-backdrop"></div>
+                    </div>
+                    <div class="floating-elements">
+                        <div class="floating-element fe-1"><i class="fas fa-microchip"></i></div>
+                        <div class="floating-element fe-2"><i class="fas fa-code"></i></div>
+                        <div class="floating-element fe-3"><i class="fas fa-wifi"></i></div>
+                        <div class="floating-element fe-4"><i class="fas fa-cog"></i></div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="scroll-down">
-            <a href="#about"><i class="fas fa-chevron-down"></i></a>
+            <a href="#about" aria-label="Scroll to About section">
+                <div class="mouse-icon">
+                    <div class="mouse-wheel"></div>
+                </div>
+                <span>Scroll Down</span>
+            </a>
         </div>
     </section>
 
@@ -107,51 +143,258 @@
             <div class="section-header">
                 <h2>Technical Skills</h2>
                 <div class="underline"></div>
+                <p class="section-subtitle">My expertise across various engineering domains</p>
             </div>
             <div class="skills-container">
-                <div class="skill-category">
-                    <div class="skill-icon"><i class="fas fa-microchip"></i></div>
-                    <h3>Hardware Design</h3>
-                    <ul>
-                        <li>Analog & Digital Circuit Design</li>
-                        <li>PCB Layout & Fabrication</li>
-                        <li>Signal Processing</li>
-                        <li>Prototyping & Testing</li>
-                        <li>Component Selection</li>
-                    </ul>
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
+                    <div class="skill-header">
+                        <div class="skill-icon"><i class="fas fa-microchip"></i></div>
+                        <h3>Hardware Design</h3>
+                        <button class="skill-expand-btn" aria-label="Expand Hardware Design skills">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="skill-content">
+                        <div class="skill-bars">
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>Analog & Digital Circuit Design</span>
+                                    <span class="percent">95%</span>
+                                </div>
+                                <div class="skill-progress-bg">
+                                    <div class="skill-progress-fill" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>PCB Layout & Fabrication</span>
+                                    <span class="percent">90%</span>
+                                </div>
+                                <div class="skill-progress-bg">
+                                    <div class="skill-progress-fill" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>Signal Processing</span>
+                                    <span class="percent">85%</span>
+                                </div>
+                                <div class="skill-progress-bg">
+                                    <div class="skill-progress-fill" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>Prototyping & Testing</span>
+                                    <span class="percent">92%</span>
+                                </div>
+                                <div class="skill-progress-bg">
+                                    <div class="skill-progress-fill" style="width: 92%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>Component Selection</span>
+                                    <span class="percent">88%</span>
+                                </div>
+                                <div class="skill-progress-bg">
+                                    <div class="skill-progress-fill" style="width: 88%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="skill-category">
-                    <div class="skill-icon"><i class="fas fa-code"></i></div>
-                    <h3>Firmware & Software</h3>
-                    <ul>
-                        <li>C/C++ Embedded Programming</li>
-                        <li>Python Development</li>
-                        <li>RTOS Implementation</li>
-                        <li>Real-time Data Processing</li>
-                        <li>Mobile App Development</li>
-                    </ul>
+                
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
+                    <div class="skill-header">
+                        <div class="skill-icon"><i class="fas fa-code"></i></div>
+                        <h3>Firmware & Software</h3>
+                        <button class="skill-expand-btn" aria-label="Expand Firmware & Software skills">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="skill-content">
+                        <div class="skill-bars">
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>C/C++ Embedded Programming</span>
+                                    <span class="percent">94%</span>
+                                </div>
+                                <div class="skill-progress-bg">
+                                    <div class="skill-progress-fill" style="width: 94%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>Python Development</span>
+                                    <span class="percent">86%</span>
+                                </div>
+                                <div class="skill-progress-bg">
+                                    <div class="skill-progress-fill" style="width: 86%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>RTOS Implementation</span>
+                                    <span class="percent">88%</span>
+                                </div>
+                                <div class="skill-progress-bg">
+                                    <div class="skill-progress-fill" style="width: 88%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>Real-time Data Processing</span>
+                                    <span class="percent">90%</span>
+                                </div>
+                                <div class="skill-progress-bg">
+                                    <div class="skill-progress-fill" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>Mobile App Development</span>
+                                    <span class="percent">80%</span>
+                                </div>
+                                <div class="skill-progress-bg">
+                                    <div class="skill-progress-fill" style="width: 80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="skill-category">
-                    <div class="skill-icon"><i class="fas fa-wifi"></i></div>
-                    <h3>IoT & Communication</h3>
-                    <ul>
-                        <li>Bluetooth Low Energy (BLE)</li>
-                        <li>Wi-Fi Implementation</li>
-                        <li>LoRa/LoRaWAN</li>
-                        <li>I2C/SPI/UART Protocols</li>
-                        <li>Secure Communication</li>
-                    </ul>
+                
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
+                    <div class="skill-header">
+                        <div class="skill-icon"><i class="fas fa-wifi"></i></div>
+                        <h3>IoT & Communication</h3>
+                        <button class="skill-expand-btn" aria-label="Expand IoT & Communication skills">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="skill-content">
+                        <div class="skill-bars">
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>Bluetooth Low Energy (BLE)</span>
+                                    <span class="percent">92%</span>
+                                </div>
+                                <div class="skill-progress-bg">
+                                    <div class="skill-progress-fill" style="width: 92%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>Wi-Fi Implementation</span>
+                                    <span class="percent">88%</span>
+                                </div>
+                                <div class="skill-progress-bg">
+                                    <div class="skill-progress-fill" style="width: 88%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>LoRa/LoRaWAN</span>
+                                    <span class="percent">85%</span>
+                                </div>
+                                <div class="skill-progress-bg">
+                                    <div class="skill-progress-fill" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>I2C/SPI/UART Protocols</span>
+                                    <span class="percent">95%</span>
+                                </div>
+                                <div class="skill-progress-bg">
+                                    <div class="skill-progress-fill" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>Secure Communication</span>
+                                    <span class="percent">83%</span>
+                                </div>
+                                <div class="skill-progress-bg">
+                                    <div class="skill-progress-fill" style="width: 83%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="skill-category">
-                    <div class="skill-icon"><i class="fas fa-tools"></i></div>
-                    <h3>Tools & Platforms</h3>
-                    <ul>
-                        <li>Altium Designer/KiCad</li>
-                        <li>Oscilloscopes & Logic Analyzers</li>
-                        <li>ARM Cortex Development</li>
-                        <li>ESP32/ESP8266 Platforms</li>
-                        <li>Nordic nRF52 Series</li>
-                    </ul>
+                
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="400">
+                    <div class="skill-header">
+                        <div class="skill-icon"><i class="fas fa-tools"></i></div>
+                        <h3>Tools & Platforms</h3>
+                        <button class="skill-expand-btn" aria-label="Expand Tools & Platforms skills">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="skill-content">
+                        <div class="skill-bars">
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>Altium Designer/KiCad</span>
+                                    <span class="percent">91%</span>
+                                </div>
+                                <div class="skill-progress-bg">
+                                    <div class="skill-progress-fill" style="width: 91%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>Oscilloscopes & Logic Analyzers</span>
+                                    <span class="percent">93%</span>
+                                </div>
+                                <div class="skill-progress-bg">
+                                    <div class="skill-progress-fill" style="width: 93%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>ARM Cortex Development</span>
+                                    <span class="percent">89%</span>
+                                </div>
+                                <div class="skill-progress-bg">
+                                    <div class="skill-progress-fill" style="width: 89%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>ESP32/ESP8266 Platforms</span>
+                                    <span class="percent">94%</span>
+                                </div>
+                                <div class="skill-progress-bg">
+                                    <div class="skill-progress-fill" style="width: 94%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>Nordic nRF52 Series</span>
+                                    <span class="percent">90%</span>
+                                </div>
+                                <div class="skill-progress-bg">
+                                    <div class="skill-progress-fill" style="width: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skills-summary">
+                <div class="skills-chart-container">
+                    <canvas id="skillsChart" width="400" height="400"></canvas>
+                </div>
+                <div class="skills-summary-text">
+                    <h3>Expertise Overview</h3>
+                    <p>With over 5 years of experience in engineering, I've developed a balanced skill set across hardware, firmware, and software domains. My core strengths lie in embedded systems development, wireless communication protocols, and end-to-end product design.</p>
+                    <p>I continuously expand my knowledge through professional projects, research, and staying current with emerging technologies in the IoT and embedded systems space.</p>
+                    <a href="Asset/resume.pdf" class="btn btn-secondary" download>
+                        <span class="btn-icon"><i class="fas fa-download"></i></span>
+                        <span class="btn-text">Download Full Resume</span>
+                    </a>
                 </div>
             </div>
         </div>
