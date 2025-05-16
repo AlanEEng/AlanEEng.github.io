@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Engineering Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Your Name - Engineering Portfolio</h1>
+            <nav>
+                <ul>
+                    <li><a href="#about">About Me</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <h2>Innovate. Design. Build.</h2>
+            <p>Welcome to my portfolio. Here I showcase my passion for end-to-end engineering solutions, from concept to deployment.</p>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <h3>My Skills</h3>
+            <ul class="skills-list">
+                <li>Hardware Design & Prototyping</li>
+                <li>Firmware Development (C/C++)</li>
+                <li>Embedded Systems</li>
+                <li>IoT & Wireless Communication (BLE, Wi-Fi)</li>
+                <li>Software Development (Python, Mobile Apps)</li>
+                <li>PCB Design</li>
+                <li>Signal Processing</li>
+            </ul>
+        </div>
+    </section>
+
+    <main id="projects">
+        <div class="container">
+            <h2>My Projects</h2>
+
+            <article class="project-card">
+                <img src="Asset/project1_wristband.png" alt="Wireless Heart Rate Wristband" class="project-image">
+                <div class="project-content">
+                    <h3>Project 1: Wireless Low-Power Heart Rate Tracking Wristband</h3>
+                    <p class="project-summary">A comprehensive project involving the design and development of a custom wristband for real-time heart rate monitoring using Photoplethysmography (PPG) and Bluetooth Low Energy (BLE) for data transmission to a companion mobile application.</p>
+
+                    <h4>1.1. Project Overview & Goals</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Morbi sed efficitur nunc.</p>
+                    <ul>
+                        <li>Goal 1: Develop a low-cost, low-power wearable device.</li>
+                        <li>Goal 2: Implement accurate PPG signal acquisition.</li>
+                        <li>Goal 3: Enable wireless data transfer via BLE.</li>
+                        <li>Goal 4: Create a user-friendly mobile app for data visualization.</li>
+                    </ul>
+
+                    <h4>1.2. Hardware Development</h4>
+                    <p>The hardware was designed from scratch, focusing on component selection for power efficiency and performance. Key components include:</p>
+                    <h5>1.2.1. Microcontroller Unit (MCU)</h5>
+                    <p>Placeholder text for MCU selection criteria, specific chip used (e.g., nRF52 series, ESP32), and its core features relevant to the project.</p>
+                    <h5>1.2.2. PPG Sensor</h5>
+                    <p>Placeholder text for the PPG sensor details (e.g., MAX3010x), its working principle, and integration challenges.</p>
+                    <h5>1.2.3. Power Management</h5>
+                    <p>Placeholder text for battery selection, charging circuit, and power optimization techniques employed.</p>
+                    <h5>1.2.4. PCB Design</h5>
+                    <p>Placeholder text about the PCB design process, software used (e.g., KiCad, Eagle), and any specific design considerations for a wearable device.</p>
+
+                    <h4>1.3. Firmware Development</h4>
+                    <p>The firmware was developed in C/C++ to manage sensor data acquisition, processing, and BLE communication.</p>
+                    <h5>1.3.1. Sensor Interfacing & Data Acquisition</h5>
+                    <p>Placeholder text describing how the MCU interfaces with the PPG sensor, sampling rates, and raw data collection.</p>
+                    <h5>1.3.2. Signal Processing Algorithms</h5>
+                    <p>Placeholder text detailing any filtering (e.g., Kalman, Butterworth) or algorithms applied to the raw PPG signal to extract heart rate.</p>
+                    <h5>1.3.3. BLE Stack Implementation</h5>
+                    <p>Placeholder text about setting up BLE services, characteristics, advertising, and connection management for data transmission.</p>
+
+                    <h4>1.4. Software Development (Mobile App)</h4>
+                    <p>A companion mobile application was developed to receive, display, and store the heart rate data.</p>
+                    <h5>1.4.1. App Platform & Technology</h5>
+                    <p>Placeholder text specifying the platform (e.g., Android, iOS, cross-platform like React Native/Flutter) and languages/frameworks used.</p>
+                    <h5>1.4.2. BLE Communication Handling</h5>
+                    <p>Placeholder text on how the app scans for, connects to, and receives data from the wristband via BLE.</p>
+                    <h5>1.4.3. Data Visualization & UI/UX</h5>
+                    <p>Placeholder text describing the app's user interface, how data is presented (e.g., real-time graphs, historical data), and any user experience considerations.</p>
+
+                    <h4>1.5. Challenges & Learnings</h4>
+                    <p>Placeholder text discussing any significant challenges faced during the project (e.g., power consumption, signal noise, BLE stability) and key takeaways or skills gained.</p>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <img src="Asset/project2_potentiostat.png" alt="Custom Potentiostat" class="project-image">
+                <div class="project-content">
+                    <h3>Project 2: Custom Potentiostat with Python User Interface</h3>
+                    <p class="project-summary">This professional project involved the end-to-end development of a potentiostat, including hardware design, firmware programming, and a Python-based graphical user interface for instrument control and data acquisition.</p>
+
+                    <h4>2.1. Project Context & Objectives</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam efficitur, sapien et tincidunt interdum, nulla purus aliquam nisl, id congue nunc erat vitae nibh. Fusce vel leo nec justo sodales tincidunt.</p>
+                    <ul>
+                        <li>Objective 1: Design a precise and reliable potentiostat circuit.</li>
+                        <li>Objective 2: Develop robust firmware for control and measurement.</li>
+                        <li>Objective 3: Create an intuitive Python GUI for end-users.</li>
+                        <li>Objective 4: Ensure stable USB communication for power and data.</li>
+                    </ul>
+
+                    <h4>2.2. Hardware Design</h4>
+                    <p>The potentiostat hardware was meticulously designed to achieve accurate electrochemical measurements. This involved:</p>
+                    <h5>2.2.1. Analog Front-End</h5>
+                    <p>Placeholder text detailing the operational amplifiers, DACs, ADCs, and control loops used to maintain the desired potential and measure current.</p>
+                    <h5>2.2.2. Microcontroller & Peripherals</h5>
+                    <p>Placeholder text for the MCU choice (e.g., STM32, PIC) and its role in controlling the analog circuitry and communicating with the PC.</p>
+                    <h5>2.2.3. Power Supply & Isolation</h5>
+                    <p>Placeholder text regarding the power supply design, and any isolation techniques used to ensure measurement accuracy and safety.</p>
+                    <h5>2.2.4. PCB Layout Considerations</h5>
+                    <p>Placeholder text for specific PCB layout strategies for sensitive analog signals, grounding, and noise reduction.</p>
+
+                    <h4>2.3. Firmware Development</h4>
+                    <p>Firmware was developed to manage the potentiostat's operation, execute electrochemical techniques, and handle USB communication.</p>
+                    <h5>2.3.1. Control Algorithms</h5>
+                    <p>Placeholder text describing the implementation of control loops (e.g., PID) for precise potential control.</p>
+                    <h5>2.3.2. Measurement Sequences</h5>
+                    <p>Placeholder text on how different electrochemical methods (e.g., Cyclic Voltammetry, Chronoamperometry) were programmed.</p>
+                    <h5>2.3.3. USB Communication Protocol</h5>
+                    <p>Placeholder text defining the communication protocol between the firmware and the Python GUI (e.g., command structure, data packet format).</p>
+
+                    <h4>2.4. Software Development (Python GUI)</h4>
+                    <p>A user-friendly desktop application was created using Python to control the potentiostat and visualize data.</p>
+                    <h5>2.4.1. GUI Framework</h5>
+                    <p>Placeholder text specifying the Python GUI library used (e.g., Tkinter, PyQt, Kivy).</p>
+                    <h5>2.4.2. Instrument Control Interface</h5>
+                    <p>Placeholder text describing how users can set parameters, start/stop experiments, and configure the potentiostat through the GUI.</p>
+                    <h5>2.4.3. Data Acquisition & Visualization</h5>
+                    <p>Placeholder text on how the Python application receives data from the potentiostat, processes it, and displays it (e.g., using Matplotlib for plots).</p>
+                    <h5>2.4.4. Data Export & Management</h5>
+                    <p>Placeholder text for features like saving experimental data to files (e.g., CSV, TXT) and managing past experiments.</p>
+
+                    <h4>2.5. Integration & Testing</h4>
+                    <p>Placeholder text discussing the process of integrating the hardware, firmware, and software components, along with the testing methodologies used to validate the potentiostat's performance and accuracy.</p>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <p>If you'd like to discuss my projects, potential collaborations, or opportunities, feel free to reach out!</p>
+            <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+            <p>LinkedIn: <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
+            <p>GitHub: <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a></p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2023 Your Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
