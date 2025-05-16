@@ -3,387 +3,298 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Professional engineering portfolio showcasing innovative projects in embedded systems, IoT, and hardware design">
-    <meta name="keywords" content="engineering, portfolio, embedded systems, hardware design, IoT, firmware">
+    <meta name="description" content="Alan Eng - Engineering portfolio showcasing innovative projects in embedded systems, IoT, hardware design, and firmware development">
+    <meta name="keywords" content="engineering portfolio, embedded systems, hardware design, IoT, firmware development, PCB design, electronics engineer">
+    <meta name="author" content="Alan Eng">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Alan Eng | Engineering Portfolio">
+    <meta property="og:description" content="Innovative engineer specializing in embedded systems, hardware design, and IoT applications">
+    <meta property="og:image" content="Asset/og-image.jpg">
+    <meta property="og:url" content="https://alaneeng.github.io/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
     <title>Alan Eng | Engineering Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="Asset/favicon.png">
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="Asset/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Asset/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="Asset/apple-touch-icon.png">
+    <link rel="manifest" href="Asset/site.webmanifest">
+    <meta name="theme-color" content="#2563eb">
 </head>
 <body>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <div class="theme-switch-wrapper">
         <label class="theme-switch" for="checkbox">
-            <input type="checkbox" id="checkbox" />
+            <input type="checkbox" id="checkbox" aria-label="Switch between dark and light mode"/>
             <div class="slider round"></div>
         </label>
-        <em><i class="fas fa-moon"></i></em>
+        <em><i class="fas fa-moon" aria-hidden="true"></i></em>
     </div>
 
     <header>
         <div class="container">
             <div class="logo">
-                <a href="#"><span class="highlight">A</span>lanEng</a>
+                <a href="#" aria-label="Home">
+                    <span class="highlight">A</span>lanEng
+                </a>
             </div>
-            <nav id="navbar">
+            <nav id="navbar" aria-label="Main Navigation">
                 <ul>
                     <li><a href="#about" class="nav-link">About</a></li>
                     <li><a href="#skills" class="nav-link">Skills</a></li>
                     <li><a href="#projects" class="nav-link">Projects</a></li>
                     <li><a href="#experience" class="nav-link">Experience</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
-                    <li><a href="Asset/resume.pdf" class="btn-resume" target="_blank">Resume</a></li>
+                    <li><a href="Asset/resume.pdf" class="btn-resume" target="_blank" rel="noopener">Resume <span class="sr-only">(opens in new tab)</span></a></li>
                 </ul>
             </nav>
-            <div class="menu-toggle" id="mobile-menu">
+            <button class="menu-toggle" id="mobile-menu" aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
-            </div>
+            </button>
         </div>
     </header>
 
     <section id="hero">
         <div class="container">
-            <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
-                <div class="greeting">Hello, my name is</div>
-                <h1>Alan <span class="highlight">Eng</span></h1>
+            <div class="hero-content">
+                <h1>Hi, I'm <span class="highlight">Alan Eng</span></h1>
                 <h2>Engineering Design & Development Specialist</h2>
                 <p>I create innovative engineering solutions from concept to deployment, specializing in embedded systems, hardware design, and IoT applications.</p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">View My Work</a>
                     <a href="#contact" class="btn btn-secondary">Get In Touch</a>
                 </div>
-                <div class="hero-social">
-                    <a href="https://linkedin.com/in/alaneeng" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://github.com/alaneeng" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://twitter.com/alaneeng" target="_blank"><i class="fab fa-twitter"></i></a>
+                <div class="hero-cta">
+                    <span class="availability">
+                        <i class="fas fa-circle" aria-hidden="true"></i> Available for new projects
+                    </span>
                 </div>
             </div>
-            <div class="hero-image" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
-                <img src="Asset/hero-image.png" alt="Alan Eng - Engineering Portfolio">
-                <div class="shape shape-1"></div>
-                <div class="shape shape-2"></div>
+            <div class="hero-image" aria-hidden="true">
+                <img src="Asset/hero-image.png" alt="" loading="eager">
             </div>
         </div>
         <div class="scroll-down">
-            <a href="#about"><i class="fas fa-chevron-down"></i></a>
+            <a href="#about" aria-label="Scroll to About section"><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
         </div>
     </section>
 
-    <section id="about">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-subtitle">About Me</span>
-                <h2>Engineering with Purpose</h2>
-                <div class="underline"></div>
-            </div>
-            <div class="about-content">
-                <div class="about-image" data-aos="fade-right" data-aos-duration="800">
-                    <img src="Asset/profile-photo.jpg" alt="Alan Eng">
-                    <div class="experience-badge">
-                        <span>5+</span>
-                        <span>Years</span>
-                        <span>Experience</span>
-                    </div>
+    <main id="main-content">
+        <section id="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2>About Me</h2>
+                    <div class="underline"></div>
                 </div>
-                <div class="about-text" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
-                    <p>I'm a dedicated engineer with expertise in end-to-end product development, from initial concept to final production. With a background in electrical engineering and 5+ years of experience in hardware design, firmware development, and system integration, I specialize in creating innovative solutions for complex engineering challenges.</p>
-                    <p>My passion lies in developing embedded systems and IoT devices that bridge the gap between hardware and software, creating seamless experiences for users while solving real-world problems. I thrive in collaborative environments where I can contribute my technical expertise while learning from diverse perspectives.</p>
-                    <p>When I'm not designing circuits or writing firmware, you can find me experimenting with new technologies, contributing to open-source projects, or mentoring aspiring engineers.</p>
-                    <div class="about-details">
-                        <div class="detail-item">
-                            <i class="fas fa-graduation-cap"></i>
-                            <span>MSc in Electrical Engineering</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-briefcase"></i>
-                            <span>5+ Years Experience</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Copenhagen, Denmark</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-language"></i>
-                            <span>English, Danish</span>
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="Asset/profile-photo.jpg" alt="Alan Eng - Engineering Professional" loading="lazy">
+                    </div>
+                    <div class="about-text">
+                        <h3>Engineering with Purpose</h3>
+                        <p>I'm a dedicated engineer with expertise in end-to-end product development, from initial concept to final production. With a background in electrical engineering and 5+ years of experience in hardware design, firmware development, and system integration, I specialize in creating innovative solutions for complex engineering challenges.</p>
+                        <p>My passion lies in developing embedded systems and IoT devices that bridge the gap between hardware and software, creating seamless experiences for users while solving real-world problems. I thrive in collaborative environments where I can contribute my technical expertise while learning from diverse perspectives.</p>
+                        <p>When I'm not designing circuits or writing firmware, you can find me experimenting with new technologies, contributing to open-source projects, or mentoring aspiring engineers.</p>
+                        <div class="about-details">
+                            <div class="detail-item">
+                                <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+                                <span>MSc in Electrical Engineering</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-briefcase" aria-hidden="true"></i>
+                                <span>5+ Years Experience</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                <span>Copenhagen, Denmark</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-language" aria-hidden="true"></i>
+                                <span>English, Danish</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="skills">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-subtitle">What I Do</span>
-                <h2>Technical Skills</h2>
-                <div class="underline"></div>
-            </div>
-            <div class="skills-container">
-                <div class="skill-category" data-aos="flip-up" data-aos-duration="800" data-aos-delay="0">
-                    <div class="skill-icon"><i class="fas fa-microchip"></i></div>
-                    <h3>Hardware Design</h3>
-                    <div class="skill-progress-container">
-                        <div class="skill-progress-item">
-                            <div class="skill-progress-label">
-                                <span>Circuit Design</span>
-                                <span>95%</span>
+            <section id="skills" class="skills-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Technical Skills</h2>
+                    <div class="underline"></div>
+                    <p class="section-subheading">A comprehensive toolkit built through years of hands-on experience</p>
+                </div>
+                
+                <div class="skills-nav">
+                    <button class="skill-nav-btn active" data-target="all">All Skills</button>
+                    <button class="skill-nav-btn" data-target="hardware">Hardware</button>
+                    <button class="skill-nav-btn" data-target="software">Software</button>
+                    <button class="skill-nav-btn" data-target="tools">Tools</button>
+                </div>
+                
+                <div class="skills-container">
+                    <div class="skill-category" data-category="hardware">
+                        <div class="skill-icon" aria-hidden="true"><i class="fas fa-microchip"></i></div>
+                        <h3>Hardware Design</h3>
+                        <ul>
+                            <li>Analog & Digital Circuit Design</li>
+                            <li>PCB Layout & Fabrication</li>
+                            <li>Signal Processing</li>
+                            <li>Prototyping & Testing</li>
+                            <li>Component Selection</li>
+                        </ul>
+                        <div class="skill-proficiency">
+                            <div class="proficiency-bar">
+                                <div class="proficiency-level" style="width:95%;" aria-hidden="true"></div>
                             </div>
-                            <div class="skill-progress-bar">
-                                <div class="skill-progress-fill" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-progress-item">
-                            <div class="skill-progress-label">
-                                <span>PCB Layout</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="skill-progress-bar">
-                                <div class="skill-progress-fill" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-progress-item">
-                            <div class="skill-progress-label">
-                                <span>Signal Processing</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="skill-progress-bar">
-                                <div class="skill-progress-fill" style="width: 85%"></div>
-                            </div>
+                            <span class="sr-only">Expert proficiency level</span>
+                            <span class="proficiency-text">Expert</span>
                         </div>
                     </div>
-                </div>
-                <div class="skill-category" data-aos="flip-up" data-aos-duration="800" data-aos-delay="200">
-                    <div class="skill-icon"><i class="fas fa-code"></i></div>
-                    <h3>Firmware & Software</h3>
-                    <div class="skill-progress-container">
-                        <div class="skill-progress-item">
-                            <div class="skill-progress-label">
-                                <span>C/C++</span>
-                                <span>92%</span>
+                    <div class="skill-category" data-category="software">
+                        <div class="skill-icon" aria-hidden="true"><i class="fas fa-code"></i></div>
+                        <h3>Firmware & Software</h3>
+                        <ul>
+                            <li>C/C++ Embedded Programming</li>
+                            <li>Python Development</li>
+                            <li>RTOS Implementation</li>
+                            <li>Real-time Data Processing</li>
+                            <li>Mobile App Development</li>
+                        </ul>
+                        <div class="skill-proficiency">
+                            <div class="proficiency-bar">
+                                <div class="proficiency-level" style="width:90%;" aria-hidden="true"></div>
                             </div>
-                            <div class="skill-progress-bar">
-                                <div class="skill-progress-fill" style="width: 92%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-progress-item">
-                            <div class="skill-progress-label">
-                                <span>Python</span>
-                                <span>88%</span>
-                            </div>
-                            <div class="skill-progress-bar">
-                                <div class="skill-progress-fill" style="width: 88%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-progress-item">
-                            <div class="skill-progress-label">
-                                <span>RTOS</span>
-                                <span>80%</span>
-                            </div>
-                            <div class="skill-progress-bar">
-                                <div class="skill-progress-fill" style="width: 80%"></div>
-                            </div>
+                            <span class="sr-only">Advanced proficiency level</span>
+                            <span class="proficiency-text">Advanced</span>
                         </div>
                     </div>
-                </div>
-                <div class="skill-category" data-aos="flip-up" data-aos-duration="800" data-aos-delay="400">
-                    <div class="skill-icon"><i class="fas fa-wifi"></i></div>
-                    <h3>IoT & Communication</h3>
-                    <div class="skill-progress-container">
-                        <div class="skill-progress-item">
-                            <div class="skill-progress-label">
-                                <span>BLE</span>
-                                <span>95%</span>
+                    <div class="skill-category" data-category="hardware software">
+                        <div class="skill-icon" aria-hidden="true"><i class="fas fa-wifi"></i></div>
+                        <h3>IoT & Communication</h3>
+                        <ul>
+                            <li>Bluetooth Low Energy (BLE)</li>
+                            <li>Wi-Fi Implementation</li>
+                            <li>LoRa/LoRaWAN</li>
+                            <li>I2C/SPI/UART Protocols</li>
+                            <li>Secure Communication</li>
+                        </ul>
+                        <div class="skill-proficiency">
+                            <div class="proficiency-bar">
+                                <div class="proficiency-level" style="width:85%;" aria-hidden="true"></div>
                             </div>
-                            <div class="skill-progress-bar">
-                                <div class="skill-progress-fill" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-progress-item">
-                            <div class="skill-progress-label">
-                                <span>Wi-Fi</span>
-                                <span>88%</span>
-                            </div>
-                            <div class="skill-progress-bar">
-                                <div class="skill-progress-fill" style="width: 88%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-progress-item">
-                            <div class="skill-progress-label">
-                                <span>LoRaWAN</span>
-                                <span>82%</span>
-                            </div>
-                            <div class="skill-progress-bar">
-                                <div class="skill-progress-fill" style="width: 82%"></div>
-                            </div>
+                            <span class="sr-only">Advanced proficiency level</span>
+                            <span class="proficiency-text">Advanced</span>
                         </div>
                     </div>
-                </div>
-                <div class="skill-category" data-aos="flip-up" data-aos-duration="800" data-aos-delay="600">
-                    <div class="skill-icon"><i class="fas fa-tools"></i></div>
-                    <h3>Tools & Platforms</h3>
-                    <div class="skill-progress-container">
-                        <div class="skill-progress-item">
-                            <div class="skill-progress-label">
-                                <span>Altium/KiCad</span>
-                                <span>90%</span>
+                    <div class="skill-category" data-category="tools">
+                        <div class="skill-icon" aria-hidden="true"><i class="fas fa-tools"></i></div>
+                        <h3>Tools & Platforms</h3>
+                        <ul>
+                            <li>Altium Designer/KiCad</li>
+                            <li>Oscilloscopes & Logic Analyzers</li>
+                            <li>ARM Cortex Development</li>
+                            <li>ESP32/ESP8266 Platforms</li>
+                            <li>Nordic nRF52 Series</li>
+                        </ul>
+                        <div class="skill-proficiency">
+                            <div class="proficiency-bar">
+                                <div class="proficiency-level" style="width:92%;" aria-hidden="true"></div>
                             </div>
-                            <div class="skill-progress-bar">
-                                <div class="skill-progress-fill" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-progress-item">
-                            <div class="skill-progress-label">
-                                <span>ARM Cortex</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="skill-progress-bar">
-                                <div class="skill-progress-fill" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-progress-item">
-                            <div class="skill-progress-label">
-                                <span>ESP32/ESP8266</span>
-                                <span>95%</span>
-                            </div>
-                            <div class="skill-progress-bar">
-                                <div class="skill-progress-fill" style="width: 95%"></div>
-                            </div>
+                            <span class="sr-only">Expert proficiency level</span>
+                            <span class="proficiency-text">Expert</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="projects">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-subtitle">My Work</span>
-                <h2>Featured Projects</h2>
-                <div class="underline"></div>
-            </div>
-            
-            <div class="project-filters" data-aos="fade-up" data-aos-delay="300">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="hardware">Hardware</button>
-                <button class="filter-btn" data-filter="firmware">Firmware</button>
-                <button class="filter-btn" data-filter="software">Software</button>
-                <button class="filter-btn" data-filter="iot">IoT</button>
-            </div>
+            <section id="projects" class="projects-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Featured Projects</h2>
+                    <div class="underline"></div>
+                    <p class="section-subheading">Showcasing my technical expertise and problem-solving approach</p>
+                </div>
+                
+                <div class="project-filters" role="tablist" aria-label="Project filters">
+                    <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true" aria-controls="projects-grid">All Projects</button>
+                    <button class="filter-btn" data-filter="hardware" role="tab" aria-selected="false" aria-controls="projects-grid">Hardware</button>
+                    <button class="filter-btn" data-filter="firmware" role="tab" aria-selected="false" aria-controls="projects-grid">Firmware</button>
+                    <button class="filter-btn" data-filter="software" role="tab" aria-selected="false" aria-controls="projects-grid">Software</button>
+                    <button class="filter-btn" data-filter="iot" role="tab" aria-selected="false" aria-controls="projects-grid">IoT</button>
+                </div>
 
-            <div class="projects-grid">
-                <article class="project-card" data-category="hardware iot firmware" data-aos="zoom-in" data-aos-duration="800">
-                    <div class="project-image">
-                        <img src="Asset/project1_wristband.png" alt="Wireless Heart Rate Wristband">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#project1-details" class="details-link"><i class="fas fa-info-circle"></i> Details</a>
-                                <a href="https://github.com/yourusername/heart-rate-wristband" target="_blank"><i class="fab fa-github"></i> Code</a>
+                <div id="projects-grid" class="projects-grid" role="tabpanel" tabindex="0">
+                    <article class="project-card" data-category="hardware iot firmware">
+                        <div class="project-image">
+                            <img src="Asset/project1_wristband.png" alt="Wireless Heart Rate Wristband" loading="lazy">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <button class="details-link" aria-label="View project details for Wireless Low-Power Heart Rate Tracking Wristband" data-target="project1-details">
+                                        <i class="fas fa-info-circle" aria-hidden="true"></i> Details
+                                    </button>
+                                    <a href="https://github.com/alaneeng/heart-rate-wristband" target="_blank" rel="noopener" aria-label="View code for Wireless Heart Rate Wristband project on GitHub (opens in new tab)">
+                                        <i class="fab fa-github" aria-hidden="true"></i> Code
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="project-info">
-                        <div class="project-tags">
-                            <span class="tag">Hardware</span>
-                            <span class="tag">IoT</span>
-                            <span class="tag">BLE</span>
-                        </div>
-                        <h3>Wireless Low-Power Heart Rate Tracking Wristband</h3>
-                        <p>A comprehensive wearable device project featuring custom hardware, firmware, and a companion mobile app for continuous heart rate monitoring using PPG technology and BLE communication.</p>
-                        <div class="project-metrics">
-                            <div class="metric">
-                                <i class="fas fa-battery-full"></i>
-                                <span>8.5 Days Battery Life</span>
-                            </div>
-                            <div class="metric">
-                                <i class="fas fa-chart-line"></i>
-                                <span>±3 BPM Accuracy</span>
+                        <div class="project-info">
+                            <span class="project-tags" aria-label="Project categories">
+                                <span class="tag">Hardware</span>
+                                <span class="tag">IoT</span>
+                                <span class="tag">BLE</span>
+                            </span>
+                            <h3>Wireless Low-Power Heart Rate Tracking Wristband</h3>
+                            <p>A comprehensive wearable device project featuring custom hardware, firmware, and a companion mobile app for continuous heart rate monitoring using PPG technology and BLE communication.</p>
+                            <div class="project-quick-actions">
+                                <button class="quick-action-btn" aria-label="View project details" data-target="project1-details">
+                                    <i class="fas fa-eye" aria-hidden="true"></i> View Details
+                                </button>
                             </div>
                         </div>
-                    </div>
-                </article>
+                    </article>
 
-                <div id="project1-details" class="project-details">
-                    <div class="project-details-content">
-                        <span class="close-details">&times;</span>
-                        <h3>Wireless Low-Power Heart Rate Tracking Wristband</h3>
-                        
-                        <div class="details-gallery">
-                            <img src="Asset/project1_wristband.png" alt="Heart Rate Wristband">
-                            <img src="Asset/project1_pcb.jpg" alt="Wristband PCB Design">
-                            <img src="Asset/project1_app.jpg" alt="Companion App">
-                        </div>
-                        
-                        <div class="details-section">
-                            <h4>Project Overview</h4>
-                            <p>This project involved developing a complete wearable health monitoring solution focused on accurate heart rate tracking while maintaining extended battery life. The wristband features a custom-designed PCB with a PPG sensor, low-power microcontroller, and BLE connectivity to transmit data to a companion mobile application.</p>
+                    <div id="project1-details" class="project-details" role="dialog" aria-labelledby="project1-title" aria-modal="true" hidden>
+                        <div class="project-details-content">
+                            <button class="close-details" aria-label="Close project details">&times;</button>
+                            <h3 id="project1-title">Wireless Low-Power Heart Rate Tracking Wristband</h3>
                             
-                            <div class="project-highlights">
-                                <div class="highlight-item">
-                                    <div class="highlight-icon">
-                                        <i class="fas fa-battery-full"></i>
-                                    </div>
-                                    <div class="highlight-text">
-                                        <h5>8.5 Days</h5>
-                                        <p>Battery Life</p>
-                                    </div>
-                                </div>
-                                <div class="highlight-item">
-                                    <div class="highlight-icon">
-                                        <i class="fas fa-heartbeat"></i>
-                                    </div>
-                                    <div class="highlight-text">
-                                        <h5>±3 BPM</h5>
-                                        <p>Accuracy</p>
-                                    </div>
-                                </div>
-                                <div class="highlight-item">
-                                    <div class="highlight-icon">
-                                        <i class="fas fa-wifi"></i>
-                                    </div>
-                                    <div class="highlight-text">
-                                        <h5>15 Meters</h5>
-                                        <p>BLE Range</p>
-                                    </div>
-                                </div>
-                                <div class="highlight-item">
-                                    <div class="highlight-icon">
-                                        <i class="fas fa-dollar-sign"></i>
-                                    </div>
-                                    <div class="highlight-text">
-                                        <h5>&lt;$35</h5>
-                                        <p>BOM Cost</p>
-                                    </div>
-                                </div>
+                            <div class="details-gallery">
+                                <img src="Asset/project1_wristband.png" alt="Heart Rate Wristband complete product" loading="lazy">
+                                <img src="Asset/project1_pcb.jpg" alt="Wristband PCB Design showing circuit layout" loading="lazy">
+                                <img src="Asset/project1_app.jpg" alt="Companion App interface displaying heart rate data" loading="lazy">
                             </div>
                             
-                            <div class="project-goals">
-                                <h5>Key Objectives:</h5>
-                                <ul>
-                                    <li>Achieve 7+ days of battery life on a single charge</li>
-                                    <li>Implement accurate PPG signal acquisition with motion artifact reduction</li>
-                                    <li>Create a seamless user experience with real-time data visualization</li>
-                                    <li>Develop a compact, comfortable form factor suitable for continuous wear</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="details-section">
-                            <h4>Technical Implementation</h4>
-                            
-                            <div class="implementation-tabs">
-                                <div class="tab-buttons">
-                                    <button class="tab-btn active" data-tab="hardware">Hardware</button>
-                                    <button class="tab-btn" data-tab="firmware">Firmware</button>
-                                    <button class="tab-btn" data-tab="mobile">Mobile App</button>
-                                </div>
+                            <div class="details-section">
+                                <h4>Project Overview</h4>
+                                <p>This project involved developing a complete wearable health monitoring solution focused on accurate heart rate tracking while maintaining extended battery life. The wristband features a custom-designed PCB with a PPG sensor, low-power microcontroller, and BLE connectivity to transmit data to a companion mobile application.</p>
                                 
-                                <div class="tab-content active" id="hardware-tab">
+                                <div class="project-goals">
+                                    <h5>Key Objectives:</h5>
+                                    <ul>
+                                        <li>Achieve 7+ days of battery life on a single charge</li>
+                                        <li>Implement accurate PPG signal acquisition with motion artifact reduction</li>
+                                        <li>Create a seamless user experience with real-time data visualization</li>
+                                        <li>Develop a compact, comfortable form factor suitable for continuous wear</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="details-section">
+                                <h4>Technical Implementation</h4>
+                                
+                                <div class="implementation-subsection">
+                                    <h5>Hardware Development</h5>
                                     <p>The hardware design focused on miniaturization and power efficiency while maintaining signal integrity. The core components include:</p>
                                     <ul>
                                         <li><strong>MCU:</strong> Nordic nRF52832 SoC featuring ARM Cortex-M4F CPU and integrated BLE radio</li>
@@ -393,7 +304,8 @@
                                     </ul>
                                 </div>
                                 
-                                <div class="tab-content" id="firmware-tab">
+                                <div class="implementation-subsection">
+                                    <h5>Firmware Development</h5>
                                     <p>The firmware was developed using the Nordic SDK and implements several key features:</p>
                                     <ul>
                                         <li>Optimized power management with CPU sleep modes during idle periods</li>
@@ -403,7 +315,8 @@
                                     </ul>
                                 </div>
                                 
-                                <div class="tab-content" id="mobile-tab">
+                                <div class="implementation-subsection">
+                                    <h5>Mobile Application</h5>
                                     <p>A cross-platform application was developed using React Native to:</p>
                                     <ul>
                                         <li>Provide real-time visualization of heart rate data</li>
@@ -413,12 +326,11 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="details-section">
-                            <h4>Challenges & Solutions</h4>
                             
-                            <div class="challenges-grid">
+                            <div class="details-section">
+                                <h4>Challenges & Solutions</h4>
+                                <p>The development process presented several significant challenges:</p>
+                                
                                 <div class="challenge-item">
                                     <h5>Power Consumption Optimization</h5>
                                     <p>Initial prototypes achieved only 3 days of battery life. I implemented a hierarchical power management system with dynamic duty cycling of the sensor and processor, extending battery life to over 8 days while maintaining measurement accuracy.</p>
@@ -434,121 +346,50 @@
                                     <p>Creating a comfortable yet secure wristband required multiple design iterations. The final design incorporates flexible PCB technology and a custom-molded silicone housing to achieve the optimal balance between comfort and sensor placement.</p>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="project-links-bottom">
-                            <a href="https://github.com/yourusername/heart-rate-wristband" target="_blank" class="btn btn-primary"><i class="fab fa-github"></i> View on GitHub</a>
-                            <a href="Asset/project1_schematic.pdf" target="_blank" class="btn btn-secondary"><i class="fas fa-file-pdf"></i> View Schematic</a>
+                            
+                            <div class="details-section">
+                                <h4>Results & Impact</h4>
+                                <p>The completed wristband demonstrates excellent performance metrics:</p>
+                                <ul>
+                                    <li>Heart rate measurement accuracy within ±3 BPM compared to medical-grade devices</li>
+                                    <li>8.5 days average battery life under typical usage patterns</li>
+                                    <li>BLE range of up to 15 meters in indoor environments</li>
+                                    <li>Total BOM cost under $35 in production quantities</li>
+                                </ul>
+                                <p>This project has laid the groundwork for future wearable health monitoring devices and demonstrated the viability of low-cost, high-accuracy consumer health technology.</p>
+                            </div>
+                            
+                            <div class="project-links-bottom">
+                                <a href="https://github.com/alaneeng/heart-rate-wristband" target="_blank" rel="noopener" class="btn btn-secondary">
+                                    <i class="fab fa-github" aria-hidden="true"></i> View on GitHub <span class="sr-only">(opens in new tab)</span>
+                                </a>
+                                <a href="Asset/project1_schematic.pdf" target="_blank" rel="noopener" class="btn btn-secondary">
+                                    <i class="fas fa-file-pdf" aria-hidden="true"></i> View Schematic <span class="sr-only">(opens in new tab)</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
+                    
+                    <!-- Additional project cards can be added here with similar structure -->
+                    
                 </div>
-
-                <article class="project-card" data-category="hardware firmware software" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
-                    <div class="project-image">
-                        <img src="Asset/project2_potentiostat.png" alt="Custom Potentiostat">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#project2-details" class="details-link"><i class="fas fa-info-circle"></i> Details</a>
-                                <a href="https://github.com/yourusername/potentiostat" target="_blank"><i class="fab fa-github"></i> Code</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <div class="project-tags">
-                            <span class="tag">Hardware</span>
-                            <span class="tag">Python</span>
-                            <span class="tag">Instrumentation</span>
-                        </div>
-                        <h3>Custom Potentiostat with Python User Interface</h3>
-                        <p>A professional-grade electrochemical measurement instrument with precision analog front-end circuitry and an intuitive Python GUI for experimental control and data analysis.</p>
-                        <div class="project-metrics">
-                            <div class="metric">
-                                <i class="fas fa-tachometer-alt"></i>
-                                <span>10kHz Sampling</span>
-                            </div>
-                            <div class="metric">
-                                <i class="fas fa-percentage"></i>
-                                <span>85% Cost Reduction</span>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="project-card" data-category="iot firmware software" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="400">
-                    <div class="project-image">
-                        <img src="Asset/project3_smartgarden.jpg" alt="Smart Garden System">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#project3-details" class="details-link"><i class="fas fa-info-circle"></i> Details</a>
-                                <a href="https://github.com/yourusername/smart-garden" target="_blank"><i class="fab fa-github"></i> Code</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <div class="project-tags">
-                            <span class="tag">IoT</span>
-                            <span class="tag">ESP32</span>
-                            <span class="tag">Automation</span>
-                        </div>
-                        <h3>Automated Smart Garden System</h3>
-                        <p>An intelligent plant monitoring and irrigation system using soil moisture sensors, environmental monitoring, and adaptive watering schedules controlled through a mobile app.</p>
-                        <div class="project-metrics">
-                            <div class="metric">
-                                <i class="fas fa-tint"></i>
-                                <span>40% Water Savings</span>
-                            </div>
-                            <div class="metric">
-                                <i class="fas fa-leaf"></i>
-                                <span>Supports 8 Zones</span>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="project-card" data-category="hardware firmware" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="600">
-                    <div class="project-image">
-                        <img src="Asset/project4_datalogger.jpg" alt="Environmental Data Logger">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#" class="details-link"><i class="fas fa-info-circle"></i> Details</a>
-                                <a href="https://github.com/yourusername/environmental-logger" target="_blank"><i class="fab fa-github"></i> Code</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <div class="project-tags">
-                            <span class="tag">Hardware</span>
-                            <span class="tag">Data Logging</span>
-                            <span class="tag">Low Power</span>
-                        </div>
-                        <h3>Ultra-Low Power Environmental Data Logger</h3>
-                        <p>A battery-operated environmental monitoring system capable of multi-year deployment with comprehensive sensor array and efficient data storage.</p>
-                        <div class="project-metrics">
-                            <div class="metric">
-                                <i class="fas fa-calendar-alt"></i>
-                                <span>3+ Year Battery</span>
-                            </div>
-                            <div class="metric">
-                                <i class="fas fa-thermometer-half"></i>
-                                <span>5 Sensor Types</span>
-                            </div>
-                        </div>
-                    </div>
-                </article>
+                
+                <!-- Projects pagination -->
+                <div class="projects-pagination">
+                    <button class="load-more-btn" id="load-more-projects">Load More Projects <i class="fas fa-arrow-down" aria-hidden="true"></i></button>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
     <section id="experience">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-subtitle">Work History</span>
+            <div class="section-header">
                 <h2>Professional Experience</h2>
                 <div class="underline"></div>
             </div>
             
             <div class="timeline">
-                <div class="timeline-item" data-aos="fade-right" data-aos-duration="800">
+                <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-date">2022 - Present</div>
                     <div class="timeline-content">
@@ -560,16 +401,10 @@
                             <li>Designed and implemented custom test fixtures, improving production throughput by 40%</li>
                             <li>Mentored junior engineers and established hardware design guidelines for the department</li>
                         </ul>
-                        <div class="technologies-used">
-                            <span>ARM Cortex</span>
-                            <span>Altium Designer</span>
-                            <span>BLE</span>
-                            <span>LoRaWAN</span>
-                        </div>
                     </div>
                 </div>
                 
-                <div class="timeline-item" data-aos="fade-right" data-aos-duration="800" data-aos-delay="200">
+                <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-date">2019 - 2022</div>
                     <div class="timeline-content">
@@ -581,16 +416,10 @@
                             <li>Implemented communication protocols (I2C, SPI, CAN, USB) for various embedded applications</li>
                             <li>Collaborated with industrial designers to ensure manufacturability of new products</li>
                         </ul>
-                        <div class="technologies-used">
-                            <span>C/C++</span>
-                            <span>Embedded Linux</span>
-                            <span>KiCad</span>
-                            <span>STM32</span>
-                        </div>
                     </div>
                 </div>
                 
-                <div class="timeline-item" data-aos="fade-right" data-aos-duration="800" data-aos-delay="400">
+                <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-date">2017 - 2019</div>
                     <div class="timeline-content">
@@ -602,40 +431,7 @@
                             <li>Collaborated with software team to optimize hardware-software interfaces</li>
                             <li>Reduced BOM costs by 18% through component optimization and supplier negotiation</li>
                         </ul>
-                        <div class="technologies-used">
-                            <span>RF Design</span>
-                            <span>PCB Layout</span>
-                            <span>nRF52 Series</span>
-                            <span>Python</span>
-                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="stats">
-        <div class="container">
-            <div class="stats-container">
-                <div class="stat-item" data-aos="fade-up" data-aos-duration="800">
-                    <div class="stat-icon"><i class="fas fa-project-diagram"></i></div>
-                    <div class="stat-count" data-count="24">0</div>
-                    <h4>Projects Completed</h4>
-                </div>
-                <div class="stat-item" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
-                    <div class="stat-icon"><i class="fas fa-users"></i></div>
-                    <div class="stat-count" data-count="15">0</div>
-                    <h4>Happy Clients</h4>
-                </div>
-                <div class="stat-item" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
-                    <div class="stat-icon"><i class="fas fa-code-branch"></i></div>
-                    <div class="stat-count" data-count="36">0</div>
-                    <h4>GitHub Repositories</h4>
-                </div>
-                <div class="stat-item" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
-                    <div class="stat-icon"><i class="fas fa-award"></i></div>
-                    <div class="stat-count" data-count="5">0</div>
-                    <h4>Industry Awards</h4>
                 </div>
             </div>
         </div>
@@ -643,8 +439,7 @@
 
     <section id="testimonials">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-subtitle">Client Feedback</span>
+            <div class="section-header">
                 <h2>What People Say</h2>
                 <div class="underline"></div>
             </div>
@@ -704,14 +499,13 @@
 
     <section id="contact">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-subtitle">Reach Out</span>
+            <div class="section-header">
                 <h2>Get In Touch</h2>
                 <div class="underline"></div>
             </div>
             
             <div class="contact-content">
-                <div class="contact-info" data-aos="fade-right" data-aos-duration="800">
+                <div class="contact-info">
                     <h3>Let's Connect</h3>
                     <p>Whether you're interested in discussing potential projects, exploring collaboration opportunities, or just wanting to say hello, I'd love to hear from you.</p>
                     
@@ -749,7 +543,7 @@
                     </div>
                 </div>
                 
-                <div class="contact-form" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
+                <div class="contact-form">
                     <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Name</label>
@@ -809,8 +603,7 @@
     </footer>
 
     <a href="#" id="scroll-to-top"><i class="fas fa-arrow-up"></i></a>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
     <script src="script.js"></script>
 </body>
 </html>

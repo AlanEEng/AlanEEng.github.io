@@ -2,20 +2,50 @@
 
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize AOS animation library
-    AOS.init({
-        duration: 800,
-        easing: 'ease',
-        once: true,
-        mirror: false
-    });
+    'use strict';
+    
+    // Utility functions
+    
+    /**
+     * Throttle function to limit how often a function can be called
+     * @param {Function} func - The function to throttle
+     * @param {number} limit - The time limit in milliseconds
+     * @return {Function} - The throttled function
+     */
+    function throttle(func, limit) {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        };
+    }
+    
+    /**
+     * Get all focusable elements within a container
+     * @param {HTMLElement} container - Container to search within
+     * @return {Array} - Array of focusable elements
+     */
+    function getFocusableElements(container) {
+        return Array.from(
+            container.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            )
+        ).filter(el => !el.hasAttribute('disabled') && el.getAttribute('aria-hidden') !== 'true');
+    }
     
     // Mobile Menu Toggle
     const mobileMenu = document.getElementById('mobile-menu');
     const navbar = document.getElementById('navbar');
     
-    if (mobileMenu) {
+    if (mobileMenu && navbar) {
         mobileMenu.addEventListener('click', function() {
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !isExpanded);
             this.classList.toggle('active');
             navbar.querySelector('ul').classList.toggle('show');
         });
@@ -25,20 +55,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
-            navbar.querySelector('ul').classList.remove('show');
-            mobileMenu.classList.remove('active');
+            if (mobileMenu && navbar) {
+                navbar.querySelector('ul').classList.remove('show');
+                mobileMenu.classList.remove('active');
+                mobileMenu.setAttribute('aria-expanded', 'false');
+            }
         });
-    });
-    
-    // Header scroll effect
-    const header = document.querySelector('header');
-    
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 100) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
     });
     
     // Scroll to top button
@@ -46,13 +68,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (scrollToTopButton) {
         // Show/hide scroll to top button based on scroll position
-        window.addEventListener('scroll', function() {
+        const handleScroll = throttle(function() {
             if (window.pageYOffset > 300) {
                 scrollToTopButton.classList.add('visible');
             } else {
                 scrollToTopButton.classList.remove('visible');
             }
-        });
+        }, 200);
+        
+        window.addEventListener('scroll', handleScroll);
         
         // Scroll to top when button is clicked
         scrollToTopButton.addEventListener('click', function(e) {
@@ -71,23 +95,96 @@ document.addEventListener('DOMContentLoaded', function() {
     if (filterButtons.length && projectCards.length) {
         filterButtons.forEach(button => {
             button.addEventListener('click', function() {
-                // Remove active class from all buttons
-                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Update ARIA attributes
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-selected', 'false');
+                });
                 
-                // Add active class to clicked button
                 this.classList.add('active');
+                this.setAttribute('aria-selected', 'true');
                 
                 const filterValue = this.getAttribute('data-filter');
                 
+                // Add animation classes for smooth transitions
                 projectCards.forEach(card => {
-                    if (filterValue === 'all' || card.getAttribute('data-category').includes(filterValue)) {
-                        card.style.display = 'block';
-                        // Re-trigger AOS animations
-                        setTimeout(() => {
-                            AOS.refresh();
-                        }, 300);
+                    card.classList.add('filtering');
+                    setTimeout(() => {
+                        if (filterValue === 'all' || card.getAttribute('data-category').includes(filterValue)) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.classList.remove('filtering');
+                                card.classList.add('visible');
+                            }, 10);
+                        } else {
+                            card.classList.remove('visible');
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                                card.classList.remove('filtering');
+                            }, 300);
+                        }
+                    }, 10);
+                });
+                
+                // Announce to screen readers
+                const projectsGrid = document.getElementById('projects-grid');
+                if (projectsGrid) {
+                    const visibleCount = filterValue === 'all' ? 
+                        projectCards.length : 
+                        Array.from(projectCards).filter(card => card.getAttribute('data-category').includes(filterValue)).length;
+                    
+                    projectsGrid.setAttribute('aria-label', `Showing ${visibleCount} ${filterValue === 'all' ? 'all' : filterValue} projects`);
+                }
+            });
+            
+            // Add keyboard support
+            button.addEventListener('keydown', function(e) {
+                // Enter or Space activates the button
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                }
+                
+                // Arrow keys navigate between filter buttons
+                if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    const buttons = Array.from(filterButtons);
+                    const currentIndex = buttons.indexOf(this);
+                    let newIndex;
+                    
+                    if (e.key === 'ArrowRight') {
+                        newIndex = (currentIndex + 1) % buttons.length;
                     } else {
-                        card.style.display = 'none';
+                        newIndex = (currentIndex - 1 + buttons.length) % buttons.length;
+                    }
+                    
+                    buttons[newIndex].focus();
+                }
+            });
+        });
+    }
+    
+    // Skills filtering
+    const skillNavButtons = document.querySelectorAll('.skill-nav-btn');
+    const skillCategories = document.querySelectorAll('.skill-category');
+    
+    if (skillNavButtons.length && skillCategories.length) {
+        skillNavButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Update button states
+                skillNavButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filterValue = this.getAttribute('data-target');
+                
+                // Filter skill categories
+                skillCategories.forEach(category => {
+                    if (filterValue === 'all' || category.getAttribute('data-category').includes(filterValue)) {
+                        category.classList.add('visible');
+                        category.classList.remove('hidden');
+                    } else {
+                        category.classList.remove('visible');
+                        category.classList.add('hidden');
                     }
                 });
             });
@@ -101,15 +198,50 @@ document.addEventListener('DOMContentLoaded', function() {
         detailsLinks.forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetModal = document.querySelector(targetId);
+                const targetId = this.getAttribute('data-target');
+                const targetModal = document.getElementById(targetId);
                 
                 if (targetModal) {
+                    // Store the element that had focus before opening the modal
+                    const previouslyFocused = document.activeElement;
+                    
+                    // Show modal
+                    targetModal.removeAttribute('hidden');
                     targetModal.style.display = 'block';
                     document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
                     
-                    // Set up tab functionality if available
-                    setupTabs(targetModal);
+                    // Set focus on first focusable element in modal
+                    const focusableElements = getFocusableElements(targetModal);
+                    if (focusableElements.length) {
+                        focusableElements[0].focus();
+                    }
+                    
+                    // Trap focus within modal
+                    targetModal.addEventListener('keydown', function(e) {
+                        // Handle Escape key press
+                        if (e.key === 'Escape') {
+                            closeModal(targetModal, previouslyFocused);
+                            return;
+                        }
+                        
+                        // Handle Tab key for focus trap
+                        if (e.key === 'Tab') {
+                            const focusableElements = getFocusableElements(targetModal);
+                            const firstElement = focusableElements[0];
+                            const lastElement = focusableElements[focusableElements.length - 1];
+                            
+                            if (e.shiftKey && document.activeElement === firstElement) {
+                                e.preventDefault();
+                                lastElement.focus();
+                            } else if (!e.shiftKey && document.activeElement === lastElement) {
+                                e.preventDefault();
+                                firstElement.focus();
+                            }
+                        }
+                    });
+                    
+                    // Store reference to previously focused element
+                    targetModal.dataset.returnFocus = previouslyFocused;
                 }
             });
         });
@@ -119,8 +251,8 @@ document.addEventListener('DOMContentLoaded', function() {
         closeButtons.forEach(button => {
             button.addEventListener('click', function() {
                 const modal = this.closest('.project-details');
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto'; // Re-enable scrolling
+                const previouslyFocused = document.querySelector(modal.dataset.returnFocus) || document.body;
+                closeModal(modal, previouslyFocused);
             });
         });
         
@@ -129,37 +261,39 @@ document.addEventListener('DOMContentLoaded', function() {
         modals.forEach(modal => {
             modal.addEventListener('click', function(e) {
                 if (e.target === this) {
-                    this.style.display = 'none';
-                    document.body.style.overflow = 'auto';
+                    const previouslyFocused = document.querySelector(this.dataset.returnFocus) || document.body;
+                    closeModal(this, previouslyFocused);
                 }
             });
         });
-    }
-    
-    // Tab functionality for project details
-    function setupTabs(container) {
-        const tabButtons = container.querySelectorAll('.tab-btn');
-        const tabContents = container.querySelectorAll('.tab-content');
         
-        if (tabButtons.length && tabContents.length) {
-            tabButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Remove active class from all buttons and contents
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    tabContents.forEach(content => content.classList.remove('active'));
-                    
-                    // Add active class to clicked button
-                    this.classList.add('active');
-                    
-                    // Show corresponding content
-                    const tabId = this.getAttribute('data-tab');
-                    const activeTabContent = container.querySelector(`#${tabId}-tab`);
-                    if (activeTabContent) {
-                        activeTabContent.classList.add('active');
-                    }
-                });
-            });
+        /**
+         * Close a modal and restore focus
+         * @param {HTMLElement} modal - The modal to close
+         * @param {HTMLElement} returnFocus - Element to return focus to
+         */
+        function closeModal(modal, returnFocus) {
+            modal.style.display = 'none';
+            modal.setAttribute('hidden', 'true');
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+            
+            // Return focus to the element that had focus before the modal was opened
+            if (returnFocus && returnFocus.focus) {
+                returnFocus.focus();
+            }
         }
+        
+        // Quick action buttons
+        const quickActionBtns = document.querySelectorAll('.quick-action-btn');
+        quickActionBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const detailsLink = document.querySelector(`.details-link[data-target="${targetId}"]`);
+                if (detailsLink) {
+                    detailsLink.click();
+                }
+            });
+        });
     }
     
     // Testimonials Carousel
@@ -170,21 +304,32 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (testimonials.length && dots.length) {
         let currentIndex = 0;
+        let autoRotateInterval;
         
         function showTestimonial(index) {
             // Hide all testimonials
             testimonials.forEach(item => {
                 item.classList.remove('active');
+                item.setAttribute('aria-hidden', 'true');
             });
             
             // Remove active class from all dots
             dots.forEach(dot => {
                 dot.classList.remove('active');
+                dot.setAttribute('aria-selected', 'false');
             });
             
             // Show current testimonial and activate current dot
             testimonials[index].classList.add('active');
+            testimonials[index].setAttribute('aria-hidden', 'false');
             dots[index].classList.add('active');
+            dots[index].setAttribute('aria-selected', 'true');
+            
+            // Update ARIA live region for screen readers
+            const carouselLiveRegion = document.querySelector('.carousel-live-region');
+            if (carouselLiveRegion) {
+                carouselLiveRegion.textContent = `Showing testimonial ${index + 1} of ${testimonials.length}`;
+            }
         }
         
         // Initialize
@@ -222,64 +367,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 8000);
     }
     
-    // Animate statistics counter
-    const statCounters = document.querySelectorAll('.stat-count');
-    
-    function animateCounter() {
-        statCounters.forEach(counter => {
-            const target = parseInt(counter.getAttribute('data-count'));
-            const count = parseInt(counter.innerText);
-            const increment = Math.ceil(target / 50); // Adjust speed of counting
-            
-            if (count < target) {
-                counter.innerText = Math.min(count + increment, target);
-                setTimeout(animateCounter, 30);
-            }
-        });
-    }
-    
-    // Start animation when stats section is in view
-    const statsSection = document.getElementById('stats');
-    if (statsSection && statCounters.length) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounter();
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        observer.observe(statsSection);
-    }
-    
-    // Animate skill progress bars
-    const skillProgressBars = document.querySelectorAll('.skill-progress-fill');
-    function animateSkillBars() {
-        skillProgressBars.forEach(bar => {
-            const width = bar.style.width;
-            bar.style.width = '0%';
-            setTimeout(() => {
-                bar.style.width = width;
-            }, 100);
-        });
-    }
-    
-    // Start animation when skills section is in view
-    const skillsSection = document.getElementById('skills');
-    if (skillsSection && skillProgressBars.length) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateSkillBars();
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.2 });
-        
-        observer.observe(skillsSection);
-    }
-    
     // Dark/Light Theme Toggle
     const themeToggle = document.getElementById('checkbox');
     
@@ -310,11 +397,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.body.classList.remove('dark-theme');
                 localStorage.setItem('theme', 'light');
             }
-            
-            // Refresh AOS animations
-            setTimeout(() => {
-                AOS.refresh();
-            }, 300);
         });
     }
     
@@ -407,39 +489,21 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', highlightNavigation);
     highlightNavigation();
     
-    // Typing effect for the hero section greeting
-    const greeting = document.querySelector('.greeting');
-    if (greeting) {
-        const text = greeting.textContent;
-        greeting.textContent = '';
+    // Animate on scroll
+    function animateOnScroll() {
+        const elements = document.querySelectorAll('.skill-category, .project-card, .timeline-item');
+        const windowHeight = window.innerHeight;
         
-        let i = 0;
-        const typingInterval = setInterval(() => {
-            if (i < text.length) {
-                greeting.textContent += text.charAt(i);
-                i++;
-            } else {
-                clearInterval(typingInterval);
-            }
-        }, 100);
-    }
-    
-    // Parallax effect for hero section shapes
-    const heroSection = document.getElementById('hero');
-    const shapes = document.querySelectorAll('.shape');
-    
-    if (heroSection && shapes.length) {
-        window.addEventListener('mousemove', (e) => {
-            const x = e.clientX / window.innerWidth;
-            const y = e.clientY / window.innerHeight;
+        elements.forEach(element => {
+            const elementPosition = element.getBoundingClientRect().top;
+            const elementVisible = 150;
             
-            shapes.forEach((shape, index) => {
-                const speed = index + 1;
-                const moveX = (x * speed * 20) - (speed * 10);
-                const moveY = (y * speed * 20) - (speed * 10);
-                
-                shape.style.transform = `translate(${moveX}px, ${moveY}px)`;
-            });
+            if (elementPosition < windowHeight - elementVisible) {
+                element.classList.add('animate');
+            }
         });
     }
+    
+    window.addEventListener('scroll', animateOnScroll);
+    animateOnScroll();
 });
