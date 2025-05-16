@@ -2,50 +2,12 @@
 
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    'use strict';
-    
-    // Utility functions
-    
-    /**
-     * Throttle function to limit how often a function can be called
-     * @param {Function} func - The function to throttle
-     * @param {number} limit - The time limit in milliseconds
-     * @return {Function} - The throttled function
-     */
-    function throttle(func, limit) {
-        let inThrottle;
-        return function() {
-            const args = arguments;
-            const context = this;
-            if (!inThrottle) {
-                func.apply(context, args);
-                inThrottle = true;
-                setTimeout(() => inThrottle = false, limit);
-            }
-        };
-    }
-    
-    /**
-     * Get all focusable elements within a container
-     * @param {HTMLElement} container - Container to search within
-     * @return {Array} - Array of focusable elements
-     */
-    function getFocusableElements(container) {
-        return Array.from(
-            container.querySelectorAll(
-                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-            )
-        ).filter(el => !el.hasAttribute('disabled') && el.getAttribute('aria-hidden') !== 'true');
-    }
-    
     // Mobile Menu Toggle
     const mobileMenu = document.getElementById('mobile-menu');
     const navbar = document.getElementById('navbar');
     
-    if (mobileMenu && navbar) {
+    if (mobileMenu) {
         mobileMenu.addEventListener('click', function() {
-            const isExpanded = this.getAttribute('aria-expanded') === 'true';
-            this.setAttribute('aria-expanded', !isExpanded);
             this.classList.toggle('active');
             navbar.querySelector('ul').classList.toggle('show');
         });
@@ -55,11 +17,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
-            if (mobileMenu && navbar) {
-                navbar.querySelector('ul').classList.remove('show');
-                mobileMenu.classList.remove('active');
-                mobileMenu.setAttribute('aria-expanded', 'false');
-            }
+            navbar.querySelector('ul').classList.remove('show');
+            mobileMenu.classList.remove('active');
         });
     });
     
@@ -68,15 +27,13 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (scrollToTopButton) {
         // Show/hide scroll to top button based on scroll position
-        const handleScroll = throttle(function() {
+        window.addEventListener('scroll', function() {
             if (window.pageYOffset > 300) {
                 scrollToTopButton.classList.add('visible');
             } else {
                 scrollToTopButton.classList.remove('visible');
             }
-        }, 200);
-        
-        window.addEventListener('scroll', handleScroll);
+        });
         
         // Scroll to top when button is clicked
         scrollToTopButton.addEventListener('click', function(e) {
@@ -95,96 +52,19 @@ document.addEventListener('DOMContentLoaded', function() {
     if (filterButtons.length && projectCards.length) {
         filterButtons.forEach(button => {
             button.addEventListener('click', function() {
-                // Update ARIA attributes
-                filterButtons.forEach(btn => {
-                    btn.classList.remove('active');
-                    btn.setAttribute('aria-selected', 'false');
-                });
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
                 
+                // Add active class to clicked button
                 this.classList.add('active');
-                this.setAttribute('aria-selected', 'true');
                 
                 const filterValue = this.getAttribute('data-filter');
                 
-                // Add animation classes for smooth transitions
                 projectCards.forEach(card => {
-                    card.classList.add('filtering');
-                    setTimeout(() => {
-                        if (filterValue === 'all' || card.getAttribute('data-category').includes(filterValue)) {
-                            card.style.display = 'block';
-                            setTimeout(() => {
-                                card.classList.remove('filtering');
-                                card.classList.add('visible');
-                            }, 10);
-                        } else {
-                            card.classList.remove('visible');
-                            setTimeout(() => {
-                                card.style.display = 'none';
-                                card.classList.remove('filtering');
-                            }, 300);
-                        }
-                    }, 10);
-                });
-                
-                // Announce to screen readers
-                const projectsGrid = document.getElementById('projects-grid');
-                if (projectsGrid) {
-                    const visibleCount = filterValue === 'all' ? 
-                        projectCards.length : 
-                        Array.from(projectCards).filter(card => card.getAttribute('data-category').includes(filterValue)).length;
-                    
-                    projectsGrid.setAttribute('aria-label', `Showing ${visibleCount} ${filterValue === 'all' ? 'all' : filterValue} projects`);
-                }
-            });
-            
-            // Add keyboard support
-            button.addEventListener('keydown', function(e) {
-                // Enter or Space activates the button
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    this.click();
-                }
-                
-                // Arrow keys navigate between filter buttons
-                if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-                    e.preventDefault();
-                    const buttons = Array.from(filterButtons);
-                    const currentIndex = buttons.indexOf(this);
-                    let newIndex;
-                    
-                    if (e.key === 'ArrowRight') {
-                        newIndex = (currentIndex + 1) % buttons.length;
+                    if (filterValue === 'all' || card.getAttribute('data-category').includes(filterValue)) {
+                        card.style.display = 'block';
                     } else {
-                        newIndex = (currentIndex - 1 + buttons.length) % buttons.length;
-                    }
-                    
-                    buttons[newIndex].focus();
-                }
-            });
-        });
-    }
-    
-    // Skills filtering
-    const skillNavButtons = document.querySelectorAll('.skill-nav-btn');
-    const skillCategories = document.querySelectorAll('.skill-category');
-    
-    if (skillNavButtons.length && skillCategories.length) {
-        skillNavButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                // Update button states
-                skillNavButtons.forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-                
-                const filterValue = this.getAttribute('data-target');
-                
-                // Filter skill categories
-                skillCategories.forEach(category => {
-                    if (filterValue === 'all' || category.getAttribute('data-category').includes(filterValue)) {
-                        category.classList.add('visible');
-                        category.classList.remove('hidden');
-                    } else {
-                        category.classList.remove('visible');
-                        category.classList.add('hidden');
+                        card.style.display = 'none';
                     }
                 });
             });
@@ -198,50 +78,12 @@ document.addEventListener('DOMContentLoaded', function() {
         detailsLinks.forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
-                const targetId = this.getAttribute('data-target');
-                const targetModal = document.getElementById(targetId);
+                const targetId = this.getAttribute('href');
+                const targetModal = document.querySelector(targetId);
                 
                 if (targetModal) {
-                    // Store the element that had focus before opening the modal
-                    const previouslyFocused = document.activeElement;
-                    
-                    // Show modal
-                    targetModal.removeAttribute('hidden');
                     targetModal.style.display = 'block';
                     document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
-                    
-                    // Set focus on first focusable element in modal
-                    const focusableElements = getFocusableElements(targetModal);
-                    if (focusableElements.length) {
-                        focusableElements[0].focus();
-                    }
-                    
-                    // Trap focus within modal
-                    targetModal.addEventListener('keydown', function(e) {
-                        // Handle Escape key press
-                        if (e.key === 'Escape') {
-                            closeModal(targetModal, previouslyFocused);
-                            return;
-                        }
-                        
-                        // Handle Tab key for focus trap
-                        if (e.key === 'Tab') {
-                            const focusableElements = getFocusableElements(targetModal);
-                            const firstElement = focusableElements[0];
-                            const lastElement = focusableElements[focusableElements.length - 1];
-                            
-                            if (e.shiftKey && document.activeElement === firstElement) {
-                                e.preventDefault();
-                                lastElement.focus();
-                            } else if (!e.shiftKey && document.activeElement === lastElement) {
-                                e.preventDefault();
-                                firstElement.focus();
-                            }
-                        }
-                    });
-                    
-                    // Store reference to previously focused element
-                    targetModal.dataset.returnFocus = previouslyFocused;
                 }
             });
         });
@@ -251,8 +93,8 @@ document.addEventListener('DOMContentLoaded', function() {
         closeButtons.forEach(button => {
             button.addEventListener('click', function() {
                 const modal = this.closest('.project-details');
-                const previouslyFocused = document.querySelector(modal.dataset.returnFocus) || document.body;
-                closeModal(modal, previouslyFocused);
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Re-enable scrolling
             });
         });
         
@@ -261,36 +103,8 @@ document.addEventListener('DOMContentLoaded', function() {
         modals.forEach(modal => {
             modal.addEventListener('click', function(e) {
                 if (e.target === this) {
-                    const previouslyFocused = document.querySelector(this.dataset.returnFocus) || document.body;
-                    closeModal(this, previouslyFocused);
-                }
-            });
-        });
-        
-        /**
-         * Close a modal and restore focus
-         * @param {HTMLElement} modal - The modal to close
-         * @param {HTMLElement} returnFocus - Element to return focus to
-         */
-        function closeModal(modal, returnFocus) {
-            modal.style.display = 'none';
-            modal.setAttribute('hidden', 'true');
-            document.body.style.overflow = 'auto'; // Re-enable scrolling
-            
-            // Return focus to the element that had focus before the modal was opened
-            if (returnFocus && returnFocus.focus) {
-                returnFocus.focus();
-            }
-        }
-        
-        // Quick action buttons
-        const quickActionBtns = document.querySelectorAll('.quick-action-btn');
-        quickActionBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const targetId = this.getAttribute('data-target');
-                const detailsLink = document.querySelector(`.details-link[data-target="${targetId}"]`);
-                if (detailsLink) {
-                    detailsLink.click();
+                    this.style.display = 'none';
+                    document.body.style.overflow = 'auto';
                 }
             });
         });
@@ -304,32 +118,21 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (testimonials.length && dots.length) {
         let currentIndex = 0;
-        let autoRotateInterval;
         
         function showTestimonial(index) {
             // Hide all testimonials
             testimonials.forEach(item => {
                 item.classList.remove('active');
-                item.setAttribute('aria-hidden', 'true');
             });
             
             // Remove active class from all dots
             dots.forEach(dot => {
                 dot.classList.remove('active');
-                dot.setAttribute('aria-selected', 'false');
             });
             
             // Show current testimonial and activate current dot
             testimonials[index].classList.add('active');
-            testimonials[index].setAttribute('aria-hidden', 'false');
             dots[index].classList.add('active');
-            dots[index].setAttribute('aria-selected', 'true');
-            
-            // Update ARIA live region for screen readers
-            const carouselLiveRegion = document.querySelector('.carousel-live-region');
-            if (carouselLiveRegion) {
-                carouselLiveRegion.textContent = `Showing testimonial ${index + 1} of ${testimonials.length}`;
-            }
         }
         
         // Initialize
