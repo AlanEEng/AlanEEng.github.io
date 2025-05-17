@@ -308,5 +308,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll();
+    // Initial call to animate elements that are already visible
+    setTimeout(animateOnScroll, 300);
 });
