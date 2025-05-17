@@ -756,17 +756,17 @@ section {
     background-color: var(--light-gray);
 }
 
+/* UPDATED TIMELINE STYLES */
 .timeline {
     position: relative;
     max-width: 800px;
     margin: 0 auto;
-    padding-left: 50px;
 }
 
 .timeline::before {
     content: '';
     position: absolute;
-    left: 0;
+    left: 150px;
     top: 0;
     bottom: 0;
     width: 2px;
@@ -776,27 +776,28 @@ section {
 .timeline-item {
     position: relative;
     margin-bottom: var(--spacing-xl);
+    display: flex;
+}
+
+.timeline-date {
+    width: 150px;
+    text-align: right;
+    padding-right: var(--spacing-lg);
+    font-weight: bold;
+    color: var(--primary-color);
+    flex-shrink: 0;
 }
 
 .timeline-dot {
     position: absolute;
-    left: -54px;
+    left: 146px;
     top: 5px;
     width: 12px;
     height: 12px;
     border-radius: 50%;
     background-color: var(--primary-color);
     border: 3px solid var(--light-color);
-}
-
-.timeline-date {
-    position: absolute;
-    left: -150px;
-    top: 0;
-    width: 120px;
-    text-align: right;
-    font-weight: bold;
-    color: var(--primary-color);
+    z-index: 1;
 }
 
 .timeline-content {
@@ -804,6 +805,8 @@ section {
     border-radius: 8px;
     padding: var(--spacing-lg);
     box-shadow: var(--shadow-md);
+    margin-left: var(--spacing-xl);
+    flex-grow: 1;
 }
 
 .timeline-content h3 {
@@ -1158,24 +1161,28 @@ footer {
         flex-direction: column;
     }
     
+    /* UPDATED RESPONSIVE TIMELINE */
     .timeline::before {
-        left: 20px;
+        left: 30px;
     }
     
-    .timeline {
-        padding-left: 70px;
-    }
-    
-    .timeline-dot {
-        left: 14px;
+    .timeline-item {
+        flex-direction: column;
     }
     
     .timeline-date {
-        position: relative;
-        left: 0;
-        top: 0;
+        width: 100%;
         text-align: left;
+        padding-left: 60px;
         margin-bottom: var(--spacing-xs);
+    }
+    
+    .timeline-dot {
+        left: 26px;
+    }
+    
+    .timeline-content {
+        margin-left: 60px;
     }
 }
 
@@ -1235,6 +1242,11 @@ footer {
     
     .footer-nav ul {
         justify-content: center;
+    }
+    
+    /* Further timeline adjustments for mobile */
+    .timeline-content {
+        margin-left: 45px;
     }
 }
 
