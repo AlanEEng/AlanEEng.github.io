@@ -47,8 +47,8 @@
     <section id="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Hi, I'm <span class="highlight">Alan Eng</span></h1>
-                <h2>Engineering Design & Development Specialist</h2>
+                <h1>Hi, I'm <span class="highlight">Alan Alkhayat</span></h1>
+                <h2>Electronics Design & Development Specialist</h2>
                 <p>I create innovative engineering solutions from concept to deployment, specializing in embedded systems, hardware design, and IoT applications.</p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">View My Work</a>
@@ -76,7 +76,7 @@
                 </div>
                 <div class="about-text">
                     <h3>Engineering with Purpose</h3>
-                    <p>I'm a dedicated engineer with expertise in end-to-end product development, from initial concept to final production. With a background in electrical engineering and 5+ years of experience in hardware design, firmware development, and system integration, I specialize in creating innovative solutions for complex engineering challenges.</p>
+                    <p>I'm an IPC CID certified electronics engineer with expertise in end-to-end product development, from initial concept to final production. With a background in electrical engineering and 3+ years of experience in hardware design, firmware development, and system integration, I specialize in creating innovative solutions for complex engineering challenges.</p>
                     <p>My passion lies in developing embedded systems and IoT devices that bridge the gap between hardware and software, creating seamless experiences for users while solving real-world problems. I thrive in collaborative environments where I can contribute my technical expertise while learning from diverse perspectives.</p>
                     <p>When I'm not designing circuits or writing firmware, you can find me experimenting with new technologies, contributing to open-source projects, or mentoring aspiring engineers.</p>
                     <div class="about-details">
@@ -86,7 +86,7 @@
                         </div>
                         <div class="detail-item">
                             <i class="fas fa-briefcase"></i>
-                            <span>5+ Years Experience</span>
+                            <span>3+ Years Experience</span>
                         </div>
                         <div class="detail-item">
                             <i class="fas fa-map-marker-alt"></i>
@@ -147,12 +147,12 @@
                     <h3>Tools & Platforms</h3>
                     <ul>
                         <li>Altium Designer/KiCad</li>
-                        <li>Oscilloscopes & Logic Analyzers</li>
+                        <li>Oscilloscopes, funktion generators & Logic Analyzers</li>
                         <li>ARM Cortex Development</li>
                         <li>ESP32/ESP8266 Platforms</li>
-                        <li>Nordic nRF52 Series</li>
+                        <li>STM8/STM32 Platforms</li>
                     </ul>
-                </div>
+                </div>  
             </div>
         </div>
     </section>
@@ -175,11 +175,11 @@
             <div class="projects-grid">
                 <article class="project-card" data-category="hardware iot firmware">
                     <div class="project-image">
-                        <img src="Asset/project1_wristband.png" alt="Wireless Heart Rate Wristband">
+                        <img src="Asset/IoT_sleep_cycle_wearable.png" alt="IoT Sleep Cycle Wearable">
                         <div class="project-overlay">
                             <div class="project-links">
                                 <a href="#project1-details" class="details-link"><i class="fas fa-info-circle"></i> Details</a>
-                                <a href="https://github.com/yourusername/heart-rate-wristband" target="_blank"><i class="fab fa-github"></i> Code</a>
+                                <a href="https://github.com/yourusername/sleep-cycle-wearable" target="_blank"><i class="fab fa-github"></i> Code</a>
                             </div>
                         </div>
                     </div>
@@ -189,109 +189,192 @@
                             <span class="tag">IoT</span>
                             <span class="tag">BLE</span>
                         </span>
-                        <h3>Wireless Low-Power Heart Rate Tracking Wristband</h3>
-                        <p>A comprehensive wearable device project featuring custom hardware, firmware, and a companion mobile app for continuous heart rate monitoring using PPG technology and BLE communication.</p>
+                        <h3>IoT Wearable for Sleep Cycle Analysis & Smart Alarming</h3>
+                        <p>A compact, low-cost, and energy-efficient wearable that monitors heart rate variability to analyze sleep cycles and provide gentle waking during optimal sleep phases.</p>
                     </div>
                 </article>
 
                 <div id="project1-details" class="project-details">
                     <div class="project-details-content">
                         <span class="close-details">&times;</span>
-                        <h3>Wireless Low-Power Heart Rate Tracking Wristband</h3>
+                        <h3>IoT Wearable for Sleep Cycle Analysis & Smart Alarming</h3>
                         
                         <div class="details-gallery">
-                            <img src="Asset/project1_wristband.png" alt="Heart Rate Wristband">
-                            <img src="Asset/project1_pcb.jpg" alt="Wristband PCB Design">
-                            <img src="Asset/project1_app.jpg" alt="Companion App">
+                            <img src="Asset/sleep_wearable_device.png" alt="Sleep Cycle Wearable">
+                            <img src="Asset/sleep_wearable_pcb.png" alt="PCB Design">
+                            <img src="Asset/wearable_app.jpg" alt="Mobile App">
                         </div>
                         
                         <div class="details-section">
                             <h4>Project Overview</h4>
-                            <p>This project involved developing a complete wearable health monitoring solution focused on accurate heart rate tracking while maintaining extended battery life. The wristband features a custom-designed PCB with a PPG sensor, low-power microcontroller, and BLE connectivity to transmit data to a companion mobile application.</p>
+                            <p>Tired of jarring alarms disrupting your sleep? We designed and developed a compact, low-cost, and energy-efficient IoT wearable that accurately monitors heart rate variability to analyze sleep cycles. The ultimate goal is to integrate this data into a smart alarm system that gently wakes users during their lightest sleep phase, promoting better rest and cognitive function. This project spanned custom hardware design, embedded firmware development, and mobile application creation.</p>
                             
                             <div class="project-goals">
-                                <h5>Key Objectives:</h5>
+                                <h5>The Challenge:</h5>
+                                <p>The primary challenge was to create a sophisticated yet affordable wearable capable of continuous, accurate physiological monitoring (specifically Photoplethysmography - PPG) over an 8-hour sleep period. This required:</p>
                                 <ul>
-                                    <li>Achieve 7+ days of battery life on a single charge</li>
-                                    <li>Implement accurate PPG signal acquisition with motion artifact reduction</li>
-                                    <li>Create a seamless user experience with real-time data visualization</li>
-                                    <li>Develop a compact, comfortable form factor suitable for continuous wear</li>
+                                    <li>Meticulous component selection for cost and power efficiency</li>
+                                    <li>Robust signal processing to extract clean heart rate data from noisy PPG signals</li>
+                                    <li>Seamless data transmission to a mobile device for analysis and user interaction</li>
                                 </ul>
                             </div>
                         </div>
                         
                         <div class="details-section">
-                            <h4>Technical Implementation</h4>
+                            <h4>Our Innovative Solution</h4>
                             
                             <div class="implementation-subsection">
-                                <h5>Hardware Development</h5>
-                                <p>The hardware design focused on miniaturization and power efficiency while maintaining signal integrity. The core components include:</p>
+                                <h5>Custom Wearable Hardware</h5>
+                                <div class="image-carousel custom-carousel" data-modal-id="components-modal">
+                                    <div class="carousel-slides">
+                                        <div class="carousel-slide">
+                                            <img src="Asset/sleep_wearable_device.png" alt="Sleep Wearable Device" class="zoomable-image">
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img src="Asset/sleep_wearable_pcb.png" alt="Sleep Wearable PCB" class="zoomable-image">
+                                        </div>
+                                    </div>
+                                    <div class="carousel-arrow prev">
+                                        <i class="fas fa-chevron-left carousel-arrow-icon"></i>
+                                    </div>
+                                    <div class="carousel-arrow next">
+                                        <i class="fas fa-chevron-right carousel-arrow-icon"></i>
+                                    </div>
+                                    <div class="carousel-indicators">
+                                        <div class="carousel-indicator active"></div>
+                                        <div class="carousel-indicator"></div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Modal for enlarged components images -->
+                                <div id="components-modal" class="diagram-modal">
+                                    <span class="close-components">&times;</span>
+                                    <img src="Asset/sleep_wearable_device.png" class="diagram-modal-content" id="enlarged-component">
+                                </div>
+                                
                                 <ul>
-                                    <li><strong>MCU:</strong> Nordic nRF52832 SoC featuring ARM Cortex-M4F CPU and integrated BLE radio</li>
-                                    <li><strong>Sensors:</strong> MAX30102 PPG sensor for heart rate detection with integrated red and IR LEDs</li>
-                                    <li><strong>Power Management:</strong> TI BQ24232 battery charging IC with a 110mAh LiPo battery</li>
-                                    <li><strong>PCB Design:</strong> 4-layer design with dedicated analog and digital grounds to ensure signal integrity</li>
+                                    <li><strong>Sensing:</strong> A custom analog front-end featuring a green LED and an SFH 2430 photodiode captures blood volume changes. Our unique photodiode configuration, differing from standard Transimpedance Amplifiers (TIAs), empirically yielded cleaner signals.</li>
+                                    <li><strong>Signal Conditioning:</strong> A multi-stage op-amp (MCP6004) circuit filters and amplifies the raw PPG signal, isolating the desired frequency band (0.48Hz - 33.86Hz).</li>
                                 </ul>
                             </div>
                             
+                            <div class="subsection-divider"></div>
+                            
                             <div class="implementation-subsection">
-                                <h5>Firmware Development</h5>
-                                <p>The firmware was developed using the Nordic SDK and implements several key features:</p>
+                                <h5>Dual-Processor Architecture for Power Efficiency</h5>
+                                <img src="Asset/sleep_wearable_data_flow.png" alt="Dual-Processor Architecture">
                                 <ul>
-                                    <li>Optimized power management with CPU sleep modes during idle periods</li>
-                                    <li>Digital filtering algorithms to reduce motion artifacts in the PPG signal</li>
-                                    <li>Custom BLE service with characteristics for heart rate data, battery level, and device control</li>
-                                    <li>Adaptive sampling rate based on user activity to optimize power consumption</li>
+                                    <li><strong>STM8S003F3 Microcontroller:</strong> An ultra-low-power MCU responsible for ADC sampling of the conditioned PPG signal at a precise 50Hz (strategically using aliasing to mitigate 50Hz noise). It buffers 2.5 seconds of data (125 bytes) before waking the ESP32.</li>
+                                    <li><strong>ESP32-C3 Mini Module:</strong> Manages Bluetooth Low Energy (BLE) communication, aggregates data from the STM8S into a 10-second (500-byte) buffer (stored in RTC memory during its deep sleep cycles), and handles FreeRTOS for task management.</li>
+                                    <li><strong>Power Management:</strong> A LiPo battery, MCP73831 BMS for USB-C charging, and a TCR2EF33 LDO ensure stable power delivery and efficient operation.</li>
+                                    <li><strong>Ergonomics:</strong> A custom-sewn fabric wristband with memory foam provides comfort and blocks ambient light for improved sensor accuracy.</li>
                                 </ul>
                             </div>
                             
+                            <div class="subsection-divider"></div>
+                            
                             <div class="implementation-subsection">
-                                <h5>Mobile Application</h5>
-                                <p>A cross-platform application was developed using React Native to:</p>
+                                <h5>Embedded Firmware</h5>
+                                <div class="diagram-container">
+                                    <img src="Asset/sleep_wearable_seq.png" alt="Data Flow Diagram" class="sequence-diagram" id="sequence-diagram">
+                                </div>
                                 <ul>
-                                    <li>Provide real-time visualization of heart rate data</li>
-                                    <li>Store historical data and generate trends</li>
-                                    <li>Implement user authentication and secure data storage</li>
-                                    <li>Offer configurable alerts for abnormal heart rate patterns</li>
+                                    <li><strong>STM8S (C):</strong> Programmed for precise interrupt-driven ADC sampling, data buffering, and UART communication to the ESP32. Manages system power-down via LDO control.</li>
+                                    <li><strong>ESP32 (ESP-IDF, FreeRTOS, C++):</strong> Implements a BLE GATT server with custom 128-bit UUIDs for secure and unique device identification. Manages deep sleep cycles, waking every 2.5 seconds to receive data from STM8S via UART, and waking fully every 10 seconds to transmit the aggregated 500-byte buffer to the mobile app. Mutexes and semaphores ensure synchronized data handling.</li>
                                 </ul>
+                            </div>
+                            
+                            <!-- Modal for enlarged diagram -->
+                            <div id="diagram-modal" class="diagram-modal">
+                                <span class="close-diagram">&times;</span>
+                                <img src="Asset/sleep_wearable_seq.png" class="diagram-modal-content" id="enlarged-diagram">
+                            </div>
+                            
+                            <div class="subsection-divider"></div>
+                            
+                            <div class="implementation-subsection">
+                                <h5>Mobile Application (Flutter)</h5>
+                                <div class="app-showcase">
+                                    <div class="app-screenshot-container">
+                                        <img src="Asset/sleep_wearable_app_screens.jpg" alt="Mobile App Screenshots" class="app-screenshot">
+                                    </div>
+                                    <div class="app-features">
+                                        <ul>
+                                            <li><strong>BLE Client:</strong> Scans for and connects to the wearable using its custom UUID, requesting data in 20-byte chunks (BLE 4.0 limit) when the ESP32 signals a full buffer.</li>
+                                            <li><strong>Digital Signal Processing (DSP):</strong> Implements a Fast Fourier Transform (FFT) on the incoming raw PPG data. To enhance resolution without increasing firmware complexity or power drain, a circular buffer on the app aggregates 50 seconds of data (2500 samples), achieving a 1.2 BPM frequency resolution.</li>
+                                            <li><strong>User Interface:</strong> Displays real-time BPM, features a fully functional alarm clock (timezone-aware, 12/24hr format, snooze), and a dark theme for low-light environments.</li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         
                         <div class="details-section">
-                            <h4>Challenges & Solutions</h4>
-                            <p>The development process presented several significant challenges:</p>
+                            <h4>Key Achievements & Impact</h4>
                             
                             <div class="challenge-item">
-                                <h5>Power Consumption Optimization</h5>
-                                <p>Initial prototypes achieved only 3 days of battery life. I implemented a hierarchical power management system with dynamic duty cycling of the sensor and processor, extending battery life to over 8 days while maintaining measurement accuracy.</p>
+                                <h5>Accuracy Validated</h5>
+                                <div class="image-carousel" data-modal-id="accuracy-modal">
+                                    <div class="carousel-slides">
+                                        <div class="carousel-slide">
+                                            <img src="Asset/sleep_wearable_accuracy.jpg" alt="Accuracy Graph" class="zoomable-image">
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img src="Asset/heart_rate_correlation_plot.png" alt="Heart Rate Correlation Plot" class="zoomable-image">
+                                        </div>
+                                    </div>
+                                    <div class="carousel-arrow next">
+                                        <i class="fas fa-chevron-right carousel-arrow-icon"></i>
+                                    </div>
+                                    <div class="carousel-indicators">
+                                        <div class="carousel-indicator active"></div>
+                                        <div class="carousel-indicator"></div>
+                                    </div>
+                                </div>
+                                <p>Achieved a strong Pearson correlation coefficient (R = 0.873) when compared against a commercial Fitbit Inspire 2 device for heart rate monitoring.</p>
+                            </div>
+                            
+                            <!-- Modal for enlarged accuracy graph -->
+                            <div id="accuracy-modal" class="diagram-modal">
+                                <span class="close-accuracy">&times;</span>
+                                <img src="Asset/sleep_wearable_accuracy.jpg" class="diagram-modal-content" id="enlarged-accuracy">
                             </div>
                             
                             <div class="challenge-item">
-                                <h5>Motion Artifact Reduction</h5>
-                                <p>PPG signals are highly susceptible to motion artifacts. I developed a custom adaptive filtering algorithm that combines accelerometer data with the PPG signal to identify and reduce motion-induced noise, improving accuracy during physical activity by 78%.</p>
+                                <h5>Significant Power Efficiency</h5>
+                                <img src="Asset/sleep_wearable_power.jpg" alt="Power Consumption Graph">
+                                <p>Optimized firmware and a dual-MCU strategy extended battery life to 16.84 hours on a 245mAh battery, an 8-fold improvement over a non-optimized baseline, suitable for overnight sleep tracking.</p>
                             </div>
                             
                             <div class="challenge-item">
-                                <h5>Form Factor & Comfort</h5>
-                                <p>Creating a comfortable yet secure wristband required multiple design iterations. The final design incorporates flexible PCB technology and a custom-molded silicone housing to achieve the optimal balance between comfort and sensor placement.</p>
+                                <h5>Cost-Effective Design</h5>
+                                <p>The Bill of Materials (BOM) demonstrated a potential production cost of just 49 DKK (~€6.50 / $7.00) per unit in bulk, making it highly competitive.</p>
+                            </div>
+
+                            <div class="challenge-item">
+                                <h5>End-to-End System Integration</h5>
+                                <p>Successfully designed, built, and tested a complete system from sensor hardware to a functional mobile application.</p>
+                            </div>
+
+                            <div class="challenge-item">
+                                <h5>Novel Power-Saving Strategy</h5>
+                                <p>The symbiotic relationship between the ultra-low-power STM8S for continuous sensing and the ESP32 for periodic, power-managed communication was key to achieving extended battery life.</p>
                             </div>
                         </div>
                         
                         <div class="details-section">
-                            <h4>Results & Impact</h4>
-                            <p>The completed wristband demonstrates excellent performance metrics:</p>
+                            <h4>Technologies Used</h4>
                             <ul>
-                                <li>Heart rate measurement accuracy within ±3 BPM compared to medical-grade devices</li>
-                                <li>8.5 days average battery life under typical usage patterns</li>
-                                <li>BLE range of up to 15 meters in indoor environments</li>
-                                <li>Total BOM cost under $35 in production quantities</li>
+                                <li><strong>Hardware:</strong> Photoplethysmography (PPG), Analog Signal Conditioning (Op-Amps: MCP6004), STM8S003F3, ESP32-C3 Mini, LIS2DH12TR Accelerometer (for future use), USB-C, LiPo Battery Management (MCP73831).</li>
+                                <li><strong>Firmware:</strong> C (STM8S), C++/ESP-IDF (ESP32), FreeRTOS, UART, BLE (GATT).</li>
+                                <li><strong>Software:</strong> Flutter (Dart) for cross-platform mobile app, Digital Signal Processing (FFT).</li>
+                                <li><strong>Tools:</strong> KiCad (PCB Design), Oscilloscope, ST Visual Develop, ESP-IDF Toolchain.</li>
                             </ul>
-                            <p>This project has laid the groundwork for future wearable health monitoring devices and demonstrated the viability of low-cost, high-accuracy consumer health technology.</p>
                         </div>
                         
                         <div class="project-links-bottom">
-                            <a href="https://github.com/yourusername/heart-rate-wristband" target="_blank" class="btn btn-secondary"><i class="fab fa-github"></i> View on GitHub</a>
-                            <a href="Asset/project1_schematic.pdf" target="_blank" class="btn btn-secondary"><i class="fas fa-file-pdf"></i> View Schematic</a>
+                            <a href="https://github.com/yourusername/sleep-cycle-wearable" target="_blank" class="btn btn-secondary"><i class="fab fa-github"></i> View on GitHub</a>
+                            <a href="Asset/sleep_wearable_schematic.pdf" target="_blank" class="btn btn-secondary"><i class="fas fa-file-pdf"></i> View Schematic</a>
                         </div>
                     </div>
                 </div>

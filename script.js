@@ -309,4 +309,151 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll();
+    
+    // Sequence diagram modal functionality
+    const sequenceDiagram = document.getElementById('sequence-diagram');
+    const diagramModal = document.getElementById('diagram-modal');
+    const enlargedDiagram = document.getElementById('enlarged-diagram');
+    const closeDiagram = document.querySelector('.close-diagram');
+    
+    if (sequenceDiagram && diagramModal && enlargedDiagram) {
+        // Open modal when clicking on diagram
+        sequenceDiagram.addEventListener('click', function() {
+            diagramModal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+        });
+        
+        // Close modal when clicking on close button
+        if (closeDiagram) {
+            closeDiagram.addEventListener('click', function() {
+                diagramModal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Re-enable scrolling
+            });
+        }
+        
+        // Close modal when clicking outside the diagram
+        diagramModal.addEventListener('click', function(e) {
+            if (e.target === diagramModal) {
+                diagramModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+    }
+    
+    // Components modal functionality
+    const componentsModal = document.getElementById('components-modal');
+    const enlargedComponent = document.getElementById('enlarged-component');
+    const closeComponents = document.querySelector('.close-components');
+    
+    if (componentsModal && enlargedComponent) {
+        // Close modal when clicking on close button
+        if (closeComponents) {
+            closeComponents.addEventListener('click', function() {
+                componentsModal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Re-enable scrolling
+            });
+        }
+        
+        // Close modal when clicking outside the image
+        componentsModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+    }
+    
+    // Image Carousel functionality
+    const imageCarousels = document.querySelectorAll('.image-carousel');
+    
+    imageCarousels.forEach(carousel => {
+        const slides = carousel.querySelector('.carousel-slides');
+        const nextButton = carousel.querySelector('.carousel-arrow.next');
+        const prevButton = carousel.querySelector('.carousel-arrow.prev');
+        const indicators = carousel.querySelectorAll('.carousel-indicator');
+        const totalSlides = carousel.querySelectorAll('.carousel-slide').length;
+        let currentSlide = 0;
+        
+        function updateCarousel() {
+            slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update indicators
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+            
+            // Update modal image source for when it opens
+            const modalId = carousel.getAttribute('data-modal-id');
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                const modalImg = modal.querySelector('.diagram-modal-content');
+                const currentImage = carousel.querySelectorAll('.carousel-slide img')[currentSlide];
+                if (modalImg && currentImage) {
+                    modalImg.src = currentImage.src;
+                }
+            }
+        }
+        
+        // Initialize
+        updateCarousel();
+        
+        // Next button
+        if (nextButton) {
+            nextButton.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent triggering modal open
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateCarousel();
+            });
+        }
+        
+        // Previous button
+        if (prevButton) {
+            prevButton.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent triggering modal open
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateCarousel();
+            });
+        }
+        
+        // Indicator buttons
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent triggering modal open
+                currentSlide = index;
+                updateCarousel();
+            });
+        });
+        
+        // Modal for current slide image
+        const modalId = carousel.getAttribute('data-modal-id');
+        const modal = document.getElementById(modalId);
+        const modalImg = modal ? modal.querySelector('.diagram-modal-content') : null;
+        const closeModal = modal ? modal.querySelector('.close-components, .close-accuracy, .close-diagram') : null;
+        
+        if (modalImg) {
+            // Make the whole carousel clickable to open modal
+            carousel.addEventListener('click', function() {
+                const currentImage = carousel.querySelectorAll('.carousel-slide img')[currentSlide];
+                if (modalImg && currentImage) {
+                    modalImg.src = currentImage.src;
+                }
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            });
+            
+            if (closeModal) {
+                closeModal.addEventListener('click', function() {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                });
+            }
+            
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+    });
 });
