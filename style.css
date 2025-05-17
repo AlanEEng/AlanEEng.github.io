@@ -504,14 +504,6 @@ section {
     padding: var(--spacing-lg);
     box-shadow: var(--shadow-md);
     transition: transform var(--transition-normal), box-shadow var(--transition-normal);
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease;
-}
-
-.skill-category.animate {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 .skill-category:hover {
@@ -590,14 +582,6 @@ section {
     box-shadow: var(--shadow-md);
     transition: transform var(--transition-normal), box-shadow var(--transition-normal);
     position: relative;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease;
-}
-
-.project-card.animate {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 .project-card:hover {
@@ -776,14 +760,13 @@ section {
     position: relative;
     max-width: 800px;
     margin: 0 auto;
-    padding-left: 30px; /* Reduced left padding */
-    padding-right: 150px; /* Added right padding for dates */
+    padding-left: 50px;
 }
 
 .timeline::before {
     content: '';
     position: absolute;
-    left: 15px; /* Moved line to the left edge */
+    left: 0;
     top: 0;
     bottom: 0;
     width: 2px;
@@ -793,34 +776,25 @@ section {
 .timeline-item {
     position: relative;
     margin-bottom: var(--spacing-xl);
-    opacity: 0;
-    transform: translateX(-30px);
-    transition: all 0.8s ease;
-}
-
-.timeline-item.animate {
-    opacity: 1;
-    transform: translateX(0);
 }
 
 .timeline-dot {
     position: absolute;
-    left: -21px; /* Positioned dot on the line */
+    left: -54px;
     top: 5px;
     width: 12px;
     height: 12px;
     border-radius: 50%;
     background-color: var(--primary-color);
     border: 3px solid var(--light-color);
-    z-index: 2;
 }
 
 .timeline-date {
     position: absolute;
-    right: -130px; /* Positioned date on the right side */
+    left: -150px;
     top: 0;
     width: 120px;
-    text-align: left;
+    text-align: right;
     font-weight: bold;
     color: var(--primary-color);
 }
@@ -1184,14 +1158,24 @@ footer {
         flex-direction: column;
     }
     
-    /* Adjusted responsive timeline for tablets */
+    .timeline::before {
+        left: 20px;
+    }
+    
     .timeline {
-        padding-right: 30px;
+        padding-left: 70px;
+    }
+    
+    .timeline-dot {
+        left: 14px;
     }
     
     .timeline-date {
-        right: -30px;
-        width: auto;
+        position: relative;
+        left: 0;
+        top: 0;
+        text-align: left;
+        margin-bottom: var(--spacing-xs);
     }
 }
 
@@ -1251,17 +1235,6 @@ footer {
     
     .footer-nav ul {
         justify-content: center;
-    }
-    
-    /* Adjusted timeline for mobile */
-    .timeline-date {
-        position: relative;
-        right: auto;
-        top: auto;
-        text-align: left;
-        margin-bottom: var(--spacing-xs);
-        color: var(--primary-color);
-        font-weight: bold;
     }
 }
 
