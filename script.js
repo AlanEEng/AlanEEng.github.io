@@ -44,6 +44,8 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
+    
     
     // Project filtering
     const filterButtons = document.querySelectorAll('.filter-btn');
