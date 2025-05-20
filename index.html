@@ -261,7 +261,7 @@
                                 
                             <p>A core design critera from the outset was to create a truly wearable and unobtrusive device. This necessitated attention to component selection for minimal footprint and a highly compact Printed Circuit Board (PCB) layout. We successfully engineered the entire system onto a mere 35mm x 19mm PCB, a significant achievement given the inclusion of two microcontrollers, a complete analog front-end for PPG sensing, power management ICs, and the ESP32's integrated antenna.</p>
                            
-                            <p>For cost-effectiveness, we committed to a 2-layer PCB design. This presented a considerable routing challenge compared to a multi-layer boards. However, by using PCB best practises for Mixed siganl routing, planning component placement and signal paths, we were able to implement best practices even within these constraints. This included clear differentiation and separation of power, analog, and digital sections on the board to minimize noise coupling and ensure signal integrity. Ground planes were carefully managed, and trace routing for sensitive analog signals was prioritized to shield them from digital interference, all contributing to the reliable performance of our PPG sensor.</p>
+                            <p>For cost-effectiveness, we committed to a 2-layer PCB design. This presented a considerable routing challenge compared to a multi-layer board. However, by using PCB best practises for Mixed siganl routing, planning component placement and signal paths, we were able to implement best practices even within these constraints. This included clear differentiation and separation of power, analog, and digital sections on the board to minimize noise coupling and ensure signal integrity. Ground planes were carefully managed, and trace routing for sensitive analog signals was prioritized to shield them from digital interference, all contributing to the reliable performance of our PPG sensor.</p>
                                  
                         </div>
                         <div class="image-carousel custom-carousel" data-modal-id="components-modal">
@@ -306,7 +306,7 @@
 
                             <h5>Innovation 2: Building Trust & Refining Clarity – From Validated Pipelines to Clean Physiological Signals</h5>
                                 
-                            <p>Before we could even begin to analyze complex physiological signals, we first had to build undoubtable trust in our entire data pipeline. We achieved this through end-to-End, Known Signal Validation. By injecting a precise 1.1Hz sine wave from a function generator directly into the STM8S microcontroller's ADC, we traced its journey though every step of the system. The resulting clean, perfectly reconstructed sine wave (see Figure Z: Function Generator Test) – captured after traversing STM8S buffers, UART, ESP32 buffers, BLE, and mobile app reassembly – conclusively verified the integrety of our entire data pathway. This foundational validation ensured that any variations seen later with the actual PPG sensor were due to physiology or sensor noise, not systemic data corruption.</p>
+                            <p>Before we could even begin to analyze complex physiological signals, we first had to build undoubtable trust in our entire data pipeline. We achieved this through end-to-End, Known Signal Validation. By injecting a precise 1.1Hz sine wave from a function generator directly into the STM8S microcontroller's ADC, we traced its journey though every step of the system. The resulting clean, perfectly reconstructed sine wave (see Figure Z: Function Generator Test) – captured after traversing STM8S buffers, UART, ESP32 buffers, BLE, and mobile app reassembly – conclusively verified the integrity of our entire data pathway, timing and packaging scheme. This foundational validation ensured that any variations seen later with the actual PPG sensor were due to physiology or sensor noise, not systemic data corruption.</p>
                                 
                         </div>
                         <div class="image-carousel custom-carousel" data-modal-id="components-modal">
@@ -497,7 +497,51 @@
                                 <img src="Asset/sleep_wearable_accuracy.jpg" class="diagram-modal-content" id="enlarged-accuracy" alt="Enlarged Accuracy Comparison Graph">
                             </div>
                             
-
+                            <div class="details-section">
+                                <h4>Areas for Improvement</h4>
+                                <p>In this section, we delve into potential optimizations for the system, focusing particularly on power management and operational efficiency.</p>
+                                
+                                <div class="implementation-subsection">
+                                    <h5>Bluetooth Low Energy (BLE) Communication Enhancement</h5>
+                                    <p>We've identified an opportunity to streamline the circuit by integrating a more compact BLE communication module. While these modules are typically more costly and necessitate a custom-designed antenna, they offer a significant reduction in size and improved integration capabilities.</p>
+                                </div>
+                                
+                               
+                                
+                                <div class="implementation-subsection">
+                                    <h5>Charging Mechanism Evolution</h5>
+                                    <p>To further compact the design, the existing USB-C module could be replaced with a wireless charging system. This not only reduces physical space but also enhances the user experience by eliminating the need for wired connections, which is the standard in health monitoring wearables.</p>
+                                </div>
+                                
+                               
+                                
+                                <div class="implementation-subsection">
+                                    <h5>LED Optimization</h5>
+                                    <p>The current green LEDs in our project have been suboptimal in terms of brightness. By switching to LEDs that emit a more direct green light with improved spectral characteristics, we anticipate better PPG signal quality and overall performance.</p>
+                                </div>
+                                
+                                
+                                
+                                <div class="implementation-subsection">
+                                    <h5>Power Consumption Optimization Strategies</h5>
+                                    <p>A major area for improvement is the system's power usage, with these strategies proposed to extend battery life:</p>
+                                    
+                                    <div class="challenge-item">
+                                        <h5>Bluetooth Protocol Upgrade</h5>
+                                        <p>We have implemented the Bluetooth 4.0 protocol and not the newer version 5.0. This new version allows us to send 251 bytes instead of the current 20-byte limitation, enabling fewer and larger data transmissions while conserving more power through reduced communication overhead.</p>
+                                    </div>
+                                    
+                                    <div class="challenge-item">
+                                        <h5>Sensor Circuit Optimization</h5>
+                                        <p>By eliminating the last operational amplifier (op-amp) in the sensor circuit and redistributing its amplification responsibilities among the remaining four op-amps, we can improve power and cost efficiency while reducing the overall circuit size further.</p>
+                                    </div>
+                                    
+                                    <div class="challenge-item">
+                                        <h5>Microcontroller Sleep Functionality</h5>
+                                        <p>Implementing a comprehensive sleep mode in the STM8S microcontroller can significantly save power. This mode would activate when the device is not connected via BLE and is supposed to be in an 'off' state, reactivated by a signal from the accelerometer. Additionally, engaging sleep mode between sensor samples can further reduce power consumption during active operation, potentially extending battery life beyond our current 16.84-hour benchmark.</p>
+                                    </div>
+                                </div>
+                            </div>
                             
                             <div class="challenge-item">
                                 <h5>Cost-Effective Design</h5>
@@ -508,9 +552,9 @@
                                 <h5>User Comfort</h5>
                                 <p>The user experience was also paramount. The device features a custom-sewn fabric wristband with memory foam, ensuring comfort for overnight wear and effectively blocking ambient light to improve sensor accuracy. USB-C charging was incorporated for modern convenience.</p>
                             </div>
-                        </div>
+                            </div>
                         
-                        <div class="details-section">
+                            <div class="details-section">
                             <h4>Technology Stack: The Toolkit Behind the Innovation</h4>
                             <ul>
                                 <li><strong>Hardware:</strong> Photoplethysmography (SFH 2430 Photodiode, Green LED), STM8S003F3 MCU, ESP32-C3 Mini MCU, MCP6004 & MCP6002 Op-Amps, TCR2EF33 LDO, MCP73831 LiPo BMS, USB-C.</li>
@@ -519,11 +563,18 @@
                                 <li><strong>Software (Mobile):</strong> Flutter (Dart), Digital Signal Processing (FFT).</li>
                                 <li><strong>Testing & Validation:</strong> Oscilloscope, Function Generator, Multimeter, Fitbit Inspire 2.</li>
                             </ul>
-                        </div>
+                         </div>
                         
-                        <div class="details-section">
+                            <div class="details-section">
                             <h4>Conclusion: More Than Just a Project – A Foundation for Smarter Wellness</h4>
                             <p>This wearable sleep tracker project was a comprehensive journey through the entire IoT product development lifecycle. From grappling with the nuances of analog sensor design and mastering ultra-low-power embedded systems to crafting an intuitive mobile user experience and validating performance against commercial benchmarks, it provided invaluable hands-on experience. The key takeaway is the demonstration that sophisticated, accurate, and user-friendly health monitoring technology can be engineered to be both highly effective and remarkably affordable. The resulting platform is not just a successful academic endeavor but a solid foundation ripe for future development, potentially integrating accelerometer data and machine learning algorithms to deliver even deeper insights into sleep quality and overall wellness.</p>
+                            <p>In conclusion, this report has effectively demonstrated the successful design and development of a wearable device for heart rate monitoring, a critical element in sleep
+                                tracking systems. Emphasizing compactness, accuracy, and cost-effectiveness, the
+                                project has successfully developed novel hardware, firmware and software to accomplish the goals set.
+                                Through rigorous testing, the device has proven its reliability and accuracy, achieving a strong correlation coefficient (R value) of 0.87 compared to a standard Fitbit
+                                device. This proves its capability in consumer heart rate
+                                monitoring but also paves the way for its application in smart sleep phase analysis. Furthermore, the project has established the viability of manufacturing a
+                                high-accuracy heart rate monitoring device at an economical cost, evidenced by a production price of just 49 DKK</p>
                         </div>¨
 
                             <div class="details-section">
@@ -543,7 +594,7 @@
                             </div>
 
                         
-                        <div class="project-links-bottom">
+                         <div class="project-links-bottom">
                             <a href="https://github.com/AlanEEng/WirelessHRTracker.git" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fab fa-github" aria-hidden="true"></i> View on GitHub</a>
                             <a href="Asset/Circuit_kicat-1.png" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fas fa-file-pdf" aria-hidden="true"></i> View Schematic</a>
                         </div>
@@ -674,6 +725,7 @@
                         </div>
                     </div>
                 </div>
+                
 
                 <article class="project-card" data-category="iot firmware software">
                     <div class="project-image">
