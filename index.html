@@ -9,22 +9,55 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="Asset/favicon.png">
-</head>
+    <style>
+        /* Add this to your existing CSS or include inline for the specific layout */
+        .app-showcase {
+            display: flex;
+            align-items: center;
+            margin: 2rem 0;
+            gap: 2rem;
+        }
+        
+        .app-description {
+            flex: 1;
+        }
+        
+        .app-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .app-screenshot {
+            max-width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .app-showcase {
+                flex-direction: column-reverse;
+            }
+            
+            .app-image {
+                margin-bottom: 1.5rem;
+            }
+        }
+    </style>
 <body>
-    <div class="theme-switch-wrapper">
+    <div class="theme-switch-wrapper" aria-label="Dark mode toggle">
         <label class="theme-switch" for="checkbox">
             <input type="checkbox" id="checkbox" />
             <div class="slider round"></div>
         </label>
-        <em><i class="fas fa-moon"></i></em>
+        <em><i class="fas fa-moon" aria-hidden="true"></i></em>
     </div>
 
     <header>
         <div class="container">
             <div class="logo">
-                <a href="#"><span class="highlight">A</span>lanEng</a>
+                <a href="#" aria-label="Alan Eng Logo"><span class="highlight">A</span>lanEng</a>
             </div>
             <nav id="navbar">
                 <ul>
@@ -33,10 +66,10 @@
                     <li><a href="#projects" class="nav-link">Projects</a></li>
                     <li><a href="#experience" class="nav-link">Experience</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
-                    <li><a href="Asset/resume.pdf" class="btn-resume" target="_blank">Resume</a></li>
+                    <li><a href="Asset/resume.pdf" class="btn-resume" target="_blank" rel="noopener noreferrer">Resume</a></li>
                 </ul>
             </nav>
-            <div class="menu-toggle" id="mobile-menu">
+            <div class="menu-toggle" id="mobile-menu" aria-label="Mobile menu toggle" aria-expanded="false">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -56,11 +89,11 @@
                 </div>
             </div>
             <div class="hero-image">
-                <img src="Asset/hero-image.png" alt="Alan Eng - Engineering Portfolio">
+                <img src="Asset/hero-image.png" alt="Alan Alkhayat - Electronics Engineer" loading="eager">
             </div>
         </div>
         <div class="scroll-down">
-            <a href="#about"><i class="fas fa-chevron-down"></i></a>
+            <a href="#about" aria-label="Scroll down to About section"><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
         </div>
     </section>
 
@@ -72,7 +105,7 @@
             </div>
             <div class="about-content">
                 <div class="about-image">
-                    <img src="Asset/profile-photo.jpg" alt="Alan Eng">
+                    <img src="Asset/profile-photo.jpg" alt="Alan Alkhayat - Professional portrait" loading="lazy">
                 </div>
                 <div class="about-text">
                     <h3>Engineering with Purpose</h3>
@@ -81,19 +114,19 @@
                     <p>When I'm not designing circuits or writing firmware, you can find me experimenting with new technologies, contributing to open-source projects, or mentoring aspiring engineers.</p>
                     <div class="about-details">
                         <div class="detail-item">
-                            <i class="fas fa-graduation-cap"></i>
+                            <i class="fas fa-graduation-cap" aria-hidden="true"></i>
                             <span>MSc in Electrical Engineering</span>
                         </div>
                         <div class="detail-item">
-                            <i class="fas fa-briefcase"></i>
+                            <i class="fas fa-briefcase" aria-hidden="true"></i>
                             <span>3+ Years Experience</span>
                         </div>
                         <div class="detail-item">
-                            <i class="fas fa-map-marker-alt"></i>
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                             <span>Copenhagen, Denmark</span>
                         </div>
                         <div class="detail-item">
-                            <i class="fas fa-language"></i>
+                            <i class="fas fa-language" aria-hidden="true"></i>
                             <span>English, Danish, German</span>
                         </div>
                     </div>
@@ -110,7 +143,7 @@
             </div>
             <div class="skills-container">
                 <div class="skill-category">
-                    <div class="skill-icon"><i class="fas fa-microchip"></i></div>
+                    <div class="skill-icon"><i class="fas fa-microchip" aria-hidden="true"></i></div>
                     <h3>Hardware Design</h3>
                     <ul>
                         <li>Analog & Digital Circuit Design</li>
@@ -121,7 +154,7 @@
                     </ul>
                 </div>
                 <div class="skill-category">
-                    <div class="skill-icon"><i class="fas fa-code"></i></div>
+                    <div class="skill-icon"><i class="fas fa-code" aria-hidden="true"></i></div>
                     <h3>Firmware & Software</h3>
                     <ul>
                         <li>C/C++ Embedded Programming</li>
@@ -132,7 +165,7 @@
                     </ul>
                 </div>
                 <div class="skill-category">
-                    <div class="skill-icon"><i class="fas fa-wifi"></i></div>
+                    <div class="skill-icon"><i class="fas fa-wifi" aria-hidden="true"></i></div>
                     <h3>IoT & Communication</h3>
                     <ul>
                         <li>Bluetooth Low Energy (BLE)</li>
@@ -143,11 +176,11 @@
                     </ul>
                 </div>
                 <div class="skill-category">
-                    <div class="skill-icon"><i class="fas fa-tools"></i></div>
+                    <div class="skill-icon"><i class="fas fa-tools" aria-hidden="true"></i></div>
                     <h3>Tools & Platforms</h3>
                     <ul>
                         <li>Altium Designer/KiCad</li>
-                        <li>Oscilloscopes, funktion generators & Logic Analyzers</li>
+                        <li>Oscilloscopes, Function Generators & Logic Analyzers</li>
                         <li>ARM Cortex Development</li>
                         <li>ESP32/ESP8266 Platforms</li>
                         <li>STM8/STM32 Platforms</li>
@@ -164,26 +197,26 @@
                 <div class="underline"></div>
             </div>
             
-            <div class="project-filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="hardware">Hardware</button>
-                <button class="filter-btn" data-filter="firmware">Firmware</button>
-                <button class="filter-btn" data-filter="software">Software</button>
-                <button class="filter-btn" data-filter="iot">IoT</button>
+            <div class="project-filters" role="tablist" aria-label="Project filters">
+                <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+                <button class="filter-btn" data-filter="hardware" role="tab" aria-selected="false">Hardware</button>
+                <button class="filter-btn" data-filter="firmware" role="tab" aria-selected="false">Firmware</button>
+                <button class="filter-btn" data-filter="software" role="tab" aria-selected="false">Software</button>
+                <button class="filter-btn" data-filter="iot" role="tab" aria-selected="false">IoT</button>
             </div>
 
             <div class="projects-grid">
                 <article class="project-card" data-category="hardware iot firmware">
                     <div class="github-tag">
-                        <a href="https://github.com/AlanEEng/WirelessHRTracker.git" target="_blank">
-                            <i class="fab fa-github"></i>
+                        <a href="https://github.com/AlanEEng/WirelessHRTracker.git" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository">
+                            <i class="fab fa-github" aria-hidden="true"></i>
                         </a>
                     </div>
                     <div class="project-image">
-                        <img src="Asset/IoT_sleep_cycle_wearable.png" alt="IoT Sleep Cycle Wearable">
+                        <img src="Asset/IoT_sleep_cycle_wearable.png" alt="IoT Sleep Cycle Wearable Device" loading="lazy">
                         <div class="project-overlay">
                         <div class="project-links">
-                            <a href="#project1-details" class="details-link"><i class="fas fa-info-circle"></i> Details</a>
+                            <a href="#project1-details" class="details-link"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</a>
                         </div>
                         </div>
                     </div>
@@ -194,33 +227,42 @@
                             <span class="tag">BLE</span>
                         </span>
                         <h3>IoT Wearable for Sleep Cycle Analysis & Smart Alarming</h3>
-                        <p>A compact, low-cost, and energy-efficient wearable that monitors heart rate variability to analyze sleep cycles and provide gentle waking during optimal sleep phases.</p>
+                        <p>A compact, low-cost, and energy-efficient wearable that wirelessly monitors heart rate and visualize it on a smartphone.</p>
                     </div>
                 </article>
 
                 <div id="project1-details" class="project-details">
                     <div class="project-details-content">
-                        <span class="close-details">&times;</span>
-                        <h3>IoT Wearable for Sleep Cycle Analysis & Smart Alarming</h3>
-                        
-                        <div class="details-gallery">
-                            <img src="Asset/sleep_wearable_device.png" alt="Sleep Cycle Wearable">
-                            <img src="Asset/sleep_wearable_pcb.png" alt="PCB Design">
-                            <img src="Asset/wearable_app.jpg" alt="Mobile App">
-                        </div>
+                        <span class="close-details" aria-label="Close details">&times;</span>
+                        <h3>Smart Sleep & Wake-Up Wearable: Engineering Better Mornings</h3>
                         
                         <div class="details-section">
                             <h4>Project Overview</h4>
-                            <p>Tired of jarring alarms disrupting your sleep? We designed and developed a compact, low-cost, and energy-efficient IoT wearable that accurately monitors heart rate variability to analyze sleep cycles. The ultimate goal is to integrate this data into a smart alarm system that gently wakes users during their lightest sleep phase, promoting better rest and cognitive function. This project spanned custom hardware design, embedded firmware development, and mobile application creation.</p>
+                            <p>Imagine waking up refreshed, not startled by a jarring alarm. That was the vision behind this project: a compact, low-cost IoT wearable meticulously engineered from the ground up to understand your sleep cycles through heart rate measurement. This endeavor was a deep dive into the complete IoT product lifecycle, spanning the design and development of custom hardware, firmware development, and mobile application creation.</p>
                             
                             <div class="project-goals">
-                                <h5>The Challenge:</h5>
-                                <p>The primary challenge was to create a sophisticated yet affordable wearable capable of continuous, accurate physiological monitoring (specifically Photoplethysmography - PPG) over an 8-hour sleep period. This required:</p>
-                                <ul>
-                                    <li>Meticulous component selection for cost and power efficiency</li>
-                                    <li>Robust signal processing to extract clean heart rate data from noisy PPG signals</li>
-                                    <li>Seamless data transmission to a mobile device for analysis and user interaction</li>
-                                </ul>
+                                <h5>The Core Engineering Challenge:</h5>
+                                <p>The primary challenge was to develop an affordable wearable capable of accurate, continuous physiological monitoring like heart rate and movement (specifically Photoplethysmography - PPG) throughout an 8-hour sleep period. This demanded exceptional power efficiency to last the night, robust signal processing to extract clean data from noisy on-wrist measurements, and seamless data transmission to a mobile device for analysis and user interaction – all while keeping the Bill of Materials (BOM) as low as possible. Custom-designing every layer of the system gave us complete control to specifically design a product that met our requirements.</p>
+                            </div>
+                            <div class="image-carousel custom-carousel" data-modal-id="components-modal">
+                                <div class="carousel-slides">
+                                    <div class="carousel-slide">
+                                        <img src="Asset/sleep_wearable_device.png" alt="Sleep Wearable Device - Physical Product" class="zoomable-image" loading="lazy">
+                                    </div>
+                                    <div class="carousel-slide">
+                                        <img src="Asset/hardware.jpg" alt="Sleep Wearable PCB - Internal Hardware" class="zoomable-image" loading="lazy">
+                                    </div>
+                                </div>
+                                <div class="carousel-arrow prev" aria-label="Previous slide">
+                                    <i class="fas fa-chevron-left carousel-arrow-icon" aria-hidden="true"></i>
+                                </div>
+                                <div class="carousel-arrow next" aria-label="Next slide">
+                                    <i class="fas fa-chevron-right carousel-arrow-icon" aria-hidden="true"></i>
+                                </div>
+                                <div class="carousel-indicators" role="tablist" aria-label="Carousel indicators">
+                                    <div class="carousel-indicator active" role="tab" aria-selected="true" aria-label="Slide 1"></div>
+                                    <div class="carousel-indicator" role="tab" aria-selected="false" aria-label="Slide 2"></div>
+                                </div>
                             </div>
                         </div>
                         
@@ -228,89 +270,231 @@
                             <h4>Our Innovative Solution</h4>
                             
                             <div class="implementation-subsection">
-                                <h5>Custom Wearable Hardware</h5>
-                                <div class="image-carousel custom-carousel" data-modal-id="components-modal">
-                                    <div class="carousel-slides">
-                                        <div class="carousel-slide">
-                                            <img src="Asset/sleep_wearable_device.png" alt="Sleep Wearable Device" class="zoomable-image">
-                                        </div>
-                                        <div class="carousel-slide">
-                                            <img src="Asset/sleep_wearable_pcb.png" alt="Sleep Wearable PCB" class="zoomable-image">
-                                        </div>
-                                    </div>
-                                    <div class="carousel-arrow prev">
-                                        <i class="fas fa-chevron-left carousel-arrow-icon"></i>
-                                    </div>
-                                    <div class="carousel-arrow next">
-                                        <i class="fas fa-chevron-right carousel-arrow-icon"></i>
-                                    </div>
-                                    <div class="carousel-indicators">
-                                        <div class="carousel-indicator active"></div>
-                                        <div class="carousel-indicator"></div>
-                                    </div>
-                                </div>
+                                <h5>Strategic Power-Saving Dual-Processors</h5>
                                 
                                 <!-- Modal for enlarged components images -->
                                 <div id="components-modal" class="diagram-modal">
-                                    <span class="close-components">&times;</span>
-                                    <img src="Asset/sleep_wearable_device.png" class="diagram-modal-content" id="enlarged-component">
+                                    <span class="close-components" aria-label="Close image">&times;</span>
+                                    <img src="Asset/sleep_wearable_device.png" class="diagram-modal-content" id="enlarged-component" alt="Enlarged view of Sleep Wearable Device">
                                 </div>
                                 
-                                <ul>
-                                    <li><strong>Sensing:</strong> A custom analog front-end featuring a green LED and an SFH 2430 photodiode captures blood volume changes. Our unique photodiode configuration, differing from standard Transimpedance Amplifiers (TIAs), empirically yielded cleaner signals.</li>
-                                    <li><strong>Signal Conditioning:</strong> A multi-stage op-amp (MCP6004) circuit filters and amplifies the raw PPG signal, isolating the desired frequency band (0.48Hz - 33.86Hz).</li>
-                                </ul>
+                                <p>To master the critical power challenge for all-night operation and to keep cost low, we engineered a power management strategy, using a dual-processor architecture. An ultra-low-power STM8S microcontroller acted as the dedicated 'sensing engine.' It continuously sampled Heart Rate (PPG) data at a precise 50Hz – a frequency also chosen to leverage nyquist-shannon theorem of aliasing to filter out common 50Hz environmental noise.</p>
+                                
+                                <p>The true power savings, however, were unlocked by the role of its partner, an ESP32-C3 Mini. This more powerful MCU remained in Deep Sleep mode for the vast majority of the time, waking for mere milliseconds only when signaled by the STM8S.</p>
+                                
+                                <p>As illustrated in our system timing diagram (see Figure X), the ESP32 would wake every 2.5 seconds upon the 'Wake ESP' signal, triggered after the STM8S filled its buffer, to receive a 125-byte data chunk (The limit of the stm8) via UART. After aggregating four such transfers into its own buffer (representing 10 seconds of data), it would then briefly handle the efficient Bluetooth Low Energy (BLE) 'Announce Data' and subsequent transmission to the app before returning to its ultra-low power Deep Sleep state. This orchestrated interplay, minimizing the ESP32's active time (also reflected in Figure Y: Device Sleep Cycle showing power spikes), was pivotal. It enabled an impressive 16.84 hours of continuous operation on a single 245mAh battery, an 8-fold improvement directly attributable to this duel microcontroller deep sleep implementation and optimized wake/sleep scheduling.</p>
                             </div>
-                            
-                            <div class="subsection-divider"></div>
-                            
-                            <div class="implementation-subsection">
-                                <h5>Dual-Processor Architecture for Power Efficiency</h5>
-                                <img src="Asset/sleep_wearable_data_flow.png" alt="Dual-Processor Architecture">
-                                <ul>
-                                    <li><strong>STM8S003F3 Microcontroller:</strong> An ultra-low-power MCU responsible for ADC sampling of the conditioned PPG signal at a precise 50Hz (strategically using aliasing to mitigate 50Hz noise). It buffers 2.5 seconds of data (125 bytes) before waking the ESP32.</li>
-                                    <li><strong>ESP32-C3 Mini Module:</strong> Manages Bluetooth Low Energy (BLE) communication, aggregates data from the STM8S into a 10-second (500-byte) buffer (stored in RTC memory during its deep sleep cycles), and handles FreeRTOS for task management.</li>
-                                    <li><strong>Power Management:</strong> A LiPo battery, MCP73831 BMS for USB-C charging, and a TCR2EF33 LDO ensure stable power delivery and efficient operation.</li>
-                                    <li><strong>Ergonomics:</strong> A custom-sewn fabric wristband with memory foam provides comfort and blocks ambient light for improved sensor accuracy.</li>
-                                </ul>
+                            <div class="diagram-container">
+                                <img src="Asset/sleep_wearable_seq.png" alt="System Timing and Data Flow Diagram" class="sequence-diagram" id="sequence-diagram" loading="lazy">
                             </div>
+                        </div>
                             
-                            <div class="subsection-divider"></div>
+                        <div class="subsection-divider"></div>
                             
-                            <div class="implementation-subsection">
-                                <h5>Embedded Firmware</h5>
-                                <div class="diagram-container">
-                                    <img src="Asset/sleep_wearable_seq.png" alt="Data Flow Diagram" class="sequence-diagram" id="sequence-diagram">
+                        <div class="implementation-subsection">
+                            <h5>Engineering for Compactness</h5>
+                                
+                            <p>A core design critera from the outset was to create a truly wearable and unobtrusive device. This necessitated attention to component selection for minimal footprint and a highly compact Printed Circuit Board (PCB) layout. We successfully engineered the entire system onto a mere 3.4cm x 2cm PCB, a significant achievement given the inclusion of two microcontrollers, a complete analog front-end for PPG sensing, power management ICs, and the ESP32's integrated antenna.</p>
+                           
+                            <p>To balance compactness with cost-effectiveness for potential mass production, we committed to a 2-layer PCB design. This presented a considerable routing challenge compared to more complex multi-layer boards. However, by meticulously planning component placement and signal paths, we were able to implement crucial best practices even within these constraints. This included clear differentiation and separation of power, analog, and digital sections on the board to minimize noise coupling and ensure signal integrity. Ground planes were carefully managed, and trace routing for sensitive analog signals was prioritized to shield them from digital interference, all contributing to the reliable performance of our PPG sensor. This disciplined approach to layout on a 2-layer board demonstrates that compact, high-performance wearables can be designed without resorting to more expensive manufacturing processes.</p>
+                                 
+                        </div>
+                        <div class="image-carousel custom-carousel" data-modal-id="components-modal">
+                            <div class="carousel-slides">
+                                <div class="carousel-slide">
+                                    <img src="Asset/PCB_Dimentions.png" alt="Signal Validation Test - Sine Wave Reconstruction" class="zoomable-image" loading="lazy">
                                 </div>
-                                <ul>
-                                    <li><strong>STM8S (C):</strong> Programmed for precise interrupt-driven ADC sampling, data buffering, and UART communication to the ESP32. Manages system power-down via LDO control.</li>
-                                    <li><strong>ESP32 (ESP-IDF, FreeRTOS, C++):</strong> Implements a BLE GATT server with custom 128-bit UUIDs for secure and unique device identification. Manages deep sleep cycles, waking every 2.5 seconds to receive data from STM8S via UART, and waking fully every 10 seconds to transmit the aggregated 500-byte buffer to the mobile app. Mutexes and semaphores ensure synchronized data handling.</li>
-                                </ul>
-                            </div>
-                            
-                            <!-- Modal for enlarged diagram -->
-                            <div id="diagram-modal" class="diagram-modal">
-                                <span class="close-diagram">&times;</span>
-                                <img src="Asset/sleep_wearable_seq.png" class="diagram-modal-content" id="enlarged-diagram">
-                            </div>
-                            
-                            <div class="subsection-divider"></div>
-                            
-                            <div class="implementation-subsection">
-                                <h5>Mobile Application (Flutter)</h5>
-                                <div class="app-showcase">
-                                    <div class="app-screenshot-container">
-                                        <img src="Asset/sleep_wearable_app_screens.jpg" alt="Mobile App Screenshots" class="app-screenshot">
-                                    </div>
-                                    <div class="app-features">
-                                        <ul>
-                                            <li><strong>BLE Client:</strong> Scans for and connects to the wearable using its custom UUID, requesting data in 20-byte chunks (BLE 4.0 limit) when the ESP32 signals a full buffer.</li>
-                                            <li><strong>Digital Signal Processing (DSP):</strong> Implements a Fast Fourier Transform (FFT) on the incoming raw PPG data. To enhance resolution without increasing firmware complexity or power drain, a circular buffer on the app aggregates 50 seconds of data (2500 samples), achieving a 1.2 BPM frequency resolution.</li>
-                                            <li><strong>User Interface:</strong> Displays real-time BPM, features a fully functional alarm clock (timezone-aware, 12/24hr format, snooze), and a dark theme for low-light environments.</li>
-                                        </ul>
-                                    </div>
+                                <div class="carousel-slide">
+                                    <img src="Asset/Kicad_PCB.png" alt="Heart Rate signal pipeline - heart rate siganl pathway" class="zoomable-image" loading="lazy">
                                 </div>
                             </div>
+                            <div class="carousel-arrow prev" aria-label="Previous slide">
+                                <i class="fas fa-chevron-left carousel-arrow-icon" aria-hidden="true"></i>
+                            </div>
+                            <div class="carousel-arrow next" aria-label="Next slide">
+                                <i class="fas fa-chevron-right carousel-arrow-icon" aria-hidden="true"></i>
+                            </div>
+                            <div class="carousel-indicators" role="tablist" aria-label="Carousel indicators">
+                                <div class="carousel-indicator active" role="tab" aria-selected="true" aria-label="Slide 1"></div>
+                                <div class="carousel-indicator" role="tab" aria-selected="false" aria-label="Slide 2"></div>
+                            </div>
+                        </div>
+                            
+                        <div class="subsection-divider"></div>
+
+                                                    <div class="challenge-item">
+                                <h5>Significant Power Efficiency</h5>
+                               
+                                <p>Our orchestrated interplay between the STM8S and ESP32, minimizing the ESP32's active time, was pivotal. It enabled an impressive 16.84 hours of continuous operation on a single 245mAh battery, an 8-fold improvement directly attributable to this aggressive deep sleep implementation and optimized wake/sleep scheduling.</p>
+                            <div class="carousel-slides">
+                                <div class="carousel-slide">
+                                    <img src="Asset/SleepCyclePowerUse.png" alt="Signal Validation Test - Sine Wave Reconstruction" class="zoomable-image" loading="lazy">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="Asset/50hertz_Heart_rate_plot_adc_esp_app.png" alt="Heart Rate signal pipeline - heart rate siganl pathway" class="zoomable-image" loading="lazy">
+                                </div>
+                            </div>
+                            </div>
+                            
+                          <div class="subsection-divider"></div>
+                            <div class="implementation-subsection">
+
+                            <h5>Innovation 2: Building Trust & Refining Clarity – From Validated Pipelines to Clean Physiological Signals</h5>
+                                
+                            <p>Before we could even begin to analyze complex physiological signals, we first had to build undoubtable trust in our entire data pipeline. We achieved this through end-to-End, Known Signal Validation. By injecting a precise 1.1Hz sine wave from a function generator directly into the STM8S microcontroller's ADC, we traced its journey though every step of the system. The resulting clean, perfectly reconstructed sine wave (see Figure Z: Function Generator Test) – captured after traversing STM8S buffers, UART, ESP32 buffers, BLE, and mobile app reassembly – conclusively verified the integrety of our entire data pathway. This foundational validation ensured that any variations seen later with the actual PPG sensor were due to physiology or sensor noise, not systemic data corruption.</p>
+                                
+                        </div>
+                        <div class="image-carousel custom-carousel" data-modal-id="components-modal">
+                            <div class="carousel-slides">
+                                <div class="carousel-slide">
+                                    <img src="Asset/Sin_plot_from_ADC_ESP_APP.png" alt="Signal Validation Test - Sine Wave Reconstruction" class="zoomable-image" loading="lazy">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="Asset/50hertz_Heart_rate_plot_adc_esp_app.png" alt="Heart Rate signal pipeline - heart rate siganl pathway" class="zoomable-image" loading="lazy">
+                                </div>
+                            </div>
+                            <div class="carousel-arrow prev" aria-label="Previous slide">
+                                <i class="fas fa-chevron-left carousel-arrow-icon" aria-hidden="true"></i>
+                            </div>
+                            <div class="carousel-arrow next" aria-label="Next slide">
+                                <i class="fas fa-chevron-right carousel-arrow-icon" aria-hidden="true"></i>
+                            </div>
+                            <div class="carousel-indicators" role="tablist" aria-label="Carousel indicators">
+                                <div class="carousel-indicator active" role="tab" aria-selected="true" aria-label="Slide 1"></div>
+                                <div class="carousel-indicator" role="tab" aria-selected="false" aria-label="Slide 2"></div>
+                            </div>
+                        </div>
+
+                            <div class="subsection-divider"></div>
+                        <div class="implementation-subsection">
+                            <h5>Costum Mobile App & On-App DSP</h5>
+                            <div class="app-showcase">
+                                <div class="app-description">
+                                    <p>The data's journey culminated in a user-friendly mobile application, developed using Flutter for cross-platform compatibility. This app served not only as the BLE client and data display interface but also housed critical Digital Signal Processing (DSP) capabilities.</p>
+                                    
+                                    <p>A key challenge was transmitting enough continuous data for meaningful Fast Fourier Transform (FFT) analysis given BLE 4.0's 20-byte packet limitation. Our solution was an intelligent circular buffer on the app. The ESP32 firmware buffered 10 seconds (500 bytes) of heart rate data, which the app requested in 25 consecutive GATT chunks. The app then aggregated these segments and maintained a 50-second rolling window (2500 samples) for FFT processing. This strategy achieved a fine 1.2 BPM frequency resolution for accurate heart rate detection, offloading intensive computation and thus Power consumption from the wearable.</p>
+                                    
+                                    <p>For user frindlyness and Unique identification and communication, we implemented custom 128-bit UUIDs for our BLE GATT services and characteristics. This ensured the app would only identify That given device and therefore not connecting to or showing other devices in the area.</p>
+                                </div>
+                                <div class="app-image">
+                                    <img src="Asset/wearable_app.jpg" alt="Sleep Wearable Mobile Application Interface" loading="lazy" class="app-screenshot">
+                                </div>
+                            </div>
+                    
+
+                               <div class="implementation-subsection"></div>
+
+                                                <div class="subsection-divider"></div>
+
+                <div class="bom-table-container">
+                    <h5>Cost and Bill of Materials</h5>
+                    <p>From the project's inception, a primary objective alongside technical excellence was to ensure the wearable could be remarkably cost-effective, guiding our component selection and design decisions throughout development.</p>
+                    
+                    <div class="bom-legend">Prices in DKK with USD equivalent (1 DKK ≈ $0.15 USD)</div>
+                    
+                    <div class="bom-table-wrapper">
+                        <table class="bom-table">
+                            <thead>
+                                <tr>
+                                    <th>Component</th>
+                                    <th class="text-right">Price for 1</th>
+                                    <th class="text-right">Price for 100</th>
+                                    <th class="text-right">Price for 1000</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>LLS2D11I2TR</td>
+                                    <td class="text-right price-cell">16.39 DKK <span class="usd">($2.46)</span></td>
+                                    <td class="text-right price-cell">9.35 DKK <span class="usd">($1.40)</span></td>
+                                    <td class="text-right price-cell">7.25 DKK <span class="usd">($1.09)</span></td>
+                                </tr>
+                                <tr>
+                                    <td>STM8S003F3P6TR</td>
+                                    <td class="text-right price-cell">7.48 DKK <span class="usd">($1.12)</span></td>
+                                    <td class="text-right price-cell">5.22 DKK <span class="usd">($0.78)</span></td>
+                                    <td class="text-right price-cell">3.40 DKK <span class="usd">($0.51)</span></td>
+                                </tr>
+                                <tr>
+                                    <td>tcr2ef33(ict)</td>
+                                    <td class="text-right price-cell">2.24 DKK <span class="usd">($0.34)</span></td>
+                                    <td class="text-right price-cell">0.93 DKK <span class="usd">($0.14)</span></td>
+                                    <td class="text-right price-cell">0.47 DKK <span class="usd">($0.07)</span></td>
+                                </tr>
+                                <tr>
+                                    <td>MCP6002T-I/MS</td>
+                                    <td class="text-right price-cell">2.79 DKK <span class="usd">($0.42)</span></td>
+                                    <td class="text-right price-cell">2.11 DKK <span class="usd">($0.32)</span></td>
+                                    <td class="text-right price-cell">2.11 DKK <span class="usd">($0.32)</span></td>
+                                </tr>
+                                <tr>
+                                    <td>MCP6004T-I/ST</td>
+                                    <td class="text-right price-cell">3.67 DKK <span class="usd">($0.55)</span></td>
+                                    <td class="text-right price-cell">2.79 DKK <span class="usd">($0.42)</span></td>
+                                    <td class="text-right price-cell">2.79 DKK <span class="usd">($0.42)</span></td>
+                                </tr>
+                                <tr>
+                                    <td>ESP32C3-MINI-1-N4</td>
+                                    <td class="text-right price-cell">12.24 DKK <span class="usd">($1.84)</span></td>
+                                    <td class="text-right price-cell">12.24 DKK <span class="usd">($1.84)</span></td>
+                                    <td class="text-right price-cell">12.24 DKK <span class="usd">($1.84)</span></td>
+                                </tr>
+                                <tr>
+                                    <td>SFH 2430-Z</td>
+                                    <td class="text-right price-cell">12.31 DKK <span class="usd">($1.85)</span></td>
+                                    <td class="text-right price-cell">6.31 DKK <span class="usd">($0.95)</span></td>
+                                    <td class="text-right price-cell">6.31 DKK <span class="usd">($0.95)</span></td>
+                                </tr>
+                                <tr>
+                                    <td>16x 0402 caps</td>
+                                    <td class="text-right price-cell">10.88 DKK <span class="usd">($1.63)</span></td>
+                                    <td class="text-right price-cell">0.67 DKK <span class="usd">($0.10)</span></td>
+                                    <td class="text-right price-cell">0.40 DKK <span class="usd">($0.06)</span></td>
+                                </tr>
+                                <tr>
+                                    <td>23x 0402 resistors</td>
+                                    <td class="text-right price-cell">15.64 DKK <span class="usd">($2.35)</span></td>
+                                    <td class="text-right price-cell">1.13 DKK <span class="usd">($0.17)</span></td>
+                                    <td class="text-right price-cell">0.65 DKK <span class="usd">($0.10)</span></td>
+                                </tr>
+                                <tr>
+                                    <td>LS0710HABH1500</td>
+                                    <td class="text-right price-cell">12.10 DKK <span class="usd">($1.82)</span></td>
+                                    <td class="text-right price-cell">9.39 DKK <span class="usd">($1.41)</span></td>
+                                    <td class="text-right price-cell">7.82 DKK <span class="usd">($1.17)</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Mcp73831-2aci/mc</td>
+                                    <td class="text-right price-cell">5.37 DKK <span class="usd">($0.81)</span></td>
+                                    <td class="text-right price-cell">4.42 DKK <span class="usd">($0.66)</span></td>
+                                    <td class="text-right price-cell">4.42 DKK <span class="usd">($0.66)</span></td>
+                                </tr>
+                                <tr>
+                                    <td>PCB</td>
+                                    <td class="text-right price-cell">3.46 DKK <span class="usd">($0.52)</span></td>
+                                    <td class="text-right price-cell">2.80 DKK <span class="usd">($0.42)</span></td>
+                                    <td class="text-right price-cell">1.21 DKK <span class="usd">($0.18)</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Total</td>
+                                    <td class="text-right price-cell">104.57 DKK <span class="usd">($15.69)</span></td>
+                                    <td class="text-right price-cell">57.35 DKK <span class="usd">($8.60)</span></td>
+                                    <td class="text-right price-cell">49.06 DKK <span class="usd">($7.36)</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+    
+    <div class="bom-description">
+        <p>Our strategic component selection resulted in a unit cost of just <strong>49.06 DKK ($7.36 USD)</strong> at volume production, making our wearable solution far more affordable than commercial alternatives typically retailing for $100-150.</p>
+    </div>
+</div>
+                            </div>
+                            
+                        <!-- Modal for enlarged diagram -->
+                        <div id="diagram-modal" class="diagram-modal">
+                            <span class="close-diagram" aria-label="Close diagram">&times;</span>
+                            <img src="Asset/sleep_wearable_seq.png" class="diagram-modal-content" id="enlarged-diagram" alt="Enlarged Data Flow Diagram">
                         </div>
                         
                         <div class="details-section">
@@ -321,78 +505,101 @@
                                 <div class="image-carousel" data-modal-id="accuracy-modal">
                                     <div class="carousel-slides">
                                         <div class="carousel-slide">
-                                            <img src="Asset/sleep_wearable_accuracy.jpg" alt="Accuracy Graph" class="zoomable-image">
+                                            <img src="Asset/sleep_wearable_accuracy.jpg" alt="Heart Rate Accuracy Comparison Graph" class="zoomable-image" loading="lazy">
                                         </div>
                                         <div class="carousel-slide">
-                                            <img src="Asset/heart_rate_correlation_plot.png" alt="Heart Rate Correlation Plot" class="zoomable-image">
+                                            <img src="Asset/heart_rate_correlation_plot.png" alt="Statistical Correlation Plot - Accuracy Validation" class="zoomable-image" loading="lazy">
                                         </div>
                                     </div>
-                                    <div class="carousel-arrow prev">
-                                        <i class="fas fa-chevron-left carousel-arrow-icon"></i>
+                                    <div class="carousel-arrow prev" aria-label="Previous slide">
+                                        <i class="fas fa-chevron-left carousel-arrow-icon" aria-hidden="true"></i>
                                     </div>
-                                    <div class="carousel-arrow next">
-                                        <i class="fas fa-chevron-right carousel-arrow-icon"></i>
+                                    <div class="carousel-arrow next" aria-label="Next slide">
+                                        <i class="fas fa-chevron-right carousel-arrow-icon" aria-hidden="true"></i>
                                     </div>
-                                    <div class="carousel-indicators">
-                                        <div class="carousel-indicator active"></div>
-                                        <div class="carousel-indicator"></div>
+                                    <div class="carousel-indicators" role="tablist" aria-label="Carousel indicators">
+                                        <div class="carousel-indicator active" role="tab" aria-selected="true" aria-label="Slide 1"></div>
+                                        <div class="carousel-indicator" role="tab" aria-selected="false" aria-label="Slide 2"></div>
                                     </div>
                                 </div>
-                                <p>Achieved a strong Pearson correlation coefficient (R = 0.873) when compared against a commercial Fitbit Inspire 2 device for heart rate monitoring.</p>
+                                
+                                <p>Our engineering efforts were rigorously validated. The wearable demonstrated strong real-world heart rate monitoring accuracy, achieving a Pearson correlation coefficient of R = 0.873 when benchmarked against a commercial Fitbit Inspire 2 device during seated tests.</p>
                             </div>
                             
                             <!-- Modal for enlarged accuracy graph -->
                             <div id="accuracy-modal" class="diagram-modal">
-                                <span class="close-accuracy">&times;</span>
-                                <img src="Asset/sleep_wearable_accuracy.jpg" class="diagram-modal-content" id="enlarged-accuracy">
+                                <span class="close-accuracy" aria-label="Close accuracy graph">&times;</span>
+                                <img src="Asset/sleep_wearable_accuracy.jpg" class="diagram-modal-content" id="enlarged-accuracy" alt="Enlarged Accuracy Comparison Graph">
                             </div>
                             
-                            <div class="challenge-item">
-                                <h5>Significant Power Efficiency</h5>
-                                <img src="Asset/sleep_wearable_power.jpg" alt="Power Consumption Graph">
-                                <p>Optimized firmware and a dual-MCU strategy extended battery life to 16.84 hours on a 245mAh battery, an 8-fold improvement over a non-optimized baseline, suitable for overnight sleep tracking.</p>
-                            </div>
+
                             
                             <div class="challenge-item">
                                 <h5>Cost-Effective Design</h5>
-                                <p>The Bill of Materials (BOM) demonstrated a potential production cost of just 49 DKK (~€6.50 / $7.00) per unit in bulk, making it highly competitive.</p>
+                                <p>Critically, this level of performance was achieved with remarkable cost-effectiveness. Our detailed Bill of Materials analysis showed a potential production cost of just 49 DKK (~€6.50 / $7.00) per unit in bulk quantities.</p>
                             </div>
 
                             <div class="challenge-item">
-                                <h5>End-to-End System Integration</h5>
-                                <p>Successfully designed, built, and tested a complete system from sensor hardware to a functional mobile application.</p>
-                            </div>
-
-                            <div class="challenge-item">
-                                <h5>Novel Power-Saving Strategy</h5>
-                                <p>The symbiotic relationship between the ultra-low-power STM8S for continuous sensing and the ESP32 for periodic, power-managed communication was key to achieving extended battery life.</p>
+                                <h5>User Comfort</h5>
+                                <p>The user experience was also paramount. The device features a custom-sewn fabric wristband with memory foam, ensuring comfort for overnight wear and effectively blocking ambient light to improve sensor accuracy. USB-C charging was incorporated for modern convenience.</p>
                             </div>
                         </div>
                         
                         <div class="details-section">
-                            <h4>Technologies Used</h4>
+                            <h4>Technology Stack: The Toolkit Behind the Innovation</h4>
                             <ul>
-                                <li><strong>Hardware:</strong> Photoplethysmography (PPG), Analog Signal Conditioning (Op-Amps: MCP6004), STM8S003F3, ESP32-C3 Mini, LIS2DH12TR Accelerometer (for future use), USB-C, LiPo Battery Management (MCP73831).</li>
-                                <li><strong>Firmware:</strong> C (STM8S), C++/ESP-IDF (ESP32), FreeRTOS, UART, BLE (GATT).</li>
-                                <li><strong>Software:</strong> Flutter (Dart) for cross-platform mobile app, Digital Signal Processing (FFT).</li>
-                                <li><strong>Tools:</strong> KiCad (PCB Design), Oscilloscope, ST Visual Develop, ESP-IDF Toolchain.</li>
+                                <li><strong>Hardware:</strong> Photoplethysmography (SFH 2430 Photodiode, Green LED), STM8S003F3 MCU, ESP32-C3 Mini MCU, MCP6004 & MCP6002 Op-Amps, TCR2EF33 LDO, MCP73831 LiPo BMS, USB-C.</li>
+                                <li><strong>PCB Design:</strong> KiCad.</li>
+                                <li><strong>Firmware:</strong> C (STM8S via ST Visual Develop), C++/ESP-IDF (ESP32 with FreeRTOS), UART, BLE GATT.</li>
+                                <li><strong>Software (Mobile):</strong> Flutter (Dart), Digital Signal Processing (FFT).</li>
+                                <li><strong>Testing & Validation:</strong> Oscilloscope, Function Generator, Multimeter, Fitbit Inspire 2.</li>
                             </ul>
                         </div>
                         
+                        <div class="details-section">
+                            <h4>Conclusion: More Than Just a Project – A Foundation for Smarter Wellness</h4>
+                            <p>This wearable sleep tracker project was a comprehensive journey through the entire IoT product development lifecycle. From grappling with the nuances of analog sensor design and mastering ultra-low-power embedded systems to crafting an intuitive mobile user experience and validating performance against commercial benchmarks, it provided invaluable hands-on experience. The key takeaway is the demonstration that sophisticated, accurate, and user-friendly health monitoring technology can be engineered to be both highly effective and remarkably affordable. The resulting platform is not just a successful academic endeavor but a solid foundation ripe for future development, potentially integrating accelerometer data and machine learning algorithms to deliver even deeper insights into sleep quality and overall wellness.</p>
+                        </div>¨
+
+                        <div class="details-section">
+                                <h4>Device in Action</h4>
+                                <p>Below is a timelapse video showing the device in use alongside a Fitbit for comparison testing:</p>
+                                
+                                <div class="video-container" id="video-container">
+                                    <div class="video-thumbnail">
+                                        <img src="Asset/Video_Thumbnail.png" alt="Video thumbnail of device usage with Fitbit" loading="lazy">
+                                        <div class="play-button">
+                                            <i class="fas fa-play" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Video Modal -->
+                            <div id="video-modal" class="video-modal">
+                                <span class="close-video" aria-label="Close video">&times;</span>
+                                <div class="video-modal-content">
+                                    <video id="featured-video" controls>
+                                        <source src="Asset/HR_video.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                            </div>
+                        
                         <div class="project-links-bottom">
-                            <a href="https://github.com/yourusername/sleep-cycle-wearable" target="_blank" class="btn btn-secondary"><i class="fab fa-github"></i> View on GitHub</a>
-                            <a href="Asset/Circuit_kicat-1.png" target="_blank" class="btn btn-secondary"><i class="fas fa-file-pdf"></i> View Schematic</a>
+                            <a href="https://github.com/AlanEEng/WirelessHRTracker.git" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fab fa-github" aria-hidden="true"></i> View on GitHub</a>
+                            <a href="Asset/Circuit_kicat-1.png" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fas fa-file-pdf" aria-hidden="true"></i> View Schematic</a>
                         </div>
                     </div>
                 </div>
 
                 <article class="project-card" data-category="hardware firmware software">
                     <div class="project-image">
-                        <img src="Asset/project2_potentiostat.png" alt="Custom Potentiostat">
+                        <img src="Asset/project2_potentiostat.png" alt="Custom Potentiostat Instrument" loading="lazy">
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="#project2-details" class="details-link"><i class="fas fa-info-circle"></i> Details</a>
-                                <a href="https://github.com/yourusername/potentiostat" target="_blank"><i class="fab fa-github"></i> Code</a>
+                                <a href="#project2-details" class="details-link"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</a>
+                                <a href="https://github.com/yourusername/potentiostat" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Code</a>
                             </div>
                         </div>
                     </div>
@@ -409,13 +616,13 @@
 
                 <div id="project2-details" class="project-details">
                     <div class="project-details-content">
-                        <span class="close-details">&times;</span>
+                        <span class="close-details" aria-label="Close details">&times;</span>
                         <h3>Custom Potentiostat with Python User Interface</h3>
                         
                         <div class="details-gallery">
-                            <img src="Asset/project2_potentiostat.png" alt="Custom Potentiostat">
-                            <img src="Asset/project2_circuit.jpg" alt="Analog Frontend Circuit">
-                            <img src="Asset/project2_gui.jpg" alt="Python GUI Interface">
+                            <img src="Asset/project2_potentiostat.png" alt="Complete Potentiostat System" loading="lazy">
+                            <img src="Asset/project2_circuit.jpg" alt="Precision Analog Frontend Circuit" loading="lazy">
+                            <img src="Asset/project2_gui.jpg" alt="Python GUI Interface for Electrochemical Analysis" loading="lazy">
                         </div>
                         
                         <div class="details-section">
@@ -505,19 +712,19 @@
                         </div>
                         
                         <div class="project-links-bottom">
-                            <a href="https://github.com/yourusername/potentiostat" target="_blank" class="btn btn-secondary"><i class="fab fa-github"></i> View on GitHub</a>
-                            <a href="Asset/project2_documentation.pdf" target="_blank" class="btn btn-secondary"><i class="fas fa-file-pdf"></i> Documentation</a>
+                            <a href="https://github.com/yourusername/potentiostat" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fab fa-github" aria-hidden="true"></i> View on GitHub</a>
+                            <a href="Asset/project2_documentation.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fas fa-file-pdf" aria-hidden="true"></i> Documentation</a>
                         </div>
                     </div>
                 </div>
 
                 <article class="project-card" data-category="iot firmware software">
                     <div class="project-image">
-                        <img src="Asset/project3_smartgarden.jpg" alt="Smart Garden System">
+                        <img src="Asset/project3_smartgarden.jpg" alt="Smart Garden System with Sensors" loading="lazy">
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="#project3-details" class="details-link"><i class="fas fa-info-circle"></i> Details</a>
-                                <a href="https://github.com/yourusername/smart-garden" target="_blank"><i class="fab fa-github"></i> Code</a>
+                                <a href="#project3-details" class="details-link"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</a>
+                                <a href="https://github.com/yourusername/smart-garden" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Code</a>
                             </div>
                         </div>
                     </div>
@@ -534,11 +741,11 @@
 
                 <article class="project-card" data-category="hardware firmware">
                     <div class="project-image">
-                        <img src="Asset/project4_datalogger.jpg" alt="Environmental Data Logger">
+                        <img src="Asset/project4_datalogger.jpg" alt="Environmental Data Logger Device" loading="lazy">
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="#" class="details-link"><i class="fas fa-info-circle"></i> Details</a>
-                                <a href="https://github.com/yourusername/environmental-logger" target="_blank"><i class="fab fa-github"></i> Code</a>
+                                <a href="#" class="details-link"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</a>
+                                <a href="https://github.com/yourusername/environmental-logger" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Code</a>
                             </div>
                         </div>
                     </div>
@@ -619,13 +826,13 @@
                 <div class="underline"></div>
             </div>
             
-            <div class="testimonials-carousel">
-                <div class="testimonial-item active">
+            <div class="testimonials-carousel" aria-label="Testimonials carousel">
+                <div class="testimonial-item active" role="tabpanel" aria-label="Testimonial 1">
                     <div class="testimonial-content">
                         <p>"Alan's technical expertise and problem-solving abilities were instrumental in the success of our IoT product line. His attention to detail and systematic approach to hardware design significantly improved our product reliability."</p>
                     </div>
                     <div class="testimonial-author">
-                        <img src="Asset/testimonial1.jpg" alt="Maria Jensen">
+                        <img src="Asset/testimonial1.jpg" alt="" role="presentation" loading="lazy">
                         <div class="author-info">
                             <h4>Maria Jensen</h4>
                             <p>Product Manager, Innovative Solutions A/S</p>
@@ -633,12 +840,12 @@
                     </div>
                 </div>
                 
-                <div class="testimonial-item">
+                <div class="testimonial-item" role="tabpanel" aria-label="Testimonial 2">
                     <div class="testimonial-content">
                         <p>"Working with Alan on our environmental monitoring system was a true pleasure. His deep understanding of embedded systems and low-power design techniques enabled us to exceed our battery life targets by more than 300%."</p>
                     </div>
                     <div class="testimonial-author">
-                        <img src="Asset/testimonial2.jpg" alt="Thomas Nielsen">
+                        <img src="Asset/testimonial2.jpg" alt="" role="presentation" loading="lazy">
                         <div class="author-info">
                             <h4>Thomas Nielsen</h4>
                             <p>CTO, GreenTech Monitoring</p>
@@ -646,12 +853,12 @@
                     </div>
                 </div>
                 
-                <div class="testimonial-item">
+                <div class="testimonial-item" role="tabpanel" aria-label="Testimonial 3">
                     <div class="testimonial-content">
                         <p>"Alan consistently delivers high-quality designs that balance technical excellence with practical considerations like manufacturability and cost. His ability to communicate complex technical concepts to non-technical stakeholders is exceptional."</p>
                     </div>
                     <div class="testimonial-author">
-                        <img src="Asset/testimonial3.jpg" alt="Sophia Hansen">
+                        <img src="Asset/testimonial3.jpg" alt="" role="presentation" loading="lazy">
                         <div class="author-info">
                             <h4>Sophia Hansen</h4>
                             <p>Engineering Director, TechWave Electronics</p>
@@ -661,13 +868,13 @@
             </div>
             
             <div class="carousel-controls">
-                <button id="prev-testimonial"><i class="fas fa-chevron-left"></i></button>
-                <div class="carousel-dots">
-                    <span class="dot active" data-index="0"></span>
-                    <span class="dot" data-index="1"></span>
-                    <span class="dot" data-index="2"></span>
+                <button id="prev-testimonial" aria-label="Previous testimonial"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                <div class="carousel-dots" role="tablist" aria-label="Testimonial navigation">
+                    <span class="dot active" data-index="0" role="tab" aria-selected="true" aria-label="Testimonial 1"></span>
+                    <span class="dot" data-index="1" role="tab" aria-selected="false" aria-label="Testimonial 2"></span>
+                    <span class="dot" data-index="2" role="tab" aria-selected="false" aria-label="Testimonial 3"></span>
                 </div>
-                <button id="next-testimonial"><i class="fas fa-chevron-right"></i></button>
+                <button id="next-testimonial" aria-label="Next testimonial"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
             </div>
         </div>
     </section>
@@ -686,7 +893,7 @@
                     
                     <div class="contact-details">
                         <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
                             <div class="contact-text">
                                 <h4>Email</h4>
                                 <p><a href="mailto:alan.eng@example.com">alan.eng@example.com</a></p>
@@ -694,7 +901,7 @@
                         </div>
                         
                         <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                             <div class="contact-text">
                                 <h4>Location</h4>
                                 <p>Copenhagen, Denmark</p>
@@ -702,7 +909,7 @@
                         </div>
                         
                         <div class="contact-item">
-                            <i class="fas fa-clock"></i>
+                            <i class="fas fa-clock" aria-hidden="true"></i>
                             <div class="contact-text">
                                 <h4>Availability</h4>
                                 <p>Mon-Fri: 9am - 5pm CET</p>
@@ -711,33 +918,33 @@
                     </div>
                     
                     <div class="social-links">
-                        <a href="https://linkedin.com/in/alaneeng" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://github.com/alaneeng" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-                        <a href="https://twitter.com/alaneeng" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
-                        <a href="https://medium.com/@alaneeng" target="_blank" class="social-icon"><i class="fab fa-medium-m"></i></a>
+                        <a href="https://linkedin.com/in/alaneeng" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn Profile"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                        <a href="https://github.com/alaneeng" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub Profile"><i class="fab fa-github" aria-hidden="true"></i></a>
+                        <a href="https://twitter.com/alaneeng" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Twitter Profile"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                        <a href="https://medium.com/@alaneeng" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Medium Profile"><i class="fab fa-medium-m" aria-hidden="true"></i></a>
                     </div>
                 </div>
                 
                 <div class="contact-form">
-                    <form id="contactForm">
+                    <form id="contactForm" action="https://formspree.io/f/your-form-id" method="POST">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
+                            <input type="text" id="name" name="name" required aria-required="true">
                         </div>
                         
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="email" required aria-required="true">
                         </div>
                         
                         <div class="form-group">
                             <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" required>
+                            <input type="text" id="subject" name="subject" required aria-required="true">
                         </div>
                         
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
+                            <textarea id="message" name="message" rows="5" required aria-required="true"></textarea>
                         </div>
                         
                         <button type="submit" class="btn btn-primary">Send Message</button>
@@ -751,7 +958,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <a href="#"><span class="highlight">A</span>lanEng</a>
+                    <a href="#" aria-label="Back to top"><span class="highlight">A</span>lanEng</a>
                 </div>
                 
                 <div class="footer-nav">
@@ -765,9 +972,9 @@
                 </div>
                 
                 <div class="footer-social">
-                    <a href="https://linkedin.com/in/alaneeng" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://github.com/alaneeng" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://twitter.com/alaneeng" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://linkedin.com/in/alaneeng" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                    <a href="https://github.com/alaneeng" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile"><i class="fab fa-github" aria-hidden="true"></i></a>
+                    <a href="https://twitter.com/alaneeng" target="_blank" rel="noopener noreferrer" aria-label="Twitter Profile"><i class="fab fa-twitter" aria-hidden="true"></i></a>
                 </div>
             </div>
             
@@ -777,8 +984,48 @@
         </div>
     </footer>
 
-    <a href="#" id="scroll-to-top"><i class="fas fa-arrow-up"></i></a>
+    <a href="#" id="scroll-to-top" aria-label="Scroll to top"><i class="fas fa-arrow-up" aria-hidden="true"></i></a>
 
     <script src="script.js"></script>
+
+    <script>
+// Video Modal Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const videoContainer = document.getElementById('video-container');
+    const videoModal = document.getElementById('video-modal');
+    const closeVideo = document.querySelector('.close-video');
+    const featuredVideo = document.getElementById('featured-video');
+    
+    console.log("Video elements:", { videoContainer, videoModal, closeVideo, featuredVideo });
+    
+    if (videoContainer && videoModal && featuredVideo) {
+        // Open video modal when clicking the container
+        videoContainer.addEventListener('click', function() {
+            console.log("Video container clicked");
+            videoModal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            featuredVideo.play(); // Auto play when opened
+        });
+        
+        // Close video modal
+        if (closeVideo) {
+            closeVideo.addEventListener('click', function() {
+                videoModal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Re-enable scrolling
+                featuredVideo.pause(); // Pause video when modal is closed
+            });
+        }
+        
+        // Close when clicking outside the video
+        videoModal.addEventListener('click', function(e) {
+            if (e.target === videoModal) {
+                videoModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                featuredVideo.pause();
+            }
+        });
+    }
+});
+</script>
 </body>
 </html>

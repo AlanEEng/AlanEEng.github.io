@@ -458,4 +458,44 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
+    
+    
+
+// Video Modal Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const videoContainer = document.getElementById('video-container');
+    const videoModal = document.getElementById('video-modal');
+    const closeVideo = document.querySelector('.close-video');
+    const featuredVideo = document.getElementById('featured-video');
+    
+    console.log("Video elements:", { videoContainer, videoModal, closeVideo, featuredVideo });
+    
+    if (videoContainer && videoModal && featuredVideo) {
+        // Open video modal when clicking the container
+        videoContainer.addEventListener('click', function() {
+            console.log("Video container clicked");
+            videoModal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            featuredVideo.play(); // Auto play when opened
+        });
+        
+        // Close video modal
+        if (closeVideo) {
+            closeVideo.addEventListener('click', function() {
+                videoModal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Re-enable scrolling
+                featuredVideo.pause(); // Pause video when modal is closed
+            });
+        }
+        
+        // Close when clicking outside the video
+        videoModal.addEventListener('click', function(e) {
+            if (e.target === videoModal) {
+                videoModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                featuredVideo.pause();
+             }
+         });
+        }
+        });
 });
