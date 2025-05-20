@@ -9,42 +9,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* Add this to your existing CSS or include inline for the specific layout */
-        .app-showcase {
-            display: flex;
-            align-items: center;
-            margin: 2rem 0;
-            gap: 2rem;
-        }
-        
-        .app-description {
-            flex: 1;
-        }
-        
-        .app-image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-        }
-        
-        .app-screenshot {
-            max-width: 100%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-            border-radius: 8px;
-        }
-        
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .app-showcase {
-                flex-direction: column-reverse;
-            }
-            
-            .app-image {
-                margin-bottom: 1.5rem;
-            }
-        }
-    </style>
+
 <body>
     <div class="theme-switch-wrapper" aria-label="Dark mode toggle">
         <label class="theme-switch" for="checkbox">
@@ -238,7 +203,7 @@
                         
                         <div class="details-section">
                             <h4>Project Overview</h4>
-                            <p>Imagine waking up refreshed, not startled by a jarring alarm. That was the vision behind this project: a compact, low-cost IoT wearable meticulously engineered from the ground up to understand your sleep cycles through heart rate measurement. This endeavor was a deep dive into the complete IoT product lifecycle, spanning the design and development of custom hardware, firmware development, and mobile application creation.</p>
+                            <p>Imagine waking up refreshed, not startled by a jarring alarm. That was the vision behind this project: a compact, low-cost IoT wearable engineered from the ground up to understand your sleep cycles through heart rate measurement. This endeavor was a deep dive into the complete IoT product lifecycle, spanning the design and development of custom hardware, firmware development, and mobile APP creation.</p>
                             
                             <div class="project-goals">
                                 <h5>The Core Engineering Challenge:</h5>
@@ -282,7 +247,7 @@
                                 
                                 <p>The true power savings, however, were unlocked by the role of its partner, an ESP32-C3 Mini. This more powerful MCU remained in Deep Sleep mode for the vast majority of the time, waking for mere milliseconds only when signaled by the STM8S.</p>
                                 
-                                <p>As illustrated in our system timing diagram (see Figure X), the ESP32 would wake every 2.5 seconds upon the 'Wake ESP' signal, triggered after the STM8S filled its buffer, to receive a 125-byte data chunk (The limit of the stm8) via UART. After aggregating four such transfers into its own buffer (representing 10 seconds of data), it would then briefly handle the efficient Bluetooth Low Energy (BLE) 'Announce Data' and subsequent transmission to the app before returning to its ultra-low power Deep Sleep state. This orchestrated interplay, minimizing the ESP32's active time (also reflected in Figure Y: Device Sleep Cycle showing power spikes), was pivotal. It enabled an impressive 16.84 hours of continuous operation on a single 245mAh battery, an 8-fold improvement directly attributable to this duel microcontroller deep sleep implementation and optimized wake/sleep scheduling.</p>
+                                <p>As illustrated in our system timing diagram (see Figure X), the ESP32 would wake every 2.5 seconds upon the 'Wake ESP' signal, triggered after the STM8S filled its buffer, to receive a 125-byte data chunk (The limit of the stm8) via UART. After aggregating four such transfers into its own buffer (representing 10 seconds of data), it would then briefly handle the efficient Bluetooth Low Energy (BLE) 'Announce Data' and subsequent transmission to the app before returning to its ultra-low power Deep Sleep state. This orchestrated interplay, minimizing the ESP32's active time (also reflected in Figure Y: Device Sleep Cycle showing power spikes), was pivotal. It enabled an impressive 16.84 hours of continuous operation on a single 245mAh battery, an 8-fold improvement directly attributable to this duel microcontroller operation, Data packaging scheme and optimized wake/sleep scheduling.</p>
                             </div>
                             <div class="diagram-container">
                                 <img src="Asset/sleep_wearable_seq.png" alt="System Timing and Data Flow Diagram" class="sequence-diagram" id="sequence-diagram" loading="lazy">
@@ -294,9 +259,9 @@
                         <div class="implementation-subsection">
                             <h5>Engineering for Compactness</h5>
                                 
-                            <p>A core design critera from the outset was to create a truly wearable and unobtrusive device. This necessitated attention to component selection for minimal footprint and a highly compact Printed Circuit Board (PCB) layout. We successfully engineered the entire system onto a mere 3.4cm x 2cm PCB, a significant achievement given the inclusion of two microcontrollers, a complete analog front-end for PPG sensing, power management ICs, and the ESP32's integrated antenna.</p>
+                            <p>A core design critera from the outset was to create a truly wearable and unobtrusive device. This necessitated attention to component selection for minimal footprint and a highly compact Printed Circuit Board (PCB) layout. We successfully engineered the entire system onto a mere 35mm x 19mm PCB, a significant achievement given the inclusion of two microcontrollers, a complete analog front-end for PPG sensing, power management ICs, and the ESP32's integrated antenna.</p>
                            
-                            <p>To balance compactness with cost-effectiveness for potential mass production, we committed to a 2-layer PCB design. This presented a considerable routing challenge compared to more complex multi-layer boards. However, by meticulously planning component placement and signal paths, we were able to implement crucial best practices even within these constraints. This included clear differentiation and separation of power, analog, and digital sections on the board to minimize noise coupling and ensure signal integrity. Ground planes were carefully managed, and trace routing for sensitive analog signals was prioritized to shield them from digital interference, all contributing to the reliable performance of our PPG sensor. This disciplined approach to layout on a 2-layer board demonstrates that compact, high-performance wearables can be designed without resorting to more expensive manufacturing processes.</p>
+                            <p>For cost-effectiveness, we committed to a 2-layer PCB design. This presented a considerable routing challenge compared to a multi-layer boards. However, by using PCB best practises for Mixed siganl routing, planning component placement and signal paths, we were able to implement best practices even within these constraints. This included clear differentiation and separation of power, analog, and digital sections on the board to minimize noise coupling and ensure signal integrity. Ground planes were carefully managed, and trace routing for sensitive analog signals was prioritized to shield them from digital interference, all contributing to the reliable performance of our PPG sensor.</p>
                                  
                         </div>
                         <div class="image-carousel custom-carousel" data-modal-id="components-modal">
