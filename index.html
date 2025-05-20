@@ -561,30 +561,22 @@
                             <p>This wearable sleep tracker project was a comprehensive journey through the entire IoT product development lifecycle. From grappling with the nuances of analog sensor design and mastering ultra-low-power embedded systems to crafting an intuitive mobile user experience and validating performance against commercial benchmarks, it provided invaluable hands-on experience. The key takeaway is the demonstration that sophisticated, accurate, and user-friendly health monitoring technology can be engineered to be both highly effective and remarkably affordable. The resulting platform is not just a successful academic endeavor but a solid foundation ripe for future development, potentially integrating accelerometer data and machine learning algorithms to deliver even deeper insights into sleep quality and overall wellness.</p>
                         </div>¨
 
-                        <div class="details-section">
+                            <div class="details-section">
                                 <h4>Device in Action</h4>
                                 <p>Below is a timelapse video showing the device in use alongside a Fitbit for comparison testing:</p>
                                 
-                                <div class="video-container" id="video-container">
-                                    <div class="video-thumbnail">
-                                        <img src="Asset/Video_Thumbnail.png" alt="Video thumbnail of device usage with Fitbit" loading="lazy">
-                                        <div class="play-button">
-                                            <i class="fas fa-play" aria-hidden="true"></i>
-                                        </div>
-                                    </div>
+                                <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; margin: 2rem auto; max-width: 800px; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);">
+                                    <iframe 
+                                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px;"
+                                        src="https://www.youtube.com/embed/UYs4To6Wsxo" 
+                                        title="Wireless heart rate tracker demo"
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen>
+                                    </iframe>
                                 </div>
                             </div>
 
-                            <!-- Video Modal -->
-                            <div id="video-modal" class="video-modal">
-                                <span class="close-video" aria-label="Close video">&times;</span>
-                                <div class="video-modal-content">
-                                    <video id="featured-video" controls>
-                                        <source src="Asset/HR_video.mp4" type="video/mp4">
-                                        Your browser does not support the video tag.
-                                    </video>
-                                </div>
-                            </div>
                         
                         <div class="project-links-bottom">
                             <a href="https://github.com/AlanEEng/WirelessHRTracker.git" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fab fa-github" aria-hidden="true"></i> View on GitHub</a>
@@ -989,6 +981,7 @@
     <script src="script.js"></script>
 
     <script>
+        /*
 // Video Modal Functionality
 document.addEventListener('DOMContentLoaded', function() {
     const videoContainer = document.getElementById('video-container');
@@ -1026,6 +1019,123 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+*/
 </script>
+document.addEventListener('DOMContentLoaded', function() {
+    console.clear(); // Clear previous console messages
+    console.log("🔍 DEBUG: Document loaded, checking video elements...");
+    
+    const videoContainer = document.getElementById('video-container');
+    const videoModal = document.getElementById('video-modal');
+    const closeVideo = document.querySelector('.close-video');
+    const featuredVideo = document.getElementById('featured-video');
+    
+    // Log if elements were found
+    console.log({
+        videoContainerFound: Boolean(videoContainer),
+        videoModalFound: Boolean(videoModal),
+        closeVideoFound: Boolean(closeVideo),
+        featuredVideoFound: Boolean(featuredVideo)
+    });
+    
+    if (videoContainer) {
+        console.log("🎯 Adding click listener to video container");
+        // Add a direct click handler for testing
+        videoContainer.onclick = function(e) {
+            console.log("📢 VIDEO CONTAINER CLICKED!");
+            if (videoModal) {
+                videoModal.style.display = 'block';
+                console.log("Modal should be visible now");
+                if (featuredVideo) {
+                    featuredVideo.play().catch(err => console.log("Autoplay prevented:", err));
+                }
+            }
+        };
+        
+        // Make absolutely sure it's clickable
+        videoContainer.style.cursor = 'pointer';
+        videoContainer.style.position = 'relative';
+        videoContainer.style.zIndex = '10';
+    } else {
+        console.error("❌ Video container not found! Check your HTML.");
+    }
+    
+    // The rest of the event handlers
+    if (closeVideo && videoModal) {
+        closeVideo.onclick = function() {
+            console.log("Close button clicked");
+            videoModal.style.display = 'none';
+            if (featuredVideo) featuredVideo.pause();
+        };
+    }
+    
+    if (videoModal) {
+        videoModal.onclick = function(e) {
+            if (e.target === videoModal) {
+                console.log("Modal background clicked");
+                videoModal.style.display = 'none';
+                if (featuredVideo) featuredVideo.pause();
+            }
+        };
+    }
+});document.addEventListener('DOMContentLoaded', function() {
+    console.clear(); // Clear previous console messages
+    console.log("🔍 DEBUG: Document loaded, checking video elements...");
+    
+    const videoContainer = document.getElementById('video-container');
+    const videoModal = document.getElementById('video-modal');
+    const closeVideo = document.querySelector('.close-video');
+    const featuredVideo = document.getElementById('featured-video');
+    
+    // Log if elements were found
+    console.log({
+        videoContainerFound: Boolean(videoContainer),
+        videoModalFound: Boolean(videoModal),
+        closeVideoFound: Boolean(closeVideo),
+        featuredVideoFound: Boolean(featuredVideo)
+    });
+    
+    if (videoContainer) {
+        console.log("🎯 Adding click listener to video container");
+        // Add a direct click handler for testing
+        videoContainer.onclick = function(e) {
+            console.log("📢 VIDEO CONTAINER CLICKED!");
+            if (videoModal) {
+                videoModal.style.display = 'block';
+                console.log("Modal should be visible now");
+                if (featuredVideo) {
+                    featuredVideo.play().catch(err => console.log("Autoplay prevented:", err));
+                }
+            }
+        };
+        
+        // Make absolutely sure it's clickable
+        videoContainer.style.cursor = 'pointer';
+        videoContainer.style.position = 'relative';
+        videoContainer.style.zIndex = '10';
+    } else {
+        console.error("❌ Video container not found! Check your HTML.");
+    }
+    
+    // The rest of the event handlers
+    if (closeVideo && videoModal) {
+        closeVideo.onclick = function() {
+            console.log("Close button clicked");
+            videoModal.style.display = 'none';
+            if (featuredVideo) featuredVideo.pause();
+        };
+    }
+    
+    if (videoModal) {
+        videoModal.onclick = function(e) {
+            if (e.target === videoModal) {
+                console.log("Modal background clicked");
+                videoModal.style.display = 'none';
+                if (featuredVideo) featuredVideo.pause();
+            }
+        };
+    }
+});
 </body>
 </html>

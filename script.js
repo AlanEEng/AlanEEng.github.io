@@ -461,41 +461,74 @@ document.addEventListener('DOMContentLoaded', function() {
     
     
 
-// Video Modal Functionality
-document.addEventListener('DOMContentLoaded', function() {
+// Simplified and consolidated video modal functionality code for script.js
+function setupVideoModal() {
     const videoContainer = document.getElementById('video-container');
     const videoModal = document.getElementById('video-modal');
     const closeVideo = document.querySelector('.close-video');
     const featuredVideo = document.getElementById('featured-video');
     
-    console.log("Video elements:", { videoContainer, videoModal, closeVideo, featuredVideo });
+    // Debug to check if elements are found
+    console.log("Video elements found:", 
+        Boolean(videoContainer), 
+        Boolean(videoModal), 
+        Boolean(closeVideo), 
+        Boolean(featuredVideo)
+    );
     
-    if (videoContainer && videoModal && featuredVideo) {
-        // Open video modal when clicking the container
-        videoContainer.addEventListener('click', function() {
-            console.log("Video container clicked");
-            videoModal.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
-            featuredVideo.play(); // Auto play when opened
-        });
+    if (!videoContainer || !videoModal || !featuredVideo) {
+        console.error("Missing required video elements");
+        return;
+    }
+    
+    // Make sure the container is clickable
+    videoContainer.style.cursor = 'pointer';
+    
+    // Open modal when clicking the container
+    videoContainer.addEventListener('click', function() {
+        console.log("Video container clicked");
+        videoModal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
         
-        // Close video modal
-        if (closeVideo) {
-            closeVideo.addEventListener('click', function() {
-                videoModal.style.display = 'none';
-                document.body.style.overflow = 'auto'; // Re-enable scrolling
-                featuredVideo.pause(); // Pause video when modal is closed
-            });
+        // Add a small delay before play attempt to ensure video is ready
+        setTimeout(() => {
+            try {
+                const playPromise = featuredVideo.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.log("Autoplay prevented:", error);
+                        // Show play button or instruction if autoplay fails
+                    });
+                }
+            } catch (e) {
+                console.error("Error playing video:", e);
+            }
+        }, 100);
+    });
+    
+    // Close modal functions
+    function closeVideoModal() {
+        videoModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        featuredVideo.pause();
+    }
+    
+    if (closeVideo) {
+        closeVideo.addEventListener('click', closeVideoModal);
+    }
+    
+    videoModal.addEventListener('click', function(e) {
+        if (e.target === videoModal) {
+            closeVideoModal();
         }
-        
-        // Close when clicking outside the video
-        videoModal.addEventListener('click', function(e) {
-            if (e.target === videoModal) {
-                videoModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-                featuredVideo.pause();
-             }
-         });
-        }
-        });
+    });
+}
+
+// Then add this line at the end of your document ready function (already in your script.js)
+document.addEventListener('DOMContentLoaded', function() {
+    // All your existing initialization code...
+    
+    // Call the video modal setup function at the end
+    setupVideoModal();
+});
 });
