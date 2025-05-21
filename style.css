@@ -1175,6 +1175,23 @@ section {
     border-color: transparent #333 transparent transparent;
 }
 
+
+/* Specific styling for timing diagram carousel only */
+.timing-diagram-carousel {
+    height: 500px !important;
+}
+
+.timing-diagram-carousel .carousel-slide img {
+    max-width: 98% !important;
+    max-height: 98% !important;
+}
+
+.timing-diagram-carousel .carousel-slide img[src="Asset/sleep_wearable_data_flow.png"] {
+    width: 1200px !important;
+    max-width: none !important;
+}
+
+
 /* Image Carousel Styles */
 .image-carousel {
     position: relative;
