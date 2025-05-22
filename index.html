@@ -196,8 +196,9 @@
 
                 <div id="project1-details" class="project-details">
                     <div class="project-details-content">
-                        <span class="close-details" aria-label="Close details">&times;</span>
+                        <span class="close-details" aria-label="Close details">×</span>
                         <h3>Wireless Wearable for heart Rate Monitoring</h3>
+                        <!-- The project-audio-btn has been removed as per instructions to use the floating bubble -->
                         
                         <div class="details-section">
                             <h4>Project Overview</h4>
@@ -244,7 +245,7 @@
                                 
                                 <!-- Modal for enlarged components images -->
                                 <div id="components-modal" class="diagram-modal">
-                                    <span class="close-components" aria-label="Close image">&times;</span>
+                                    <span class="close-components" aria-label="Close image">×</span>
                                     <img src="Asset/sleep_wearable_device.png" class="diagram-modal-content" id="enlarged-component" alt="Enlarged view of Sleep Wearable Device">
                                 </div>
                                   
@@ -252,7 +253,7 @@
                                 
                                 <p>The true power savings, however, were unlocked by the role of its partner, an ESP32-C3 Mini. This more powerful MCU remained in Deep Sleep mode for the vast majority of the time, waking for mere milliseconds only when signaled by the STM8S to store, connect, and transmit data to the mobile application. (See 2nd slide)</p>
                                 
-                                <p>As illustrated in our system timing diagram (See Figure below), the ESP32 would wake every 2.5 seconds upon the 'Wake ESP' signal, triggered after the STM8S filled its buffer, to receive a 125-byte data chunk (The limit of the stm8) via UART. After aggregating four such transfers into its own buffer (representing 10 seconds of data), it would then briefly handle the efficient Bluetooth Low Energy (BLE) 'Announce Data' and subsequent transmission to the app before returning to its ultra-low power Deep Sleep state. This orchestrated interplay, which minimized the ESP32's active time, was pivotal. It enabled an impressive 16.84 hours of continuous operation on a single 245mAh battery, an 8-fold improvement over unoptimised continuous monitoring attributable to this duel microcontroller operation, Data packaging scheme and optimized wake/sleep scheduling.</p>
+                                <p>As illustrated in our system timing diagram (See Figure below), the ESP32 would wake every 2.5 seconds upon the 'Wake ESP' signal, triggered after the STM8S filled its buffer, to receive a 125-byte data chunk (The limit of the stm8) via UART. After aggregating four such transfers into its own buffer (representing 10 seconds of data), it would then briefly handle the efficient Bluetooth Low Energy (BLE) 'Announce Data' and subsequent transmission to the app before returning to its ultra-low power Deep Sleep state. This orchestrated interplay, which minimized the ESP32's active time, was pivotal. It enabled an impressive 16.84 hours of continuous operation on a single 245mAh battery, an 8-fold improvement over unoptimized ised continuous monitoring attributable to this duel microcontroller operation, Data packaging scheme and optimized wake/sleep scheduling.</p>
                                     </div>
                                         <div class="image-carousel custom-carousel timing-diagram-carousel" data-modal-id="components-modal">
                                             <div class="carousel-slides">
@@ -304,7 +305,7 @@
                         <div class="implementation-subsection">
                             <h5>Engineering for Compactness</h5>
                                 
-                            <p>A core design criteria from the outset was to create a truly wearable and unobtrusive device. This necessitated attention to component selection for minimal footprint and a highly compact Printed Circuit Board (PCB) layout. We successfully engineered the entire system onto a mere 35mm x 19mm PCB, a significant achievement given the inclusion of two microcontrollers, a novel analog front-end for PPG sensing, power/and battery management systems, and the ESP32's integrated antenna.</p>
+                            <p>A core design criteria from the outset was to create a truly wearable and unobtrusive device. This necessitated attention to component selection for minimal footprint and a highly compact Printed Circuit Board (PCB) layout. We successfully engineered the entire system onto a mere 35mm x 19mm PCB, a significant achievement given the inclusion of two microcontrollers, a novel analog front-end for PPG sensing, power/and battery management systems, and a USB-C receptacle.</p>
                            
                             <p>For cost-effectiveness, we committed to a 2-layer PCB design. This presented a considerable routing challenge compared to a multi-layer board, especially for a mixed-signal circuit where attention to PCB best practices becomes near critical. However, we were able to implement best practices even within these constraints. This included clear differentiation and separation of power, analog, and digital sections on the board to minimize noise coupling and ensure signal integrity. Ground planes were carefully managed, and trace routing for sensitive analog signals was prioritized to shield them from digital interference, all contributing to the reliable performance of our PPG sensor</p>
                                  
@@ -321,7 +322,7 @@
                                         <figure>
                                             <figcaption>KiCad PCB layout demonstrating 2-layer design with optimized routing and signal integrity</figcaption>
                                             <img src="Asset/Kicad_PCB.png" alt="KiCad PCB Layout" class="zoomable-image" loading="lazy">
-                                        </figure>
+                                            </figure>
                                     </div>
                                 </div>
                                 <div class="carousel-arrow prev" aria-label="Previous slide">
@@ -501,7 +502,7 @@
                             
                         <!-- Modal for enlarged diagram -->
                         <div id="diagram-modal" class="diagram-modal">
-                            <span class="close-diagram" aria-label="Close diagram">&times;</span>
+                            <span class="close-diagram" aria-label="Close diagram">×</span>
                             <img src="Asset/sleep_wearable_seq.png" class="diagram-modal-content" id="enlarged-diagram" alt="Enlarged Data Flow Diagram">
                         </div>
                         
@@ -540,17 +541,17 @@
                                 <p>The graph demonstrates the heart rate data recorded by our wristband (dashed red
                                     line) alongside a Fitbit Inspire 2 (solid blue line). The two traces display similar patterns,
                                     indicating that the wristband’s performance is in line with the FitBit’s results, despite occasional variations we can confidentily validate our wearable heart rate monitor can compete
-                                    favorably with leading consumer brands both in terms of affordability and accuracy.</p>
+                                    favourably with leading consumer brands both in terms of affordability and accuracy.</p>
 
 
-                                    <p>The scatter plot illustrates (2. slide) the correlation between heart rate measurements recorded by our wristband and the Fitbit Inspire 2. Each point represents a
+                                    <p>The scatter plot illustrates (2nd slide) the correlation between heart rate measurements recorded by our wristband and the Fitbit Inspire 2. Each point represents a
                                     pair of concurrent heart rate readings from the two devices. The red line represents
                                     the line of best fit, indicating the general trend of the relationship. The Pearson correlation coefficient of R = 0.873 showcases a strong positive correlation between the measurements from the wristband and the Fitbit</p>
                             </div>
                             
                             <!-- Modal for enlarged accuracy graph -->
                             <div id="accuracy-modal" class="diagram-modal">
-                                <span class="close-accuracy" aria-label="Close accuracy graph">&times;</span>
+                                <span class="close-accuracy" aria-label="Close accuracy graph">×</span>
                                 <img src="Asset/sleep_wearable_accuracy.jpg" class="diagram-modal-content" id="enlarged-accuracy" alt="Enlarged Accuracy Comparison Graph">
                             </div>
                             
@@ -647,7 +648,7 @@
 
                 <div id="project2-details" class="project-details">
                     <div class="project-details-content">
-                        <span class="close-details" aria-label="Close details">&times;</span>
+                        <span class="close-details" aria-label="Close details">×</span>
                         <h3>Custom Potentiostat with Python User Interface</h3>
                         
                         <div class="details-gallery">
@@ -971,7 +972,7 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 Alan Alkhayat. All rights reserved.</p>
+                <p>© 2025 Alan Alkhayat. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -980,6 +981,30 @@
 
     <script src="script.js"></script>
 
+<!-- Audio Player Component -->
+<div id="audio-player-container" class="audio-player-container">
+    <!-- Floating Audio Player -->
+    <div class="floating-audio-player" id="floating-player">
+        <audio id="article-audio" src="Asset/HR_Voice_AI.mp3" preload="metadata"></audio>
+        <div class="player-controls">
+            <button class="audio-control-btn" id="play-pause-btn">
+                <i class="fas fa-play" id="play-icon"></i>
+                <i class="fas fa-pause" id="pause-icon" style="display: none;"></i>
+            </button>
+            <div class="audio-progress">
+                <div class="progress-bar" id="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="time-display">
+                    <span id="current-time">0:00</span> / <span id="duration">0:00</span>
+                </div>
+            </div>
+            <button class="audio-control-btn" id="close-player">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

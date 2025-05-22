@@ -2244,3 +2244,289 @@ figcaption {
         padding: var(--spacing-xs);
     }
 }
+
+/* Audio Player Styles */
+
+/* Floating Audio Bubble Button */
+.audio-listen-btn {
+    position: fixed;
+    top: 80px;
+    left: 20px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    z-index: 1003;
+}
+
+.audio-listen-btn.show {
+    display: flex;
+}
+
+.audio-listen-btn:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.audio-listen-btn i {
+    font-size: 1.3rem;
+}
+
+/* Tooltip for audio button */
+.audio-listen-btn::after {
+    content: 'Listen to article';
+    position: absolute;
+    left: 100%;
+    margin-left: 10px;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.audio-listen-btn:hover::after {
+    opacity: 1;
+}
+
+/* Floating Audio Player */
+.floating-audio-player {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--light-color);
+    border-radius: 50px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    display: none;
+    align-items: center;
+    gap: 15px;
+    min-width: 350px;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+    z-index: 1004;
+}
+
+.floating-audio-player.active {
+    display: flex;
+}
+
+.player-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.audio-control-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.audio-control-btn:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.1);
+}
+
+.audio-progress {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background-color: var(--light-gray);
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--primary-color);
+    border-radius: 3px;
+    width: 0%;
+    transition: width 0.1s ease;
+}
+
+.time-display {
+    font-size: 0.75rem;
+    color: var(--text-gray);
+    display: flex;
+    justify-content: space-between;
+}
+
+#close-player {
+    background-color: var(--gray-color);
+    width: 32px;
+    height: 32px;
+}
+
+#close-player:hover {
+    background-color: var(--dark-color);
+}
+
+/* Dark Theme Support */
+.dark-theme .floating-audio-player {
+    background: rgba(30, 41, 59, 0.95);
+}
+
+.dark-theme .progress-bar {
+    background-color: var(--light-gray);
+}
+
+/* Alternative button style for inside project details */
+.project-audio-btn {
+    background: var(--light-gray);
+    color: var(--text-dark);
+    border: 2px solid var(--primary-color);
+    border-radius: 30px;
+    padding: 10px 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin: 20px 0;
+    transition: all 0.3s ease;
+}
+
+.project-audio-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .audio-listen-btn {
+        top: 70px;
+        left: 10px;
+        width: 48px;
+        height: 48px;
+    }
+    
+    .audio-listen-btn::after {
+        display: none; /* Hide tooltip on mobile */
+    }
+    
+    .floating-audio-player {
+        right: 10px;
+        bottom: 10px;
+        min-width: 320px;
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .floating-audio-player {
+        min-width: calc(100vw - 40px);
+    }
+    
+    .audio-listen-btn {
+        width: 44px;
+        height: 44px;
+    }
+}
+
+/* Pulse animation for the listen button */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+    }
+}
+
+.audio-listen-btn {
+    animation: pulse 2s infinite;
+}
+
+.audio-listen-btn:hover {
+    animation: none;
+}
+
+/* Floating Audio Bubble - Minimal CSS */
+.audio-bubble {
+    position: fixed !important;
+    top: 80px !important;
+    left: 20px !important;
+    background: #2563eb !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 56px !important;
+    height: 56px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.3rem !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+    z-index: 1003 !important;
+    transition: all 0.3s ease !important;
+    animation: subtle-pulse 2s infinite !important;
+}
+
+.audio-bubble:hover {
+    transform: scale(1.1) !important;
+    background: #3b82f6 !important;
+    animation: none !important;
+}
+
+/* Subtle pulse animation */
+@keyframes subtle-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .audio-bubble {
+        top: 70px !important;
+        left: 10px !important;
+        width: 48px !important;
+        height: 48px !important;
+    }
+}

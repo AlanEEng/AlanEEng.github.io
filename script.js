@@ -45,8 +45,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    
-    
     // Project filtering
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
@@ -459,78 +457,198 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+    // Initialize audio player
+    initializeAudioPlayer();
     
+    // Initialize floating bubble
+    setupFloatingAudioBubble();
+    
+    // Note: setupVideoModal is removed as your HTML uses an inline YouTube iframe,
+    // which does not require this custom JavaScript modal functionality.
+}); // END OF SINGLE DOMContentLoaded
 
-// Simplified and consolidated video modal functionality code for script.js
-function setupVideoModal() {
-    const videoContainer = document.getElementById('video-container');
-    const videoModal = document.getElementById('video-modal');
-    const closeVideo = document.querySelector('.close-video');
-    const featuredVideo = document.getElementById('featured-video');
+// Audio Player Functionality
+function initializeAudioPlayer() {
+    const floatingPlayer = document.getElementById('floating-player');
+    const audio = document.getElementById('article-audio');
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    const playIcon = document.getElementById('play-icon');
+    const pauseIcon = document.getElementById('pause-icon');
+    const progressBar = document.getElementById('progress-bar');
+    const progressFill = document.getElementById('progress-fill');
+    const currentTimeDisplay = document.getElementById('current-time');
+    const durationDisplay = document.getElementById('duration');
+    const closePlayerBtn = document.getElementById('close-player');
     
-    // Debug to check if elements are found
-    console.log("Video elements found:", 
-        Boolean(videoContainer), 
-        Boolean(videoModal), 
-        Boolean(closeVideo), 
-        Boolean(featuredVideo)
-    );
+    let isPlayerActive = false;
     
-    
-    if (!videoContainer || !videoModal || !featuredVideo) {
-        console.error("Missing required video elements");
-        return;
+    // Format time helper function
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${minutes}:${secs.toString().padStart(2, '0')}`;
     }
     
-    // Make sure the container is clickable
-    videoContainer.style.cursor = 'pointer';
+    // Update play/pause button state
+    function updatePlayPauseButton(isPlaying) {
+        if (isPlaying) {
+            playIcon.style.display = 'none';
+            pauseIcon.style.display = 'block';
+        } else {
+            playIcon.style.display = 'block';
+            pauseIcon.style.display = 'none';
+        }
+    }
     
-    // Open modal when clicking the container
-    videoContainer.addEventListener('click', function() {
-        console.log("Video container clicked");
-        videoModal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
+    // Toggle play/pause
+    function togglePlayPause() {
+        if (audio.paused) {
+            audio.play();
+            updatePlayPauseButton(true);
+        } else {
+            audio.pause();
+            updatePlayPauseButton(false);
+        }
+    }
+    
+    // Update progress bar
+    function updateProgress() {
+        if (audio.duration) {
+            const progress = (audio.currentTime / audio.duration) * 100;
+            progressFill.style.width = `${progress}%`;
+            currentTimeDisplay.textContent = formatTime(audio.currentTime);
+        }
+    }
+    
+    // Seek to position
+    function seekToPosition(e) {
+        const rect = progressBar.getBoundingClientRect();
+        const percent = (e.clientX - rect.left) / rect.width;
+        audio.currentTime = percent * audio.duration;
+    }
+    
+    // Close player
+    function closePlayer() {
+        audio.pause();
+        audio.currentTime = 0;
+        floatingPlayer.classList.remove('active');
+        isPlayerActive = false;
+        updatePlayPauseButton(false);
         
-        // Add a small delay before play attempt to ensure video is ready
-        setTimeout(() => {
-            try {
-                const playPromise = featuredVideo.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch(error => {
-                        console.log("Autoplay prevented:", error);
-                        // Show play button or instruction if autoplay fails
-                    });
-                }
-            } catch (e) {
-                console.error("Error playing video:", e);
-            }
-        }, 100);
+        // The .project-audio-btn is removed from HTML, so this line is no longer needed.
+        // document.querySelectorAll('.project-audio-btn').forEach(btn => {
+        //     btn.style.display = 'inline-flex';
+        // });
+    }
+    
+    // Event Listeners
+    playPauseBtn.addEventListener('click', togglePlayPause);
+    closePlayerBtn.addEventListener('click', closePlayer);
+    progressBar.addEventListener('click', seekToPosition);
+    
+    // Audio events
+    audio.addEventListener('loadedmetadata', () => {
+        durationDisplay.textContent = formatTime(audio.duration);
     });
     
-    // Close modal functions
-    function closeVideoModal() {
-        videoModal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-        featuredVideo.pause();
-    }
+    audio.addEventListener('timeupdate', updateProgress);
     
-    if (closeVideo) {
-        closeVideo.addEventListener('click', closeVideoModal);
-    }
+    audio.addEventListener('ended', () => {
+        updatePlayPauseButton(false);
+        progressFill.style.width = '0%';
+        currentTimeDisplay.textContent = '0:00';
+    });
     
-    videoModal.addEventListener('click', function(e) {
-        if (e.target === videoModal) {
-            closeVideoModal();
-        }
+    // Check if audio element exists and log for debugging
+    if (audio) {
+        console.log('Audio element found:', audio.src);
+        // Preload audio metadata
+        audio.load();
+    } else {
+        console.error('Audio element not found!');
+    }
+}
+
+// Floating bubble (FIXED VERSION from instructions)
+function setupFloatingAudioBubble() {
+    let currentBubble = null;
+    
+    // Monitor project details opening
+    document.querySelectorAll('.details-link').forEach(link => {
+        link.addEventListener('click', function() {
+            // Wait a bit for modal to open
+            setTimeout(() => {
+                // Remove existing bubble if any
+                if (currentBubble) {
+                    currentBubble.remove();
+                }
+                
+                // Create floating bubble
+                const bubble = document.createElement('button');
+                bubble.className = 'audio-bubble'; // Use the new class for the bubble
+                bubble.innerHTML = '<i class="fas fa-headphones"></i>';
+                bubble.onclick = window.startProjectAudio;
+                
+                document.body.appendChild(bubble);
+                currentBubble = bubble;
+            }, 300);
+        });
+    });
+    
+    // Remove bubble when closing project
+    document.querySelectorAll('.close-details').forEach(closeBtn => {
+        closeBtn.addEventListener('click', function() {
+            if (currentBubble) {
+                currentBubble.remove();
+                currentBubble = null;
+            }
+        });
+    });
+    
+    // Also handle clicking outside modal
+    document.querySelectorAll('.project-details').forEach(modal => {
+        modal.addEventListener('click', function(e) {
+            if (e.target === this && currentBubble) {
+                currentBubble.remove();
+                currentBubble = null;
+            }
+        });
     });
 }
 
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    // All your existing initialization code...
+// Make startProjectAudio globally available
+window.startProjectAudio = function() {
+    const audio = document.getElementById('article-audio');
+    const floatingPlayer = document.getElementById('floating-player');
     
-    // Call the video modal setup function at the end
-    setupVideoModal();
-});
-});
+    if (!audio) {
+        console.error('Audio element not found!');
+        return;
+    }
+    
+    // Hide all audio buttons (this targets .project-audio-btn, which is now removed from HTML)
+    // This line can stay, it won't cause errors if the elements don't exist.
+    document.querySelectorAll('.project-audio-btn').forEach(btn => {
+        btn.style.display = 'none';
+    });
+    
+    // Show player
+    floatingPlayer.classList.add('active');
+    
+    // Ensure audio is loaded
+    if (audio.readyState < 2) {
+        audio.load();
+        audio.addEventListener('canplay', function playOnce() {
+            audio.play().catch(err => {
+                console.error('Playback error:', err);
+                alert('Audio playback failed. Please check if the audio file exists at: ' + audio.src);
+            });
+            audio.removeEventListener('canplay', playOnce);
+        });
+    } else {
+        audio.play().catch(err => {
+            console.error('Playback error:', err);
+            alert('Audio playback failed. Please check if the audio file exists at: ' + audio.src);
+        });
+    }
+}
