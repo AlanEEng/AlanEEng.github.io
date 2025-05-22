@@ -69,6 +69,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
         });
+
+        // FIX: Trigger the 'all' filter on page load to ensure all projects are visible by default
+        const allFilterButton = document.querySelector('.filter-btn[data-filter="all"]');
+        if (allFilterButton) {
+            allFilterButton.click(); // Simulate a click on the 'All' button
+        }
     }
     
     // Project Details Modal
@@ -562,7 +568,7 @@ function initializeAudioPlayer() {
     // Check if audio element exists and log for debugging
     if (audio) {
         console.log('Audio element found:', audio.src);
-        // Preload audio metadata
+        // Preload audio metadata (initial load, will be overridden by startProjectAudio)
         audio.load();
     } else {
         console.error('Audio element not found!');
@@ -576,6 +582,8 @@ function setupFloatingAudioBubble() {
     // Monitor project details opening
     document.querySelectorAll('.details-link').forEach(link => {
         link.addEventListener('click', function() {
+            const audioSource = this.dataset.audioSrc; // Get the audio source from the clicked link
+            
             // Wait a bit for modal to open
             setTimeout(() => {
                 // Remove existing bubble if any
@@ -600,7 +608,8 @@ function setupFloatingAudioBubble() {
                 // Append label to the bubble
                 bubble.appendChild(label);
                 
-                bubble.onclick = window.startProjectAudio;
+                // Pass the audioSource to startProjectAudio
+                bubble.onclick = () => window.startProjectAudio(audioSource);
                 
                 document.body.appendChild(bubble);
                 currentBubble = bubble; // Manage the bubble itself
@@ -640,8 +649,8 @@ function setupFloatingAudioBubble() {
     });
 }
 
-// Make startProjectAudio globally available
-window.startProjectAudio = function() {
+// Make startProjectAudio globally available and accept an audioSource
+window.startProjectAudio = function(audioSource) {
     const audio = document.getElementById('article-audio');
     const floatingPlayer = document.getElementById('floating-player');
     
@@ -649,9 +658,15 @@ window.startProjectAudio = function() {
         console.error('Audio element not found!');
         return;
     }
+
+    // Stop current playback and reset
+    audio.pause();
+    audio.currentTime = 0;
+    
+    // Set the new audio source
+    audio.src = audioSource;
     
     // Hide all audio buttons (this targets .project-audio-btn, which is now removed from HTML)
-    // This line can stay, it won't cause errors if the elements don't exist.
     document.querySelectorAll('.project-audio-btn').forEach(btn => {
         btn.style.display = 'none';
     });
@@ -659,20 +674,13 @@ window.startProjectAudio = function() {
     // Show player
     floatingPlayer.classList.add('active');
     
-    // Ensure audio is loaded
-    if (audio.readyState < 2) {
-        audio.load();
-        audio.addEventListener('canplay', function playOnce() {
-            audio.play().catch(err => {
-                console.error('Playback error:', err);
-                alert('Audio playback failed. Please check if the audio file exists at: ' + audio.src);
-            });
-            audio.removeEventListener('canplay', playOnce);
-        });
-    } else {
+    // Load the new audio and then play
+    audio.load(); // This is crucial to load the new src
+    audio.addEventListener('canplaythrough', function playNewAudioOnce() {
         audio.play().catch(err => {
             console.error('Playback error:', err);
             alert('Audio playback failed. Please check if the audio file exists at: ' + audio.src);
         });
-    }
+        audio.removeEventListener('canplaythrough', playNewAudioOnce); // Remove listener after playing
+    }, { once: true }); // Use { once: true } for modern browsers
 }

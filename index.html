@@ -179,7 +179,8 @@
                         <img src="Asset/IoT_sleep_cycle_wearable.png" alt="IoT Sleep Cycle Wearable Device" loading="lazy">
                         <div class="project-overlay">
                         <div class="project-links">
-                            <a href="#project1-details" class="details-link"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</a>
+                            <!-- Added data-audio-src for this project -->
+                            <a href="#project1-details" class="details-link" data-audio-src="Asset/HR_Voice_AI.mp3"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</a>
                         </div>
                         </div>
                     </div>
@@ -194,206 +195,225 @@
                     </div>
                 </article>
 
-                <div id="project1-details" class="project-details">
-                    <div class="project-details-content">
-                        <span class="close-details" aria-label="Close details">&times;</span>
-                        <h3>Wireless Wearable for heart Rate Monitoring</h3>
-                        <!-- The project-audio-btn has been removed as per instructions to use the floating bubble -->
-                        
-                        <div class="details-section">
-                            <h4>Project Overview</h4>
-                            <p>Imagine waking up refreshed, not startled by a jarring alarm. That was the vision behind this project: a compact, low-cost, low-power IoT wearable engineered from the ground up to understand your sleep cycles through heart rate measurement. This endeavor was a deep dive into the complete IoT product lifecycle, spanning the design and development of custom hardware, firmware, and mobile app development.</p>
-                            
-                            <div class="project-goals">
-                                <h5>The Core Engineering Challenge:</h5>
-                                <p>The primary challenge was to develop an affordable wearable capable of accurate, continuous physiological monitoring like heart rate and movement (specifically Photoplethysmography - PPG) throughout an 8-hour sleep period. This demanded excellent power efficiency to last the night, robust signal processing to extract clean data from noisy on-wrist measurements, and seamless data transmission to a mobile device for analysis and user interaction – all while keeping the Bill of Materials (BOM) as low as possible. Custom-designing every layer of the system gave us complete control to specifically design a product that met our requirements.</p>
+                <article class="project-card" data-category="hardware firmware software">
+                    <div class="project-image">
+                        <img src="Asset/project2_potentiostat.png" alt="Custom Potentiostat Instrument" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <!-- Added data-audio-src for this project -->
+                                <a href="#project2-details" class="details-link" data-audio-src="Asset/Potentiostat_Voice_AI.mp3"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</a>
+                                <a href="https://github.com/yourusername/potentiostat" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Code</a>
                             </div>
-                                <div class="image-carousel custom-carousel" data-modal-id="components-modal">
-                                    <div class="carousel-slides">
-                                        <div class="carousel-slide">
-                                            <figure>
-                                                <figcaption>Final assembled wearable device. PCB integrated into a fabric and memory foam bracelet</figcaption>
-                                                <img src="Asset/sleep_wearable_device.png" alt="Sleep Wearable Device - Physical Product" class="zoomable-image" loading="lazy">
-                                            </figure>
-                                        </div>
-                                        <div class="carousel-slide">
-                                            <figure>
-                                                <figcaption>Custom-designed PCB and mobile app running</figcaption>
-                                                <img src="Asset/hardware.jpg" alt="Sleep Wearable PCB - Internal Hardware" class="zoomable-image" loading="lazy">
-                                            </figure>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-arrow prev" aria-label="Previous slide">
-                                        <i class="fas fa-chevron-left carousel-arrow-icon" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="carousel-arrow next" aria-label="Next slide">
-                                        <i class="fas fa-chevron-right carousel-arrow-icon" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="carousel-indicators" role="tablist" aria-label="Carousel indicators">
-                                        <div class="carousel-indicator active" role="tab" aria-selected="true" aria-label="Slide 1"></div>
-                                        <div class="carousel-indicator" role="tab" aria-selected="false" aria-label="Slide 2"></div>
-                                    </div>
-                                </div>
-                                <h5>Contributors</h5>
-                                <p>This project was a fully collaborative effort between two students, emphasizing joint involvement in every aspect rather than dividing tasks. We tackled each major system component together—hardware design, firmware development, mobile app creation, and integration—to develop a comprehensive, end-to-end understanding. This collaborative approach enabled ongoing discussion, rapid troubleshooting, and iterative refinement, ensuring both team members developed deep, hands-on expertise across the entire engineering process. It also fostered a unified vision throughout the product's development lifecycle.</p>
-                        
-                        <div class="details-section">
-                            <h4>Our Innovative Solution</h4>
-                            
-                            <div class="implementation-subsection">
-                                <h5>Strategic Power-Saving Dual-Processors</h5>
-                                
-                                <!-- Modal for enlarged components images -->
-                                <div id="components-modal" class="diagram-modal">
-                                    <span class="close-components" aria-label="Close image">&times;</span>
-                                    <img src="Asset/sleep_wearable_device.png" class="diagram-modal-content" id="enlarged-component" alt="Enlarged view of Sleep Wearable Device">
-                                </div>
-                                  
-                                <p>To master the critical power challenge for all-night operation and to keep cost low, we engineered a power management strategy, using a dual-processor architecture. An ultra-low-power STM8S microcontroller acted as the dedicated 'sensing engine.' It continuously sampled Heart Rate (PPG) data at a precise 50Hz – a frequency also chosen to leverage Nyquist-Shannon theorem of aliasing to filter out common 50Hz environmental noise without extra hardware filters. (See 3rd and 4th slide below)</p>
-                                
-                                <p>The true power savings, however, were unlocked by the role of its partner, an ESP32-C3 Mini. This more powerful MCU remained in Deep Sleep mode for the vast majority of the time, waking for mere milliseconds only when signaled by the STM8S to store, connect, and transmit data to the mobile application. (See 2nd slide)</p>
-                                
-                                <p>As illustrated in our system timing diagram (See Figure below), the ESP32 would wake every 2.5 seconds upon the 'Wake ESP' signal, triggered after the STM8S filled its buffer, to receive a 125-byte data chunk (The limit of the stm8) via UART. After aggregating four such transfers into its own buffer (representing 10 seconds of data), it would then briefly handle the efficient Bluetooth Low Energy (BLE) 'Announce Data' and subsequent transmission to the app before returning to its ultra-low power Deep Sleep state. This orchestrated interplay, which minimized the ESP32's active time, was pivotal. It enabled an impressive 16.84 hours of continuous operation on a single 245mAh battery, an 8-fold improvement over unoptimized ised continuous monitoring attributable to this duel microcontroller operation, Data packaging scheme and optimized wake/sleep scheduling.</p>
-                                    </div>
-                                        <div class="image-carousel custom-carousel timing-diagram-carousel" data-modal-id="components-modal">
-                                            <div class="carousel-slides">
-                                                <div class="carousel-slide">
-                                                    <figure>
-                                                        <figcaption>System timing diagram illustrating data flow and power management between dual processors</figcaption>
-                                                        <img src="Asset/sleep_wearable_data_flow.png" alt="Timing diagram" class="zoomable-image" loading="lazy">
-                                                    </figure>
-                                                </div>
-                                                <div class="carousel-slide">
-                                                    <figure>
-                                                        <figcaption>Power consumption analysis showing optimized wake/sleep cycles for extended battery life</figcaption>
-                                                    <img src="Asset/SleepCyclePowerUse.png" alt="Power timing" class="zoomable-image" loading="lazy">
-                                                </figure>
-                                            </div>
-                                            <div class="carousel-slide">
-                                                <figure>
-                                                    <figcaption>Heart rate signal processing at 100Hz sampling rate showing 50Hz Noise</figcaption>
-                                                    <img src="Asset/100Hz_Heart_rate_plot_adc_esp_app1.png" alt="100Hz heart rate signal" class="zoomable-image" loading="lazy">
-                                                </figure>
-                                            </div>
-                                            <div class="carousel-slide">
-                                                <figure>
-                                                    <figcaption>Optimized 50Hz heart rate signal with improved noise filtering and data clarity</figcaption>
-                                                    <img src="Asset/50hertz_Heart_rate_plot_adc_esp_app.png" alt="50Hz heart rate signal" class="zoomable-image" loading="lazy">
-                                                </figure>
-                                            </div>
-                                        </div>
-                                        <div class="carousel-arrow prev" aria-label="Previous slide">
-                                            <i class="fas fa-chevron-left carousel-arrow-icon" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="carousel-arrow next" aria-label="Next slide">
-                                            <i class="fas fa-chevron-right carousel-arrow-icon" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="carousel-indicators" role="tablist" aria-label="Carousel indicators">
-                                            <div class="carousel-indicator active" role="tab" aria-selected="true" aria-label="Slide 1"></div>
-                                            <div class="carousel-indicator" role="tab" aria-selected="false" aria-label="Slide 2"></div>
-                                            <div class="carousel-indicator" role="tab" aria-selected="false" aria-label="Slide 3"></div>
-                                            <div class="carousel-indicator" role="tab" aria-selected="false" aria-label="Slide 4"></div>
-                                        </div>
-                                    </div>
-                     
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-tags">
+                            <span class="tag">Hardware</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">Instrumentation</span>
+                        </span>
+                        <h3>Custom Potentiostat with Python User Interface</h3>
+                        <p>A professional-grade electrochemical measurement instrument with precision analog front-end circuitry and an intuitive Python GUI for experimental control and data analysis.</p>
+                    </div>
+                </article>
+            </div>
+            
+        </div> <!-- Closing div for <div class="container"> -->
+    </section>
+
+    <!-- Project Details Modals - Moved outside the projects-grid and outside the #projects section container -->
+    <div id="project1-details" class="project-details">
+        <div class="project-details-content">
+            <span class="close-details" aria-label="Close details">×</span>
+            <h3>Wireless Wearable for heart Rate Monitoring</h3>
+            
+            <div class="details-section">
+                <h4>Project Overview</h4>
+                <p>Imagine waking up refreshed, not startled by a jarring alarm. That was the vision behind this project: a compact, low-cost, low-power IoT wearable engineered from the ground up to understand your sleep cycles through heart rate measurement. This endeavor was a deep dive into the complete IoT product lifecycle, spanning the design and development of custom hardware, firmware, and mobile app development.</p>
+                
+                <div class="project-goals">
+                    <h5>The Core Engineering Challenge:</h5>
+                    <p>The primary challenge was to develop an affordable wearable capable of accurate, continuous physiological monitoring like heart rate and movement (specifically Photoplethysmography - PPG) throughout an 8-hour sleep period. This demanded excellent power efficiency to last the night, robust signal processing to extract clean data from noisy on-wrist measurements, and seamless data transmission to a mobile device for analysis and user interaction – all while keeping the Bill of Materials (BOM) as low as possible. Custom-designing every layer of the system gave us complete control to specifically design a product that met our requirements.</p>
+                </div>
+                    <div class="image-carousel custom-carousel" data-modal-id="components-modal">
+                        <div class="carousel-slides">
+                            <div class="carousel-slide">
+                                <figure>
+                                    <figcaption>Final assembled wearable device. PCB integrated into a fabric and memory foam bracelet</figcaption>
+                                    <img src="Asset/sleep_wearable_device.png" alt="Sleep Wearable Device - Physical Product" loading="lazy">
+                                </figure>
+                            </div>
+                            <div class="carousel-slide">
+                                <figure>
+                                    <figcaption>Custom-designed PCB and mobile app running</figcaption>
+                                    <img src="Asset/hardware.jpg" alt="Sleep Wearable PCB - Internal Hardware" loading="lazy">
+                                </figure>
+                            </div>
+                        </div>
+                        <div class="carousel-arrow prev" aria-label="Previous slide">
+                            <i class="fas fa-chevron-left carousel-arrow-icon" aria-hidden="true"></i>
+                        </div>
+                        <div class="carousel-arrow next" aria-label="Next slide">
+                            <i class="fas fa-chevron-right carousel-arrow-icon" aria-hidden="true"></i>
+                        </div>
+                        <div class="carousel-indicators" role="tablist" aria-label="Carousel indicators">
+                            <div class="carousel-indicator active" role="tab" aria-selected="true" aria-label="Slide 1"></div>
+                            <div class="carousel-indicator" role="tab" aria-selected="false" aria-label="Slide 2"></div>
+                        </div>
+                    </div>
+                    <h5>Contributors</h5>
+                    <p>This project was a fully collaborative effort between two students, emphasizing joint involvement in every aspect rather than dividing tasks. We tackled each major system component together—hardware design, firmware development, mobile app creation, and integration—to develop a comprehensive, end-to-end understanding. This collaborative approach enabled ongoing discussion, rapid troubleshooting, and iterative refinement, ensuring both team members developed deep, hands-on expertise across the entire engineering process. It also fostered a unified vision throughout the product's development lifecycle.</p>
+            </div> <!-- End of Project Overview details-section -->
+            
+            <div class="details-section">
+                <h4>Our Innovative Solution</h4>
+                
+                <div class="implementation-subsection">
+                    <h5>Strategic Power-Saving Dual-Processors</h5>
                     
+                    <!-- Modal for enlarged components images -->
+                    <div id="components-modal" class="diagram-modal">
+                        <span class="close-components" aria-label="Close image">×</span>
+                        <img src="Asset/sleep_wearable_device.png" class="diagram-modal-content" id="enlarged-component" alt="Enlarged view of Sleep Wearable Device">
+                    </div>
+                      
+                    <p>To master the critical power challenge for all-night operation and to keep cost low, we engineered a power management strategy, using a dual-processor architecture. An ultra-low-power STM8S microcontroller acted as the dedicated 'sensing engine.' It continuously sampled Heart Rate (PPG) data at a precise 50Hz – a frequency also chosen to leverage Nyquist-Shannon theorem of aliasing to filter out common 50Hz environmental noise without extra hardware filters. (See 3rd and 4th slide below)</p>
+                    
+                    <p>The true power savings, however, were unlocked by the role of its partner, an ESP32-C3 Mini. This more powerful MCU remained in Deep Sleep mode for the vast majority of the time, waking for mere milliseconds only when signaled by the STM8S to store, connect, and transmit data to the mobile application. (See 2nd slide)</p>
+                    
+                    <p>As illustrated in our system timing diagram (See Figure below), the ESP32 would wake every 2.5 seconds upon the 'Wake ESP' signal, triggered after the STM8S filled its buffer, to receive a 125-byte data chunk (The limit of the stm8) via UART. After aggregating four such transfers into its own buffer (representing 10 seconds of data), it would then briefly handle the efficient Bluetooth Low Energy (BLE) 'Announce Data' and subsequent transmission to the app before returning to its ultra-low power Deep Sleep state. This orchestrated interplay, which minimized the ESP32's active time, was pivotal. It enabled an impressive 16.84 hours of continuous operation on a single 245mAh battery, an 8-fold improvement over unoptimized ised continuous monitoring attributable to this duel microcontroller operation, Data packaging scheme and optimized wake/sleep scheduling.</p>
+                </div> <!-- End of implementation-subsection -->
+                <div class="image-carousel custom-carousel timing-diagram-carousel" data-modal-id="components-modal">
+                    <div class="carousel-slides">
+                        <div class="carousel-slide">
+                            <figure>
+                                <figcaption>System timing diagram illustrating data flow and power management between dual processors</figcaption>
+                                <img src="Asset/sleep_wearable_data_flow.png" alt="Timing diagram" loading="lazy">
+                            </figure>
+                        </div>
+                        <div class="carousel-slide">
+                            <figure>
+                                <figcaption>Power consumption analysis showing optimized wake/sleep cycles for extended battery life</figcaption>
+                                <img src="Asset/SleepCyclePowerUse.png" alt="Power timing" loading="lazy">
+                            </figure>
+                        </div>
+                        <div class="carousel-slide">
+                            <figure>
+                                <figcaption>Heart rate signal processing at 100Hz sampling rate showing 50Hz Noise</figcaption>
+                                <img src="Asset/100Hz_Heart_rate_plot_adc_esp_app1.png" alt="100Hz heart rate signal" loading="lazy">
+                            </figure>
+                        </div>
+                        <div class="carousel-slide">
+                            <figure>
+                                <figcaption>Optimized 50Hz heart rate signal with improved noise filtering and data clarity</figcaption>
+                                <img src="Asset/50hertz_Heart_rate_plot_adc_esp_app.png" alt="50Hz heart rate signal" loading="lazy">
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="carousel-arrow prev" aria-label="Previous slide">
+                        <i class="fas fa-chevron-left carousel-arrow-icon" aria-hidden="true"></i>
+                    </div>
+                    <div class="carousel-arrow next" aria-label="Next slide">
+                        <i class="fas fa-chevron-right carousel-arrow-icon" aria-hidden="true"></i>
+                    </div>
+                    <div class="carousel-indicators" role="tablist" aria-label="Carousel indicators">
+                        <div class="carousel-indicator active" role="tab" aria-selected="true" aria-label="Slide 1"></div>
+                        <div class="carousel-indicator" role="tab" aria-selected="false" aria-label="Slide 2"></div>
+                        <div class="carousel-indicator" role="tab" aria-selected="false" aria-label="Slide 3"></div>
+                        <div class="carousel-indicator" role="tab" aria-selected="false" aria-label="Slide 4"></div>
+                    </div>
+                </div>
+             
+                <div class="subsection-divider"></div>
+                    
+                <div class="implementation-subsection">
+                    <h5>Engineering for Compactness</h5>
+                        
+                    <p>A core design criteria from the outset was to create a truly wearable and unobtrusive device. This necessitated attention to component selection for minimal footprint and a highly compact Printed Circuit Board (PCB) layout. We successfully engineered the entire system onto a mere 35mm x 19mm PCB, a significant achievement given the inclusion of two microcontrollers, a novel analog front-end for PPG sensing, power/and battery management systems, and a USB-C receptacle.</p>
+                   
+                    <p>For cost-effectiveness, we committed to a 2-layer PCB design. This presented a considerable routing challenge compared to a multi-layer board, especially for a mixed-signal circuit where attention to PCB best practices becomes near critical. However, we were able to implement best practices even within these constraints. This included clear differentiation and separation of power, analog, and digital sections on the board to minimize noise coupling and ensure signal integrity. Ground planes were carefully managed, and trace routing for sensitive analog signals was prioritized to shield them from digital interference, all contributing to the reliable performance of our PPG sensor</p>
                          
+                </div> <!-- End of implementation-subsection -->
+                <div class="image-carousel custom-carousel" data-modal-id="components-modal">
+                    <div class="carousel-slides">
+                        <div class="carousel-slide">
+                            <figure>
+                                <figcaption>PCB dimensions showing compact 35mm x 19mm form factor with strategic component placement</figcaption>
+                                <img src="Asset/PCB_Dimentions.png" alt="PCB Dimensions" loading="lazy">
+                            </figure>
                         </div>
-                             
-                        <div class="subsection-divider"></div>
-                            
-                        <div class="implementation-subsection">
-                            <h5>Engineering for Compactness</h5>
-                                
-                            <p>A core design criteria from the outset was to create a truly wearable and unobtrusive device. This necessitated attention to component selection for minimal footprint and a highly compact Printed Circuit Board (PCB) layout. We successfully engineered the entire system onto a mere 35mm x 19mm PCB, a significant achievement given the inclusion of two microcontrollers, a novel analog front-end for PPG sensing, power/and battery management systems, and a USB-C receptacle.</p>
-                           
-                            <p>For cost-effectiveness, we committed to a 2-layer PCB design. This presented a considerable routing challenge compared to a multi-layer board, especially for a mixed-signal circuit where attention to PCB best practices becomes near critical. However, we were able to implement best practices even within these constraints. This included clear differentiation and separation of power, analog, and digital sections on the board to minimize noise coupling and ensure signal integrity. Ground planes were carefully managed, and trace routing for sensitive analog signals was prioritized to shield them from digital interference, all contributing to the reliable performance of our PPG sensor</p>
-                                 
+                        <div class="carousel-slide">
+                            <figure>
+                                <figcaption>KiCad PCB layout demonstrating 2-layer design with optimized routing and signal integrity</figcaption>
+                                <img src="Asset/Kicad_PCB.png" alt="KiCad PCB Layout" loading="lazy">
+                            </figure>
                         </div>
-                              <div class="image-carousel custom-carousel" data-modal-id="components-modal">
-                                <div class="carousel-slides">
-                                    <div class="carousel-slide">
-                                        <figure>
-                                            <figcaption>PCB dimensions showing compact 35mm x 19mm form factor with strategic component placement</figcaption>
-                                            <img src="Asset/PCB_Dimentions.png" alt="PCB Dimensions" class="zoomable-image" loading="lazy">
-                                        </figure>
-                                    </div>
-                                    <div class="carousel-slide">
-                                        <figure>
-                                            <figcaption>KiCad PCB layout demonstrating 2-layer design with optimized routing and signal integrity</figcaption>
-                                            <img src="Asset/Kicad_PCB.png" alt="KiCad PCB Layout" class="zoomable-image" loading="lazy">
-                                        </figure>
-                                    </div>
+                    </div>
+                    <div class="carousel-arrow prev" aria-label="Previous slide">
+                        <i class="fas fa-chevron-left carousel-arrow-icon" aria-hidden="true"></i>
+                    </div>
+                    <div class="carousel-arrow next" aria-label="Next slide">
+                        <i class="fas fa-chevron-right carousel-arrow-icon" aria-hidden="true"></i>
+                    </div>
+                    <div class="carousel-indicators" role="tablist" aria-label="Carousel indicators">
+                        <div class="carousel-indicator active" role="tab" aria-selected="true" aria-label="Slide 1"></div>
+                        <div class="carousel-indicator" role="tab" aria-selected="false" aria-label="Slide 2"></div>
+                    </div>
+                </div>
+                
+                <div class="subsection-divider"></div>
+
+                <div class="implementation-subsection">
+                    <h5>Signal path and System Validation</h5>
+                        
+                    <p>Before we could even begin to analyze complex physiological signals, we first had to build undoubtable trust in our entire data pipeline. We achieved this through end-to-end, Known Signal Validation. By injecting a precise 1.1Hz sine wave from a function generator directly into the STM8S microcontroller's ADC, we traced its journey through every step of the system. The resulting clean, perfectly reconstructed sine wave (1st slide) – captured after traversing STM8S buffers, UART, ESP32 buffers, BLE, and mobile app reassembly – conclusively verified the integrity of our entire data pathway, timing and packaging scheme. This validation ensured that any variations seen later with the actual PPG sensor were due to physiology or sensor noise, not systemic data corruption.</p>
+                        
+                        <div class="image-carousel custom-carousel" data-modal-id="components-modal">
+                            <div class="carousel-slides">
+                                <div class="carousel-slide">
+                                    <figure>
+                                        <figcaption>Signal validation test showing perfect sine wave reconstruction through entire data pipeline</figcaption>
+                                        <img src="Asset/Sin_plot_from_ADC_ESP_APP.png" alt="Signal Validation Test - Sine Wave Reconstruction" loading="lazy">
+                                    </figure>
                                 </div>
-                                <div class="carousel-arrow prev" aria-label="Previous slide">
-                                    <i class="fas fa-chevron-left carousel-arrow-icon" aria-hidden="true"></i>
-                                </div>
-                                <div class="carousel-arrow next" aria-label="Next slide">
-                                    <i class="fas fa-chevron-right carousel-arrow-icon" aria-hidden="true"></i>
-                                </div>
-                                <div class="carousel-indicators" role="tablist" aria-label="Carousel indicators">
-                                    <div class="carousel-indicator active" role="tab" aria-selected="true" aria-label="Slide 1"></div>
-                                    <div class="carousel-indicator" role="tab" aria-selected="false" aria-label="Slide 2"></div>
+                                <div class="carousel-slide">
+                                    <figure>
+                                        <figcaption>Heart rate signal processing demonstrating clean physiological data capture</figcaption>
+                                        <img src="Asset/50hertz_Heart_rate_plot_adc_esp_app.png" alt="Heart Rate signal pipeline" loading="lazy">
+                                    </figure>
                                 </div>
                             </div>
-                            
-                         <div class="subsection-divider"></div>
-
-                            <div class="implementation-subsection">
-
-                            <h5>Signal path and System Validation</h5>
-                                
-                            <p>Before we could even begin to analyze complex physiological signals, we first had to build undoubtable trust in our entire data pipeline. We achieved this through end-to-end, Known Signal Validation. By injecting a precise 1.1Hz sine wave from a function generator directly into the STM8S microcontroller's ADC, we traced its journey through every step of the system. The resulting clean, perfectly reconstructed sine wave (1st slide) – captured after traversing STM8S buffers, UART, ESP32 buffers, BLE, and mobile app reassembly – conclusively verified the integrity of our entire data pathway, timing and packaging scheme. This validation ensured that any variations seen later with the actual PPG sensor were due to physiology or sensor noise, not systemic data corruption.</p>
-                                
-                                    <div class="image-carousel custom-carousel" data-modal-id="components-modal">
-                                        <div class="carousel-slides">
-                                            <div class="carousel-slide">
-                                                <figure>
-                                                    <figcaption>Signal validation test showing perfect sine wave reconstruction through entire data pipeline</figcaption>
-                                                    <img src="Asset/Sin_plot_from_ADC_ESP_APP.png" alt="Signal Validation Test - Sine Wave Reconstruction" class="zoomable-image" loading="lazy">
-                                                </figure>
-                                            </div>
-                                            <div class="carousel-slide">
-                                                <figure>
-                                                    <figcaption>Heart rate signal processing demonstrating clean physiological data capture</figcaption>
-                                                    <img src="Asset/50hertz_Heart_rate_plot_adc_esp_app.png" alt="Heart Rate signal pipeline" class="zoomable-image" loading="lazy">
-                                                </figure>
-                                            </div>
-                                        </div>
-                                        <div class="carousel-arrow prev" aria-label="Previous slide">
-                                            <i class="fas fa-chevron-left carousel-arrow-icon" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="carousel-arrow next" aria-label="Next slide">
-                                            <i class="fas fa-chevron-right carousel-arrow-icon" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="carousel-indicators" role="tablist" aria-label="Carousel indicators">
-                                            <div class="carousel-indicator active" role="tab" aria-selected="true" aria-label="Slide 1"></div>
-                                            <div class="carousel-indicator" role="tab" aria-selected="false" aria-label="Slide 2"></div>
-                                        </div>
-                                    </div>
-
-                            <div class="subsection-divider"></div>
-                        <div class="implementation-subsection">
-                            
-                            <div class="app-showcase">
-                                
-                                <div class="app-description">
-                                    <h4>Custom Mobile App & On-App DSP</h4>
-                                    <p>The data's journey culminated in a user-friendly mobile application, developed using Flutter for cross-platform compatibility. This app served not only as the BLE client and data display interface but also housed critical Digital Signal Processing (DSP) capabilities.</p>
-                                    
-                                    <p>A key challenge was transmitting enough continuous data for meaningful Fast Fourier Transform (FFT) analysis given BLE 4.0's 20-byte packet limitation. Our solution was a circular buffer on the app.  The ESP32 firmware buffered 10 seconds (500 bytes) of heart rate data, which the app retrieved through 25 consecutive GATT requests. The app aggregated these segments, maintaining a 50-second rolling window (2,500 samples) for FFT processing. This strategy achieved a fine 1.2 BPM frequency resolution for accurate heart rate detection, While offloading intensive computation and thus Power consumption from the wearable.</p>
-                                    
-                                    <p>For user-friendliness, Unique identification and communication, we implemented custom 128-bit UUIDs for our BLE GATT services and characteristics. This ensured the app would only identify That given device and therefore not connecting to or showing other devices in the area.</p>
-                                </div>
-                                <div class="app-image">
-                                    <img src="Asset/wearable_app.jpg" alt="Sleep Wearable Mobile Application Interface" loading="lazy" class="app-screenshot">
-                                </div>
+                            <div class="carousel-arrow prev" aria-label="Previous slide">
+                                <i class="fas fa-chevron-left carousel-arrow-icon" aria-hidden="true"></i>
                             </div>
-                    
+                            <div class="carousel-arrow next" aria-label="Next slide">
+                                <i class="fas fa-chevron-right carousel-arrow-icon" aria-hidden="true"></i>
+                            </div>
+                            <div class="carousel-indicators" role="tablist" aria-label="Carousel indicators">
+                                <div class="carousel-indicator active" role="tab" aria-selected="true" aria-label="Slide 1"></div>
+                                <div class="carousel-indicator" role="tab" aria-selected="false" aria-label="Slide 2"></div>
+                            </div>
+                        </div>
+                </div> <!-- End of implementation-subsection -->
 
-                               
+                <div class="subsection-divider"></div>
+                <div class="implementation-subsection">
+                    <div class="app-showcase">
+                        <div class="app-description">
+                            <h4>Custom Mobile App & On-App DSP</h4>
+                            <p>The data's journey culminated in a user-friendly mobile application, developed using Flutter for cross-platform compatibility. This app served not only as the BLE client and data display interface but also housed critical Digital Signal Processing (DSP) capabilities.</p>
+                            
+                            <p>A key challenge was transmitting enough continuous data for meaningful Fast Fourier Transform (FFT) analysis given BLE 4.0's 20-byte packet limitation. Our solution was a circular buffer on the app.  The ESP32 firmware buffered 10 seconds (500 bytes) of heart rate data, which the app retrieved through 25 consecutive GATT requests. The app aggregated these segments, maintaining a 50-second rolling window (2,500 samples) for FFT processing. This strategy achieved a fine 1.2 BPM frequency resolution for accurate heart rate detection, While offloading intensive computation and thus Power consumption from the wearable.</p>
+                            
+                            <p>For user-friendliness, Unique identification and communication, we implemented custom 128-bit UUIDs for our BLE GATT services and characteristics. This ensured the app would only identify That given device and therefore not connecting to or showing other devices in the area.</p>
+                        </div>
+                        <div class="app-image">
+                            <img src="Asset/wearable_app.jpg" alt="Sleep Wearable Mobile Application Interface" loading="lazy" class="app-screenshot">
+                        </div>
+                    </div>
+                </div> <!-- End of implementation-subsection -->
 
-                                                <div class="subsection-divider"></div>
+                <div class="subsection-divider"></div>
 
                 <div class="bom-table-container">
                     <h5>Cost and Bill of Materials</h5>
@@ -493,268 +513,242 @@
                             </tbody>
                         </table>
                     </div>
-    
-    <div class="bom-description">
-        <p>Our strategic component selection resulted in a unit cost of just <strong>49.06 DKK ($7.36 USD)</strong> at volume production, making our wearable solution far more affordable than commercial alternatives typically retailing for $100-150.</p>
-    </div>
-</div>
-                            </div>
-                            
-                        <!-- Modal for enlarged diagram -->
-                        <div id="diagram-modal" class="diagram-modal">
-                            <span class="close-diagram" aria-label="Close diagram">&times;</span>
-                            <img src="Asset/sleep_wearable_seq.png" class="diagram-modal-content" id="enlarged-diagram" alt="Enlarged Data Flow Diagram">
-                        </div>
-                        
-                        <div class="details-section">
-                            <h4>Key Achievements & Impact</h4>
-                            
-                            <div class="challenge-item">
-                                <h5>Accuracy Validated</h5>
-                                    <div class="image-carousel" data-modal-id="accuracy-modal">
-                                        <div class="carousel-slides">
-                                            <div class="carousel-slide">
-                                                <figure>
-                                                    <figcaption>Heart rate accuracy comparison showing strong correlation with commercial Fitbit device</figcaption>
-                                                    <img src="Asset/sleep_wearable_accuracy.jpg" alt="Heart Rate Accuracy Comparison Graph" class="zoomable-image" loading="lazy">
-                                                </figure>
-                                            </div>
-                                            <div class="carousel-slide">
-                                                <figure>
-                                                    <figcaption>Statistical correlation analysis demonstrating R=0.873 correlation coefficient</figcaption>
-                                                    <img src="Asset/heart_rate_correlation_plot.png" alt="Statistical Correlation Plot - Accuracy Validation" class="zoomable-image" loading="lazy">
-                                                </figure>
-                                            </div>
-                                        </div>
-                                        <div class="carousel-arrow prev" aria-label="Previous slide">
-                                            <i class="fas fa-chevron-left carousel-arrow-icon" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="carousel-arrow next" aria-label="Next slide">
-                                            <i class="fas fa-chevron-right carousel-arrow-icon" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="carousel-indicators" role="tablist" aria-label="Carousel indicators">
-                                            <div class="carousel-indicator active" role="tab" aria-selected="true" aria-label="Slide 1"></div>
-                                            <div class="carousel-indicator" role="tab" aria-selected="false" aria-label="Slide 2"></div>
-                                        </div>
-                                    </div>
+        
+                    <div class="bom-description">
+                        <p>Our strategic component selection resulted in a unit cost of just <strong>49.06 DKK ($7.36 USD)</strong> at volume production, making our wearable solution far more affordable than commercial alternatives typically retailing for $100-150.</p>
+                    </div>
+                </div> <!-- End of bom-table-container -->
+            </div> <!-- End of Our Innovative Solution details-section -->
                                 
-                                <p>The graph demonstrates the heart rate data recorded by our wristband (dashed red
-                                    line) alongside a Fitbit Inspire 2 (solid blue line). The two traces display similar patterns,
-                                    indicating that the wristband’s performance is in line with the FitBit’s results, despite occasional variations we can confidentily validate our wearable heart rate monitor can compete
-                                    favourably with leading consumer brands both in terms of affordability and accuracy.</p>
-
-
-                                    <p>The scatter plot illustrates (2nd slide) the correlation between heart rate measurements recorded by our wristband and the Fitbit Inspire 2. Each point represents a
-                                    pair of concurrent heart rate readings from the two devices. The red line represents
-                                    the line of best fit, indicating the general trend of the relationship. The Pearson correlation coefficient of R = 0.873 showcases a strong positive correlation between the measurements from the wristband and the Fitbit</p>
-                            </div>
-                            
-                            <!-- Modal for enlarged accuracy graph -->
-                            <div id="accuracy-modal" class="diagram-modal">
-                                <span class="close-accuracy" aria-label="Close accuracy graph">&times;</span>
-                                <img src="Asset/sleep_wearable_accuracy.jpg" class="diagram-modal-content" id="enlarged-accuracy" alt="Enlarged Accuracy Comparison Graph">
-                            </div>
-                            
-                            <div class="details-section">
-                                <h4>Areas for Improvement</h4>
-                                <p>In this section, we delve into potential optimizations for the system, focusing particularly on power management and operational efficiency.</p>
-                                
-                               
-                                <div class="implementation-subsection">
-                                    <h5>Charging Mechanism</h5>
-                                    <p>To further compact the design, the existing USB-C module could be replaced with a wireless charging system. This not only reduces physical space but also enhances the user experience by eliminating the need for wired connections.</p>
+            <!-- Modal for enlarged diagram -->
+            <div id="diagram-modal" class="diagram-modal">
+                <span class="close-diagram" aria-label="Close diagram">×</span>
+                <img src="Asset/sleep_wearable_seq.png" class="diagram-modal-content" id="enlarged-diagram" alt="Enlarged Data Flow Diagram">
+            </div>
+            
+            <div class="details-section">
+                <h4>Key Achievements & Impact</h4>
+                
+                <div class="challenge-item">
+                    <h5>Accuracy Validated</h5>
+                        <div class="image-carousel" data-modal-id="accuracy-modal">
+                            <div class="carousel-slides">
+                                <div class="carousel-slide">
+                                    <figure>
+                                        <figcaption>Heart rate accuracy comparison showing strong correlation with commercial Fitbit device</figcaption>
+                                        <img src="Asset/sleep_wearable_accuracy.jpg" alt="Heart Rate Accuracy Comparison Graph" loading="lazy">
+                                    </figure>
                                 </div>
-                                
-                                
-                                
-                                <div class="implementation-subsection">
-                                    <h5>Power Supply Optimization</h5>
-                                    <p>A major area for improvement is the system's power supply, using a switch-mode power suply would drastically improve our energy efficiency:</p>
-                                    
-                                    <div class="challenge-item">
-                                        <h5>Bluetooth Protocol</h5>
-                                        <p>we have implemented the Bluetooth 4.0 protocol instead of the newer 5.0 version, which allows us to send 251bytes. Allowing us to send fewer and larger data sets conserving more power</p>
-                                    </div>
+                                <div class="carousel-slide">
+                                    <figure>
+                                        <figcaption>Statistical correlation analysis demonstrating R=0.873 correlation coefficient</figcaption>
+                                        <img src="Asset/heart_rate_correlation_plot.png" alt="Statistical Correlation Plot - Accuracy Validation" loading="lazy">
+                                    </figure>
                                 </div>
                             </div>
-                        
-                            <div class="details-section">
-                            <h4>Technology Stack: The Toolkit Behind the Innovation</h4>
-                            <ul>
-                                <li><strong>Hardware:</strong> Photodiodes, ARM CORE Development, ESP32 Development, Op-Amps, Accelerometer, PowerSupply, LiPo BMS, USB-C.</li>
-                                <li><strong>Schematic/PCB Design:</strong> KiCad.</li>
-                                <li><strong>Firmware:</strong> C90 (STM8S via ST Visual Develop), C/ESP-IDF (ESP32)</li>
-                                <li><strong>Software (Mobile):</strong> Flutter (Dart), Digital Signal Processing (FFT).</li>
-                                <li><strong>Testing & Validation:</strong> Oscilloscope, Function Generator, Multimeter, Shunt Resistor, Benchmark ( Fitbit).</li>
-                            </ul>
-                         </div>
-                        
-                            <div class="details-section">
-                            <h4>Conclusion: More Than Just a Project</h4>
-                            <p>In conclusion, this report successfully demonstrates the design and development of a compact, accurate, and cost-effective wearable device for heart rate monitoring, essential for sleep tracking systems. Rigorous testing validated the device's high accuracy, achieving a strong correlation coefficient (R = 0.87) compared to a commercial Fitbit, confirming its suitability for consumer use and potential for smart sleep phase analysis. Notably, we achieved significant battery optimization, extending continuous operation to nearly 17 hours on a modest 245 mAh battery through strategic dual-processor management. Furthermore, the economical production price of just 49 DKK per unit highlights the project's success in meeting our core priorities: low cost, low power consumption, compactness, and high accuracy.</p>
+                            <div class="carousel-arrow prev" aria-label="Previous slide">
+                                <i class="fas fa-chevron-left carousel-arrow-icon" aria-hidden="true"></i>
+                            </div>
+                            <div class="carousel-arrow next" aria-label="Next slide">
+                                <i class="fas fa-chevron-right carousel-arrow-icon" aria-hidden="true"></i>
+                            </div>
+                            <div class="carousel-indicators" role="tablist" aria-label="Carousel indicators">
+                                <div class="carousel-indicator active" role="tab" aria-selected="true" aria-label="Slide 1"></div>
+                                <div class="carousel-indicator" role="tab" aria-selected="false" aria-label="Slide 2"></div>
+                            </div>
                         </div>
+                    
+                    <p>The graph demonstrates the heart rate data recorded by our wristband (dashed red
+                        line) alongside a Fitbit Inspire 2 (solid blue line). The two traces display similar patterns,
+                        indicating that the wristband’s performance is in line with the FitBit’s results, despite occasional variations we can confidentily validate our wearable heart rate monitor can compete
+                        favourably with leading consumer brands both in terms of affordability and accuracy.</p>
 
-                        <div class="details-section">
-                            <h4>How we grew and what we learned </h4>
-                            <p>We began this project with a vision—to bridge our electronics background with the challenge of building a real, market-ready device. Stepping beyond classroom theory, we quickly discovered that translating formulas and textbook concepts into a fully functional product demanded far more than technical know-how. Every phase, from designing custom PCBs and optimizing firmware for power efficiency, to implementing robust signal processing and crafting a user-friendly mobile app, forced us to adapt and learn on the fly.
-                                The steepest learning curves often came from setbacks. Early signal integrity issues, unexpected power drains, and Missing data packets were not just obstacles—they were catalysts for deeper understanding. Debugging these problems pushed us to validate every link in our system data pipeline, ensuring each step functioned as intended. Each failure forced us to question assumptions, communicate more clearly, and become more resourceful engineers.
-                                   By the end of the project, we weren’t just students recalling lecture slides—we had become engineers who welcome uncertainty and complexity. We learned to see setbacks not as dead ends, but as opportunities to understand our system more deeply. Most importantly, we realized that building something truly innovative requires not just technical skill, but also resilience, adaptability, and a commitment to continuous learning.</p>
-                        </div>
 
-                            <div class="details-section">
-                                <h4>Device in Action</h4>
-                                <p>Below is a real-time timelapse video showing the device in use alongside a Fitbit for comparison testing. </p>
-                                
-                                <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; margin: 2rem auto; max-width: 800px; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);">
-                                    <iframe 
-                                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px;"
-                                        src="https://www.youtube.com/embed/UYs4To6Wsxo" 
-                                        title="Wireless heart rate tracker demo"
-                                        frameborder="0" 
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                        allowfullscreen>
-                                    </iframe>
-                                </div>
-                            </div>
-
-                        
-                         <div class="project-links-bottom">
-                            <a href="https://github.com/AlanEEng/WirelessHRTracker.git" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fab fa-github" aria-hidden="true"></i> View on GitHub</a>
-                            <a href="Asset/Circuit_kicat-1.png" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fas fa-file-pdf" aria-hidden="true"></i> View Schematic</a>
-                        </div>
-                    </div>
-                    </div>
-
-                <article class="project-card" data-category="hardware firmware software">
-                    <div class="project-image">
-                        <img src="Asset/project2_potentiostat.png" alt="Custom Potentiostat Instrument" loading="lazy">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#project2-details" class="details-link"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</a>
-                                <a href="https://github.com/yourusername/potentiostat" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Code</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <span class="project-tags">
-                            <span class="tag">Hardware</span>
-                            <span class="tag">Python</span>
-                            <span class="tag">Instrumentation</span>
-                        </span>
-                        <h3>Custom Potentiostat with Python User Interface</h3>
-                        <p>A professional-grade electrochemical measurement instrument with precision analog front-end circuitry and an intuitive Python GUI for experimental control and data analysis.</p>
-                    </div>
-                </article>
-
-                <div id="project2-details" class="project-details">
-                    <div class="project-details-content">
-                        <span class="close-details" aria-label="Close details">&times;</span>
-                        <h3>Custom Potentiostat with Python User Interface</h3>
-                        
-                        <div class="details-gallery">
-                            <img src="Asset/project2_potentiostat.png" alt="Complete Potentiostat System" loading="lazy">
-                            <img src="Asset/project2_circuit.jpg" alt="Precision Analog Frontend Circuit" loading="lazy">
-                            <img src="Asset/project2_gui.jpg" alt="Python GUI Interface for Electrochemical Analysis" loading="lazy">
-                        </div>
-                        </div>
-                        
-                        <div class="details-section">
-                            <h4>Project Overview</h4>
-                            <p>This project involved the development of a complete electrochemical measurement system, featuring a high-precision potentiostat with an intuitive Python-based user interface. The system enables researchers and engineers to perform various electrochemical techniques with laboratory-grade accuracy at a fraction of the cost of commercial instruments.</p>
-                            
-                            <div class="project-goals">
-                                <h5>Key Objectives:</h5>
-                                <ul>
-                                    <li>Achieve sub-nanoamp current measurement resolution</li>
-                                    <li>Support multiple electrochemical techniques (CV, CA, EIS, etc.)</li>
-                                    <li>Develop an intuitive, feature-rich Python GUI for experiment control</li>
-                                    <li>Create a modular design for easy customization and upgrading</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="details-section">
-                            <h4>Technical Implementation</h4>
-                            
-                            <div class="implementation-subsection">
-                                <h5>Hardware Architecture</h5>
-                                <p>The potentiostat hardware was designed with a focus on precision and noise immunity:</p>
-                                <ul>
-                                    <li><strong>Analog Front-End:</strong> Precision op-amps (OPA192, AD8608) configured as potentiostat control loop</li>
-                                    <li><strong>Current Measurement:</strong> Transimpedance amplifier with switchable gain stages (1nA to 100mA ranges)</li>
-                                    <li><strong>DAC/ADC:</strong> 16-bit DAC for potential control, 24-bit delta-sigma ADC for current measurement</li>
-                                    <li><strong>Microcontroller:</strong> STM32F4 series MCU handling real-time control, measurement, and communication</li>
-                                    <li><strong>Isolation:</strong> Full galvanic isolation between the measurement circuit and computer interface</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="implementation-subsection">
-                                <h5>Firmware Architecture</h5>
-                                <p>The firmware implements a robust control system with several features:</p>
-                                <ul>
-                                    <li>Real-time potential control with PID feedback loop</li>
-                                    <li>Multiple electrochemical technique implementations (Cyclic Voltammetry, Chronoamperometry, etc.)</li>
-                                    <li>Adaptive sampling rate based on signal dynamics</li>
-                                    <li>USB Communication protocol with command validation and error handling</li>
-                                    <li>Onboard data buffering to ensure no data loss during high-speed measurements</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="implementation-subsection">
-                                <h5>Python GUI Development</h5>
-                                <p>The user interface was built using PyQt5 with a focus on usability:</p>
-                                <ul>
-                                    <li>Intuitive experiment setup with parameter validation</li>
-                                    <li>Real-time data visualization using Matplotlib integration</li>
-                                    <li>Automated data analysis tools for common electrochemical parameters</li>
-                                    <li>Data export in multiple formats (CSV, JSON, specialized formats)</li>
-                                    <li>Automated report generation capabilities</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="details-section">
-                            <h4>Challenges & Solutions</h4>
-                            
-                            <div class="challenge-item">
-                                <h5>Low-Current Measurement Noise</h5>
-                                <p>Achieving sub-nanoamp measurement resolution required careful PCB layout and shielding. I implemented a multi-layer PCB with guard rings, dedicated analog ground planes, and strategic component placement to achieve a noise floor below 500 pA peak-to-peak.</p>
-                            </div>
-                            
-                            <div class="challenge-item">
-                                <h5>Wide Dynamic Range</h5>
-                                <p>Electrochemical measurements often span 6+ orders of magnitude in current. I designed an auto-ranging system with seamless gain switching and overlapping ranges to provide accurate measurements from 1nA to 100mA without manual intervention.</p>
-                            </div>
-                            
-                            <div class="challenge-item">
-                                <h5>Real-Time Performance</h5>
-                                <p>High-speed techniques like Fast-Scan Cyclic Voltammetry require precise timing and rapid data acquisition. I implemented a dual-core architecture where one core handles critical timing while the second manages communication and non-time-critical tasks.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="details-section">
-                            <h4>Results & Impact</h4>
-                            <p>The completed potentiostat system delivers impressive performance metrics:</p>
-                            <ul>
-                                <li>Current measurement range: ±1nA to ±100mA with auto-ranging</li>
-                                <li>Potential control range: ±2V with 100μV resolution</li>
-                                <li>Maximum sampling rate: 10kHz for high-speed techniques</li>
-                                <li>Cost: Approximately 15% of comparable commercial instruments</li>
-                            </ul>
-                            <p>This instrument has been successfully deployed in multiple research laboratories and has enabled several publications in electrochemical sensors and materials characterization. The open-source design has also been adopted and modified by researchers worldwide for specialized applications.</p>
-                        </div>
-                        
-                        <div class="project-links-bottom">
-                            <a href="https://github.com/yourusername/potentiostat" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fab fa-github" aria-hidden="true"></i> View on GitHub</a>
-                            <a href="Asset/project2_documentation.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fas fa-file-pdf" aria-hidden="true"></i> Documentation</a>
-                        </div>
-                    </div>
+                        <p>The scatter plot illustrates (2nd slide) the correlation between heart rate measurements recorded by our wristband and the Fitbit Inspire 2. Each point represents a
+                        pair of concurrent heart rate readings from the two devices. The red line represents
+                        the line of best fit, indicating the general trend of the relationship. The Pearson correlation coefficient of R = 0.873 showcases a strong positive correlation between the measurements from the wristband and the Fitbit</p>
                 </div>
                 
-
+                <!-- Modal for enlarged accuracy graph -->
+                <div id="accuracy-modal" class="diagram-modal">
+                    <span class="close-accuracy" aria-label="Close accuracy graph">×</span>
+                    <img src="Asset/sleep_wearable_accuracy.jpg" class="diagram-modal-content" id="enlarged-accuracy" alt="Enlarged Accuracy Comparison Graph">
+                </div>
+            </div> <!-- End of Key Achievements & Impact details-section -->
+            
+            <div class="details-section">
+                <h4>Areas for Improvement</h4>
+                <p>In this section, we delve into potential optimizations for the system, focusing particularly on power management and operational efficiency.</p>
                 
-        </div>
-    </section>
+               
+                <div class="implementation-subsection">
+                    <h5>Charging Mechanism</h5>
+                    <p>To further compact the design, the existing USB-C module could be replaced with a wireless charging system. This not only reduces physical space but also enhances the user experience by eliminating the need for wired connections.</p>
+                </div>
+                
+                
+                
+                <div class="implementation-subsection">
+                    <h5>Power Supply Optimization</h5>
+                    <p>A major area for improvement is the system's power supply, using a switch-mode power suply would drastically improve our energy efficiency:</p>
+                    
+                    <div class="challenge-item">
+                        <h5>Bluetooth Protocol</h5>
+                        <p>we have implemented the Bluetooth 4.0 protocol instead of the newer 5.0 version, which allows us to send 251bytes. Allowing us to send fewer and larger data sets conserving more power</p>
+                    </div>
+                </div>
+            </div> <!-- End of Areas for Improvement details-section -->
+        
+            <div class="details-section">
+                <h4>Technology Stack: The Toolkit Behind the Innovation</h4>
+                <ul>
+                    <li><strong>Hardware:</strong> Photodiodes, ARM CORE Development, ESP32 Development, Op-Amps, Accelerometer, PowerSupply, LiPo BMS, USB-C.</li>
+                    <li><strong>Schematic/PCB Design:</strong> KiCad.</li>
+                    <li><strong>Firmware:</strong> C90 (STM8S via ST Visual Develop), C/ESP-IDF (ESP32)</li>
+                    <li><strong>Software (Mobile):</strong> Flutter (Dart), Digital Signal Processing (FFT).</li>
+                    <li><strong>Testing & Validation:</strong> Oscilloscope, Function Generator, Multimeter, Shunt Resistor, Benchmark ( Fitbit).</li>
+                </ul>
+            </div> <!-- End of Technology Stack details-section -->
+        
+            <div class="details-section">
+                <h4>Conclusion: More Than Just a Project</h4>
+                <p>In conclusion, this report successfully demonstrates the design and development of a compact, accurate, and cost-effective wearable device for heart rate monitoring, essential for sleep tracking systems. Rigorous testing validated the device's high accuracy, achieving a strong correlation coefficient (R = 0.87) compared to a commercial Fitbit, confirming its suitability for consumer use and potential for smart sleep phase analysis. Notably, we achieved significant battery optimization, extending continuous operation to nearly 17 hours on a modest 245 mAh battery through strategic dual-processor management. Furthermore, the economical production price of just 49 DKK per unit highlights the project's success in meeting our core priorities: low cost, low power consumption, compactness, and high accuracy.</p>
+            </div> <!-- End of Conclusion details-section -->
+
+            <div class="details-section">
+                <h4>How we grew and what we learned </h4>
+                <p>We began this project with a vision—to bridge our electronics background with the challenge of building a real, market-ready device. Stepping beyond classroom theory, we quickly discovered that translating formulas and textbook concepts into a fully functional product demanded far more than technical know-how. Every phase, from designing custom PCBs and optimizing firmware for power efficiency, to implementing robust signal processing and crafting a user-friendly mobile app, forced us to adapt and learn on the fly.
+                    The steepest learning curves often came from setbacks. Early signal integrity issues, unexpected power drains, and Missing data packets were not just obstacles—they were catalysts for deeper understanding. Debugging these problems pushed us to validate every link in our system data pipeline, ensuring each step functioned as intended. Each failure forced us to question assumptions, communicate more clearly, and become more resourceful engineers.
+                       By the end of the project, we weren’t just students recalling lecture slides—we had become engineers who welcome uncertainty and complexity. We learned to see setbacks not as dead ends, but as opportunities to understand our system more deeply. Most importantly, we realized that building something truly innovative requires not just technical skill, but also resilience, adaptability, and a commitment to continuous learning.</p>
+            </div> <!-- End of How we grew details-section -->
+
+            <div class="details-section">
+                <h4>Device in Action</h4>
+                <p>Below is a real-time timelapse video showing the device in use alongside a Fitbit for comparison testing. </p>
+                
+                <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; margin: 2rem auto; max-width: 800px; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);">
+                    <iframe 
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px;"
+                        src="https://www.youtube.com/embed/UYs4To6Wsxo" 
+                        title="Wireless heart rate tracker demo"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div> <!-- End of Device in Action details-section -->
+
+            <div class="project-links-bottom">
+                <a href="https://github.com/AlanEEng/WirelessHRTracker.git" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fab fa-github" aria-hidden="true"></i> View on GitHub</a>
+                <a href="Asset/Circuit_kicat-1.png" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fas fa-file-pdf" aria-hidden="true"></i> View Schematic</a>
+            </div>
+        </div> <!-- End of project-details-content -->
+    </div> <!-- End of project1-details -->
+
+    <div id="project2-details" class="project-details">
+        <div class="project-details-content">
+            <span class="close-details" aria-label="Close details">×</span>
+            <h3>Custom Potentiostat with Python User Interface</h3>
+            
+            <div class="details-gallery">
+                <img src="Asset/project2_potentiostat.png" alt="Complete Potentiostat System" loading="lazy">
+                <img src="Asset/project2_circuit.jpg" alt="Precision Analog Frontend Circuit" loading="lazy">
+                <img src="Asset/project2_gui.jpg" alt="Python GUI Interface for Electrochemical Analysis" loading="lazy">
+            </div>
+            
+            <div class="details-section">
+                <h4>Project Overview</h4>
+                <p>This project involved the development of a complete electrochemical measurement system, featuring a high-precision potentiostat with an intuitive Python-based user interface. The system enables researchers and engineers to perform various electrochemical techniques with laboratory-grade accuracy at a fraction of the cost of commercial instruments.</p>
+                
+                <div class="project-goals">
+                    <h5>Key Objectives:</h5>
+                    <ul>
+                        <li>Achieve sub-nanoamp current measurement resolution</li>
+                        <li>Support multiple electrochemical techniques (CV, CA, EIS, etc.)</li>
+                        <li>Develop an intuitive, feature-rich Python GUI for experiment control</li>
+                        <li>Create a modular design for easy customization and upgrading</li>
+                    </ul>
+                </div>
+            </div> <!-- End of Project Overview details-section -->
+            
+            <div class="details-section">
+                <h4>Technical Implementation</h4>
+                
+                <div class="implementation-subsection">
+                    <h5>Hardware Architecture</h5>
+                    <p>The potentiostat hardware was designed with a focus on precision and noise immunity:</p>
+                    <ul>
+                        <li><strong>Analog Front-End:</strong> Precision op-amps (OPA192, AD8608) configured as potentiostat control loop</li>
+                        <li><strong>Current Measurement:</strong> Transimpedance amplifier with switchable gain stages (1nA to 100mA ranges)</li>
+                        <li><strong>DAC/ADC:</strong> 16-bit DAC for potential control, 24-bit delta-sigma ADC for current measurement</li>
+                        <li><strong>Microcontroller:</strong> STM32F4 series MCU handling real-time control, measurement, and communication</li>
+                        <li><strong>Isolation:</strong> Full galvanic isolation between the measurement circuit and computer interface</li>
+                    </ul>
+                </div>
+                
+                <div class="implementation-subsection">
+                    <h5>Firmware Architecture</h5>
+                    <p>The firmware implements a robust control system with several features:</p>
+                    <ul>
+                        <li>Real-time potential control with PID feedback loop</li>
+                        <li>Multiple electrochemical technique implementations (Cyclic Voltammetry, Chronoamperometry, etc.)</li>
+                        <li>Adaptive sampling rate based on signal dynamics</li>
+                        <li>USB Communication protocol with command validation and error handling</li>
+                        <li>Onboard data buffering to ensure no data loss during high-speed measurements</li>
+                    </ul>
+                </div>
+                
+                <div class="implementation-subsection">
+                    <h5>Python GUI Development</h5>
+                    <p>The user interface was built using PyQt5 with a focus on usability:</p>
+                    <ul>
+                        <li>Intuitive experiment setup with parameter validation</li>
+                        <li>Real-time data visualization using Matplotlib integration</li>
+                        <li>Automated data analysis tools for common electrochemical parameters</li>
+                        <li>Data export in multiple formats (CSV, JSON, specialized formats)</li>
+                        <li>Automated report generation capabilities</li>
+                    </ul>
+                </div>
+            </div> <!-- End of Technical Implementation details-section -->
+            
+            <div class="details-section">
+                <h4>Challenges & Solutions</h4>
+                
+                <div class="challenge-item">
+                    <h5>Low-Current Measurement Noise</h5>
+                    <p>Achieving sub-nanoamp measurement resolution required careful PCB layout and shielding. I implemented a multi-layer PCB with guard rings, dedicated analog ground planes, and strategic component placement to achieve a noise floor below 500 pA peak-to-peak.</p>
+                </div>
+                
+                <div class="challenge-item">
+                    <h5>Wide Dynamic Range</h5>
+                    <p>Electrochemical measurements often span 6+ orders of magnitude in current. I designed an auto-ranging system with seamless gain switching and overlapping ranges to provide accurate measurements from 1nA to 100mA without manual intervention.</p>
+                </div>
+                
+                <div class="challenge-item">
+                    <h5>Real-Time Performance</h5>
+                    <p>High-speed techniques like Fast-Scan Cyclic Voltammetry require precise timing and rapid data acquisition. I implemented a dual-core architecture where one core handles critical timing while the second manages communication and non-time-critical tasks.</p>
+                </div>
+            </div> <!-- End of Challenges & Solutions details-section -->
+            
+            <div class="details-section">
+                <h4>Results & Impact</h4>
+                <p>The completed potentiostat system delivers impressive performance metrics:</p>
+                <ul>
+                    <li>Current measurement range: ±1nA to ±100mA with auto-ranging</li>
+                    <li>Potential control range: ±2V with 100μV resolution</li>
+                    <li>Maximum sampling rate: 10kHz for high-speed techniques</li>
+                    <li>Cost: Approximately 15% of comparable commercial instruments</li>
+                </ul>
+                <p>This instrument has been successfully deployed in multiple research laboratories and has enabled several publications in electrochemical sensors and materials characterization. The open-source design has also been adopted and modified by researchers worldwide for specialized applications.</p>
+            </div> <!-- End of Results & Impact details-section -->
+            
+            <div class="project-links-bottom">
+                <a href="https://github.com/yourusername/potentiostat" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fab fa-github" aria-hidden="true"></i> View on GitHub</a>
+                <a href="Asset/project2_documentation.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fas fa-file-pdf" aria-hidden="true"></i> Documentation</a>
+            </div>
+        </div> <!-- End of project-details-content -->
+    </div> <!-- End of project2-details -->
+                
 
     <section id="experience">
         <div class="container">
@@ -972,7 +966,7 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 Alan Alkhayat. All rights reserved.</p>
+                <p>© 2025 Alan Alkhayat. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -985,7 +979,8 @@
 <div id="audio-player-container" class="audio-player-container">
     <!-- Floating Audio Player -->
     <div class="floating-audio-player" id="floating-player">
-        <audio id="article-audio" src="Asset/HR_Voice_AI.mp3" preload="metadata"></audio>
+        <!-- Initial src can be empty or a default, as it will be set dynamically -->
+        <audio id="article-audio" src="" preload="metadata"></audio>
         <div class="player-controls">
             <button class="audio-control-btn" id="play-pause-btn">
                 <i class="fas fa-play" id="play-icon"></i>
