@@ -201,7 +201,7 @@
                         
                         <div class="details-section">
                             <h4>Project Overview</h4>
-                            <p>Imagine waking up refreshed, not startled by a jarring alarm. That was the vision behind this project: a compact, low-cost, low-Power IoT wearable engineered from the ground up to understand your sleep cycles through heart rate measurement. This endeavor was a deep dive into the complete IoT product lifecycle, spanning the design and development of custom hardware, firmware, and mobile APP development.</p>
+                            <p>Imagine waking up refreshed, not startled by a jarring alarm. That was the vision behind this project: a compact, low-cost, low-Power IoT wearable engineered from the ground up to understand your sleep cycles through heart rate measurement. This endeavor was a deep dive into the complete IoT product lifecycle, spanning the design and development of custom hardware, firmware, and mobile app development.</p>
                             
                             <div class="project-goals">
                                 <h5>The Core Engineering Challenge:</h5>
@@ -233,6 +233,8 @@
                                         <div class="carousel-indicator" role="tab" aria-selected="false" aria-label="Slide 2"></div>
                                     </div>
                                 </div>
+                                <h5>Contributors</h5>
+                                <p>This project was a fully collaborative effort between two students, emphasizing joint involvement in every aspect rather than dividing tasks. We tackled each major system component together—hardware design, firmware development, mobile app creation, and integration—to develop a comprehensive, end-to-end understanding. This approach allowed continuous discussion, rapid troubleshooting, and iterative refinement, ensuring both team members gained deep insights and hands-on experience across the entire engineering process. Ultimately, our collaborative method strengthened the technical outcomes and ensured a unified vision throughout the product's development lifecycle.</p>
                         
                         <div class="details-section">
                             <h4>Our Innovative Solution</h4>
@@ -245,7 +247,7 @@
                                     <span class="close-components" aria-label="Close image">&times;</span>
                                     <img src="Asset/sleep_wearable_device.png" class="diagram-modal-content" id="enlarged-component" alt="Enlarged view of Sleep Wearable Device">
                                 </div>
-                                
+                                  
                                 <p>To master the critical power challenge for all-night operation and to keep cost low, we engineered a power management strategy, using a dual-processor architecture. An ultra-low-power STM8S microcontroller acted as the dedicated 'sensing engine.' It continuously sampled Heart Rate (PPG) data at a precise 50Hz – a frequency also chosen to leverage nyquist-shannon theorem of aliasing to filter out common 50Hz environmental noise without extra hardware filters. (See 3rd and 4th slide below)</p>
                                 
                                 <p>The true power savings, however, were unlocked by the role of its partner, an ESP32-C3 Mini. This more powerful MCU remained in Deep Sleep mode for the vast majority of the time, waking for mere milliseconds only when signaled by the STM8S to store, connect and transmit data to our mobile application. (See 2nd slide)</p>
@@ -302,7 +304,7 @@
                         <div class="implementation-subsection">
                             <h5>Engineering for Compactness</h5>
                                 
-                            <p>A core design critera from the outset was to create a truly wearable and unobtrusive device. This necessitated attention to component selection for minimal footprint and a highly compact Printed Circuit Board (PCB) layout. We successfully engineered the entire system onto a mere 35mm x 19mm PCB, a significant achievement given the inclusion of two microcontrollers, a novel analog front-end for PPG sensing, power/and battery management systems, and the ESP32's integrated antenna.</p>
+                            <p>A core design criteria from the outset was to create a truly wearable and unobtrusive device. This necessitated attention to component selection for minimal footprint and a highly compact Printed Circuit Board (PCB) layout. We successfully engineered the entire system onto a mere 35mm x 19mm PCB, a significant achievement given the inclusion of two microcontrollers, a novel analog front-end for PPG sensing, power/and battery management systems, and the ESP32's integrated antenna.</p>
                            
                             <p>For cost-effectiveness, we committed to a 2-layer PCB design. This presented a considerable routing challenge compared to a multi-layer board, especially for a mixed-signal circuit where attention to PCB best practices becomes near critical. However, we were able to implement best practices even within these constraints. This included clear differentiation and separation of power, analog, and digital sections on the board to minimize noise coupling and ensure signal integrity. Ground planes were carefully managed, and trace routing for sensitive analog signals was prioritized to shield them from digital interference, all contributing to the reliable performance of our PPG sensor</p>
                                  
@@ -340,7 +342,7 @@
 
                             <h5>Signal path and System Validation</h5>
                                 
-                            <p>Before we could even begin to analyze complex physiological signals, we first had to build undoubtable trust in our entire data pipeline. We achieved this through end-to-End, Known Signal Validation. By injecting a precise 1.1Hz sine wave from a function generator directly into the STM8S microcontroller's ADC, we traced its journey through every step of the system. The resulting clean, perfectly reconstructed sine wave (1st slide) – captured after traversing STM8S buffers, UART, ESP32 buffers, BLE, and mobile app reassembly – conclusively verified the integrity of our entire data pathway, timing and packaging scheme. This validation ensured that any variations seen later with the actual PPG sensor were due to physiology or sensor noise, not systemic data corruption.</p>
+                            <p>Before we could even begin to analyze complex physiological signals, we first had to build undoubtable trust in our entire data pipeline. We achieved this through end-to-end, Known Signal Validation. By injecting a precise 1.1Hz sine wave from a function generator directly into the STM8S microcontroller's ADC, we traced its journey through every step of the system. The resulting clean, perfectly reconstructed sine wave (1st slide) – captured after traversing STM8S buffers, UART, ESP32 buffers, BLE, and mobile app reassembly – conclusively verified the integrity of our entire data pathway, timing and packaging scheme. This validation ensured that any variations seen later with the actual PPG sensor were due to physiology or sensor noise, not systemic data corruption.</p>
                                 
                                     <div class="image-carousel custom-carousel" data-modal-id="components-modal">
                                         <div class="carousel-slides">
@@ -375,12 +377,12 @@
                             <div class="app-showcase">
                                 
                                 <div class="app-description">
-                                    <h4>Costum Mobile App & On-App DSP</h4>
+                                    <h4>Custom Mobile App & On-App DSP</h4>
                                     <p>The data's journey culminated in a user-friendly mobile application, developed using Flutter for cross-platform compatibility. This app served not only as the BLE client and data display interface but also housed critical Digital Signal Processing (DSP) capabilities.</p>
                                     
-                                    <p>A key challenge was transmitting enough continuous data for meaningful Fast Fourier Transform (FFT) analysis given BLE 4.0's 20-byte packet limitation. Our solution was an circular buffer on the app. The ESP32 firmware buffered 10 seconds (500 bytes) of heart rate data, which the app requested in 25 consecutive GATT requests. The app then aggregated these segments and maintained a 50-second rolling window (2500 samples) for fast fourier transform (FFT) processing. This strategy achieved a fine 1.2 BPM frequency resolution for accurate heart rate detection, While offloading intensive computation and thus Power consumption from the wearable.</p>
+                                    <p>A key challenge was transmitting enough continuous data for meaningful Fast Fourier Transform (FFT) analysis given BLE 4.0's 20-byte packet limitation. Our solution was an circular buffer on the app. The ESP32 firmware buffered 10 seconds (500 bytes) of heart rate data, which the app requested in 25 consecutive GATT requests. The app then aggregated these segments and maintained a 50-second rolling window (2500 samples) for Fast Fourier Transform (FFT) processing. This strategy achieved a fine 1.2 BPM frequency resolution for accurate heart rate detection, While offloading intensive computation and thus Power consumption from the wearable.</p>
                                     
-                                    <p>For user frindlyness, Unique identification and communication, we implemented custom 128-bit UUIDs for our BLE GATT services and characteristics. This ensured the app would only identify That given device and therefore not connecting to or showing other devices in the area.</p>
+                                    <p>For user-friendliness, Unique identification and communication, we implemented custom 128-bit UUIDs for our BLE GATT services and characteristics. This ensured the app would only identify That given device and therefore not connecting to or showing other devices in the area.</p>
                                 </div>
                                 <div class="app-image">
                                     <img src="Asset/wearable_app.jpg" alt="Sleep Wearable Mobile Application Interface" loading="lazy" class="app-screenshot">
@@ -568,11 +570,11 @@
                                 
                                 <div class="implementation-subsection">
                                     <h5>Power supply Optimization</h5>
-                                    <p>A major area for improvement is the system's power supply, using a switch mode power suply would drastickly improve our energy efficiency:</p>
+                                    <p>A major area for improvement is the system's power supply, using a switch-mode power suply would drastickly improve our energy efficiency:</p>
                                     
                                     <div class="challenge-item">
                                         <h5>Bluetooth Protocol</h5>
-                                        <p>we have implemented the bluetooth 4.0 protocol and not the newer version 5.0 this new version allows us to send 251bytes. Allowing us to send fewer and larger data sets conserving more power</p>
+                                        <p>we have implemented the bluetooth 4.0 protocol instead of the newer 5.0 version, which allows us to send 251bytes. Allowing us to send fewer and larger data sets conserving more power</p>
                                     </div>
                                 </div>
                             </div>
