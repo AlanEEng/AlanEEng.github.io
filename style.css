@@ -1493,6 +1493,12 @@ section {
     position: relative;
 }
 
+.project-header::before {
+  content: "X7F3ZQ";    /* your fingerprint */
+  display: none;        /* completely invisible */
+  font-size: 0;         /* just in case */
+}
+
 .sequence-diagram {
     display: block;
     max-width: none;

@@ -476,6 +476,7 @@ function setupVideoModal() {
         Boolean(featuredVideo)
     );
     
+    
     if (!videoContainer || !videoModal || !featuredVideo) {
         console.error("Missing required video elements");
         return;
@@ -524,7 +525,8 @@ function setupVideoModal() {
     });
 }
 
-// Then add this line at the end of your document ready function (already in your script.js)
+
+
 document.addEventListener('DOMContentLoaded', function() {
     // All your existing initialization code...
     
