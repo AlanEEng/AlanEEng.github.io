@@ -2247,7 +2247,7 @@ figcaption {
 
 /* Audio Player Styles */
 
-/* Floating Audio Bubble Button */
+/* Floating Audio Bubble Button (original, not used for the main bubble now) */
 .audio-listen-btn {
     position: fixed;
     top: 80px;
@@ -2282,7 +2282,7 @@ figcaption {
     font-size: 1.3rem;
 }
 
-/* Tooltip for audio button */
+/* Tooltip for audio button (original, not used for the main bubble now) */
 .audio-listen-btn::after {
     content: 'Listen to article';
     position: absolute;
@@ -2403,7 +2403,7 @@ figcaption {
     background-color: var(--light-gray);
 }
 
-/* Alternative button style for inside project details */
+/* Alternative button style for inside project details (kept for reference, but removed from HTML) */
 .project-audio-btn {
     background: var(--light-gray);
     color: var(--text-dark);
@@ -2459,7 +2459,7 @@ figcaption {
     }
 }
 
-/* Pulse animation for the listen button */
+/* Pulse animation for the listen button (original, not used for the main bubble now) */
 @keyframes pulse {
     0% {
         box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
@@ -2480,7 +2480,7 @@ figcaption {
     animation: none;
 }
 
-/* Floating Audio Bubble - Minimal CSS */
+/* Floating Audio Bubble - Minimal CSS (This is the one being used) */
 .audio-bubble {
     position: fixed !important;
     top: 80px !important;
@@ -2500,6 +2500,7 @@ figcaption {
     z-index: 1003 !important;
     transition: all 0.3s ease !important;
     animation: subtle-pulse 2s infinite !important;
+    overflow: visible !important; /* Crucial for the label to be visible outside the circle */
 }
 
 .audio-bubble:hover {
@@ -2528,5 +2529,76 @@ figcaption {
         left: 10px !important;
         width: 48px !important;
         height: 48px !important;
+    }
+}
+
+/* NEW: Styles for the "Listen to article" label */
+.audio-bubble-label {
+    position: absolute;
+    top: 50%;
+    left: 100%; /* Position to the right of the bubble */
+    transform: translateY(-50%) translateX(-10px); /* Vertically center and start slightly left for slide-in */
+    margin-left: 15px; /* Space between bubble and label */
+    
+    background: var(--primary-color);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 25px; /* Pill shape */
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap; /* Keep text on one line */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    
+    display: flex; /* For text and arrow alignment */
+    align-items: center;
+    
+    opacity: 0; /* Start hidden */
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+}
+
+/* Arrow using pseudo-element */
+.audio-bubble-label::before {
+    content: '';
+    position: absolute;
+    left: -8px; /* Position to overlap with the label */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid var(--primary-color); /* Color of the label background */
+}
+
+/* Show label when the parent bubble has the 'show-label' class */
+.audio-bubble.show-label .audio-bubble-label {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(0); /* Slide to final position */
+}
+
+/* Dark theme support for label */
+.dark-theme .audio-bubble-label {
+    background: var(--secondary-color); /* Use secondary for dark theme */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme .audio-bubble-label::before {
+    border-right-color: var(--secondary-color);
+}
+
+/* Hover effect for the bubble, affecting the label */
+.audio-bubble:hover .audio-bubble-label {
+    background-color: var(--secondary-color); /* Match bubble hover */
+}
+.audio-bubble:hover .audio-bubble-label::before {
+    border-right-color: var(--secondary-color);
+}
+
+/* Responsive for label */
+@media (max-width: 768px) {
+    .audio-bubble-label {
+        display: none; /* Hide label on smaller screens to save space */
     }
 }

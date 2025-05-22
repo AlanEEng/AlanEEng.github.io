@@ -569,7 +569,7 @@ function initializeAudioPlayer() {
     }
 }
 
-// Floating bubble (FIXED VERSION from instructions)
+// Floating bubble (FIXED VERSION from instructions, now with label)
 function setupFloatingAudioBubble() {
     let currentBubble = null;
     
@@ -580,18 +580,36 @@ function setupFloatingAudioBubble() {
             setTimeout(() => {
                 // Remove existing bubble if any
                 if (currentBubble) {
-                    currentBubble.remove();
+                    currentBubble.classList.remove('show-label'); // Hide label first
+                    setTimeout(() => { // Allow transition to finish before removing
+                        currentBubble.remove();
+                        currentBubble = null;
+                    }, 350); 
                 }
                 
                 // Create floating bubble
                 const bubble = document.createElement('button');
                 bubble.className = 'audio-bubble'; // Use the new class for the bubble
                 bubble.innerHTML = '<i class="fas fa-headphones"></i>';
+                
+                // Create the label element
+                const label = document.createElement('div');
+                label.className = 'audio-bubble-label';
+                label.innerHTML = '<span>Listen to article</span>';
+                
+                // Append label to the bubble
+                bubble.appendChild(label);
+                
                 bubble.onclick = window.startProjectAudio;
                 
                 document.body.appendChild(bubble);
-                currentBubble = bubble;
-            }, 300);
+                currentBubble = bubble; // Manage the bubble itself
+                
+                // Add a class to trigger label visibility after a short delay
+                setTimeout(() => {
+                    bubble.classList.add('show-label');
+                }, 350); // Slightly after bubble appears
+            }, 300); // Delay for modal to open
         });
     });
     
@@ -599,8 +617,11 @@ function setupFloatingAudioBubble() {
     document.querySelectorAll('.close-details').forEach(closeBtn => {
         closeBtn.addEventListener('click', function() {
             if (currentBubble) {
-                currentBubble.remove();
-                currentBubble = null;
+                currentBubble.classList.remove('show-label'); // Hide label first
+                setTimeout(() => { // Allow transition to finish before removing
+                    currentBubble.remove();
+                    currentBubble = null;
+                }, 350); 
             }
         });
     });
@@ -609,8 +630,11 @@ function setupFloatingAudioBubble() {
     document.querySelectorAll('.project-details').forEach(modal => {
         modal.addEventListener('click', function(e) {
             if (e.target === this && currentBubble) {
-                currentBubble.remove();
-                currentBubble = null;
+                currentBubble.classList.remove('show-label'); // Hide label first
+                setTimeout(() => { // Allow transition to finish before removing
+                    currentBubble.remove();
+                    currentBubble = null;
+                }, 350); 
             }
         });
     });
