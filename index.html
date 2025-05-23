@@ -406,7 +406,7 @@
                             
                             <p>A key challenge was transmitting enough continuous data for meaningful Fast Fourier Transform (FFT) analysis given BLE 4.0's 20-byte packet limitation. Our solution was a circular buffer on the app.  The ESP32 firmware buffered 10 seconds (500 bytes) of heart rate data, which the app retrieved through 25 consecutive GATT requests. The app aggregated these segments, maintaining a 50-second rolling window (2,500 samples) for FFT processing. This strategy achieved a fine 1.2 BPM frequency resolution for accurate heart rate detection, While offloading intensive computation and thus Power consumption from the wearable.</p>
                             
-                            <p>For user-friendliness, Unique identification and communication, we implemented custom 128-bit UUIDs for our BLE GATT services and characteristics. This ensured the app would only identify That given device and therefore not connecting to or showing other devices in the area.</p>
+                            <p>For user-friendliness, unique identification and communication, we implemented custom 128-bit UUIDs for our BLE GATT services and characteristics. This ensured the app would only identify that given device and therefore not connecting to or showing other devices in the area.</p>
                         </div>
                         <div class="app-image">
                             <img src="Asset/wearable_app.jpg" alt="Sleep Wearable Mobile Application Interface" loading="lazy" class="app-screenshot">
