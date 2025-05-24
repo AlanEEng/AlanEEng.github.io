@@ -807,16 +807,20 @@ section {
 }
 
 .bom-table-container {
-    margin: 2rem 0;
+    margin: 1.5rem 0;
     font-family: 'Poppins', sans-serif;
+}
+
+.bom-table-wrapper {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .bom-table {
     width: 100%;
     border-collapse: collapse;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
+    font-size: 0.95rem;
 }
 
 .bom-table th {
@@ -824,106 +828,101 @@ section {
     color: #333;
     font-weight: 600;
     text-align: left;
-    padding: 8px 12px;  /* Reduced padding */
-    border-bottom: 2px solid #ddd;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .bom-table td {
-    padding: 6px 12px;  /* Reduced padding */
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.bom-table tr:nth-child(even) {
-    background-color: #f9f9f9;
+    padding: 6px 12px;
+    border-bottom: 1px solid #eaedf0;
 }
 
 .bom-table tr:last-child {
     font-weight: 600;
+}
+
+.bom-table tr:last-child td {
     background-color: #f0f4f8;
+    border-top: 2px solid #ddd;
 }
 
 .bom-table tr:hover:not(:last-child) {
-    background-color: #f0f0f0;
+    background-color: #f8fafc;
 }
 
 .text-right {
     text-align: right;
 }
 
-.usd {
-    color: #666;
-    font-size: 0.85em;
-    display: block;
-    margin-top: 2px; /* Small spacing between DKK and USD */
+.price-cell {
+    position: relative;
 }
 
-.bom-description {
-    margin-top: 1rem;
-    font-size: 0.95rem;
-    color: #555;
-    line-height: 1.5;
+.usd {
+    color: #666;
+    font-size: 0.8em;
+    display: inline-block;
+    margin-left: 4px;
 }
 
 .bom-legend {
     font-size: 0.85rem;
     color: #666;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     font-style: italic;
 }
 
-@media (max-width: 768px) {
-    .bom-table-container {
-        overflow-x: auto;
-    }
-    
-    .bom-table th, .bom-table td {
-        padding: 6px 10px; /* Even more compact on mobile */
-    }
+.bom-description {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.5;
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-    .bom-table th {
-        background-color: #2c3440;
-        color: #e4e4e4;
-        border-bottom: 2px solid #3d4654;
-    }
-    
-    .bom-table td {
-        border-bottom: 1px solid #3d4654;
-    }
-    
-    .bom-table {
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    }
-    
-    .bom-table tr:nth-child(even) {
-        background-color: #21293a;
-    }
-    
-    .bom-table tr:nth-child(odd) {
-        background-color: #1a2234;
-    }
-    
-    .bom-table tr:last-child {
-        background-color: #2c3440;
-    }
-    
-    .bom-table tr:hover:not(:last-child) {
-        background-color: #2e3645;
-    }
-    
-    .usd {
-        color: #a4a4a4;
-    }
-    
-    .bom-description {
-        color: #c0c0c0;
-    }
-    
-    .bom-legend {
-        color: #a4a4a4;
-    }
+/* Dark Mode Styles */
+.dark-theme .bom-table-wrapper {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.dark-theme .bom-table th {
+    background-color: #2d3748;
+    color: #e2e8f0;
+    border-bottom: none;
+}
+
+.dark-theme .bom-table td {
+    border-bottom: 1px solid #2d3748;
+}
+
+.dark-theme .bom-table tr:nth-child(even) {
+    background-color: #1a202c;
+}
+
+.dark-theme .bom-table tr:nth-child(odd) {
+    background-color: #2d3748;
+}
+
+.dark-theme .bom-table tr:last-child td {
+    background-color: #2d3748;
+    border-top: 2px solid #4a5568;
+}
+
+.dark-theme .bom-table tr:hover:not(:last-child) {
+    background-color: #4a5568;
+}
+
+.dark-theme .usd {
+    color: #cbd5e0;
+}
+
+.dark-theme .bom-legend {
+    color: #a0aec0;
+}
+
+.dark-theme .bom-description {
+    color: #e2e8f0;
 }
 
 /* Zoomable image */
@@ -936,168 +935,6 @@ section {
 
 .zoomable-image:hover {
     opacity: 0.9;
-}
-
-.bom-table-container {
-  margin: 1.5rem 0;
-  font-family: 'Poppins', sans-serif;
-}
-
-.bom-table-wrapper {
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.bom-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.95rem;
-}
-
-.bom-table th {
-  background-color: #f0f4f8;
-  color: #333;
-  font-weight: 600;
-  text-align: left;
-  padding: 8px 12px;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.bom-table td {
-  padding: 6px 12px;
-  border-bottom: 1px solid #eaedf0;
-}
-
-.bom-table tr:last-child {
-  font-weight: 600;
-}
-
-.bom-table tr:last-child td {
-  background-color: #f0f4f8;
-  border-top: 2px solid #ddd;
-}
-
-.bom-table tr:hover:not(:last-child) {
-  background-color: #f8fafc;
-}
-
-.text-right {
-  text-align: right;
-}
-
-.price-cell {
-  position: relative;
-}
-
-.usd {
-  color: #666;
-  font-size: 0.8em;
-  display: inline-block;
-  margin-left: 4px;
-}
-
-.bom-legend {
-  font-size: 0.85rem;
-  color: #666;
-  margin-bottom: 0.5rem;
-  font-style: italic;
-}
-
-.bom-description {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  color: #555;
-  line-height: 1.5;
-}
-
-/* Dark Mode Styles */
-.dark-theme .bom-table-wrapper {
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-}
-
-.dark-theme .bom-table th {
-  background-color: #2d3748;
-  color: #e2e8f0;
-  border-bottom: none;
-}
-
-.dark-theme .bom-table td {
-  border-bottom: 1px solid #2d3748;
-}
-
-.dark-theme .bom-table tr:nth-child(even) {
-  background-color: #1a202c;
-}
-
-.dark-theme .bom-table tr:nth-child(odd) {
-  background-color: #2d3748;
-}
-
-.dark-theme .bom-table tr:last-child td {
-  background-color: #2d3748;
-  border-top: 2px solid #4a5568;
-}
-
-.dark-theme .bom-table tr:hover:not(:last-child) {
-  background-color: #4a5568;
-}
-
-.dark-theme .usd {
-  color: #cbd5e0;
-}
-
-.dark-theme .bom-legend {
-  color: #a0aec0;
-}
-
-.dark-theme .bom-description {
-  color: #e2e8f0;
-}
-
-/* Responsive layout */
-@media (max-width: 768px) {
-  .bom-table-wrapper {
-    overflow-x: auto;
-  }
-  
-  .bom-table th, 
-  .bom-table td {
-    padding: 6px 8px;
-    font-size: 0.9rem;
-  }
-  
-  .usd {
-    display: block;
-    margin-left: 0;
-    margin-top: 2px;
-  }
-}
-
-.bom-description {
-    margin-top: 1rem;
-    font-size: 0.95rem;
-    color: #555;
-    line-height: 1.5;
-}
-
-.bom-legend {
-    font-size: 0.85rem;
-    color: #666;
-    margin-bottom: 1rem;
-    font-style: italic;
-}
-
-@media (max-width: 768px) {
-    .bom-table-container {
-        overflow-x: auto;
-    }
-    
-    .bom-table th, .bom-table td {
-        padding: 8px 12px;
-    }
 }
 
 /* GitHub Tag Styling */
@@ -1156,25 +993,6 @@ section {
 .dark-theme .github-tag a:before {
     border-color: transparent #333 transparent transparent;
 }
-
-/* Dark theme support */
-.dark-theme .github-tag a {
-    background-color: #444;
-}
-
-.dark-theme .github-tag a:before {
-    border-color: transparent #333 transparent transparent;
-}
-
-/* Dark theme support */
-.dark-theme .github-tag a {
-    background-color: #444;
-}
-
-.dark-theme .github-tag a:before {
-    border-color: transparent #333 transparent transparent;
-}
-
 
 /* Specific styling for timing diagram carousel only */
 .timing-diagram-carousel {
@@ -1284,7 +1102,7 @@ section {
     align-items: center;
     cursor: pointer;
     transition: all var(--transition-fast);
-    z-index: 2;
+    z-index: 3;
     backdrop-filter: blur(2px);
 }
 
@@ -1298,32 +1116,6 @@ section {
 
 .carousel-arrow.prev {
     left: 10px;
-}
-
-.carousel-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    background-color: rgba(0, 0, 0, 0.3);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: all var(--transition-fast);
-    z-index: 3;
-    backdrop-filter: blur(2px);
-}
-
-.carousel-arrow:hover {
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.carousel-arrow.next {
-    right: 10px;
 }
 
 .carousel-arrow-icon {
@@ -2017,15 +1809,17 @@ footer {
         padding: 1rem 0;
     }
     
+    /* 1. Improve Mobile Navigation */
     nav ul {
+        top: 80px; /* Change from 70px to account for header height */
+        padding: var(--spacing-xl) 0; /* Increase padding */
+        border-radius: 0 0 8px 8px; /* Add rounded bottom corners */
         position: fixed;
-        top: 70px;
         left: 0;
         right: 0;
         background-color: var(--light-color);
         flex-direction: column;
         align-items: center;
-        padding: var(--spacing-lg) 0;
         box-shadow: var(--shadow-md);
         transform: translateY(-100%);
         opacity: 0;
@@ -2044,8 +1838,20 @@ footer {
         margin: var(--spacing-sm) 0;
     }
     
+    nav ul li a {
+        padding: 0.75rem 0; /* Increase touch target */
+        font-size: var(--text-lg); /* Larger text for easier reading */
+        color: var(--text-dark);
+        text-decoration: none;
+        font-weight: 500;
+        position: relative;
+        transition: color var(--transition-fast);
+    }
+
     .menu-toggle {
         display: flex;
+        width: 35px; /* Slightly larger for easier tapping */
+        height: 25px; /* Adjusted height */
     }
     
     .hero-content h1 {
@@ -2068,6 +1874,156 @@ footer {
     
     .footer-nav ul {
         justify-content: center;
+    }
+
+    /* 2. Fix Project Details Modal for Mobile */
+    .project-details {
+        padding: 20px 10px; /* Reduce padding */
+    }
+    
+    .project-details-content {
+        padding: var(--spacing-lg) var(--spacing-md); /* Reduce content padding */
+        margin: 0; /* Remove margin for full width */
+        border-radius: 8px 8px 0 0; /* Only round top corners */
+        max-height: 90vh; /* Limit height */
+        overflow-y: auto; /* Enable scrolling */
+    }
+    
+    .close-details {
+        right: var(--spacing-sm); /* Move closer to edge */
+        top: var(--spacing-sm);
+        z-index: 10; /* Ensure it's above content */
+        background: rgba(0,0,0,0.5); /* Add background for visibility */
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--text-2xl); /* Keep original font size */
+        color: var(--text-light); /* Make icon visible on dark background */
+    }
+
+    /* 3. Optimize Image Carousels for Mobile */
+    .custom-carousel {
+        height: 250px; /* Reduce height */
+    }
+    
+    .carousel-arrow {
+        width: 35px; /* Larger touch targets */
+        height: 35px;
+        background-color: rgba(0, 0, 0, 0.7); /* More visible */
+    }
+    
+    .carousel-arrow.next {
+        right: 5px; /* Move closer to edge */
+    }
+    
+    .carousel-arrow.prev {
+        left: 5px;
+    }
+    
+    .carousel-indicators {
+        bottom: 5px;
+    }
+    
+    .carousel-indicator {
+        width: 10px; /* Larger indicators */
+        height: 10px;
+    }
+
+    /* 4. Fix BOM Table Overflow */
+    .bom-table-container {
+        margin: 1rem -var(--spacing-md); /* Extend to container edges */
+    }
+    
+    .bom-table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    }
+    
+    .bom-table {
+        min-width: 500px; /* Ensure minimum width */
+        font-size: 0.8rem; /* Smaller text */
+    }
+    
+    .bom-table th,
+    .bom-table td {
+        padding: 4px 6px; /* Reduce padding */
+        white-space: nowrap; /* Prevent text wrapping */
+    }
+
+    /* 5. Improve App Showcase Layout */
+    .app-showcase {
+        flex-direction: column; /* Stack vertically */
+        gap: 1rem;
+    }
+    
+    .app-image {
+        order: -1; /* Put image first */
+    }
+    
+    .app-screenshot {
+        max-width: 280px; /* Limit width on mobile */
+    }
+
+    /* 7. Fix Contact Form Layout */
+    .contact-content {
+        gap: var(--spacing-lg); /* Reduce gap */
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        padding: 1rem; /* Larger touch targets */
+        font-size: var(--text-base); /* Prevent zoom on iOS */
+    }
+    
+    .social-links {
+        justify-content: center; /* Center social icons */
+        margin-top: var(--spacing-lg);
+    }
+    
+    .social-icon {
+        width: 45px; /* Larger touch targets */
+        height: 45px;
+    }
+
+    /* 12. Improve Touch Targets */
+    .btn {
+        padding: 1rem 1.5rem; /* Larger touch targets */
+        font-size: var(--text-base);
+    }
+    
+    .filter-btn {
+        padding: 0.75rem 1.25rem; /* Larger filter buttons */
+        margin: 0.25rem; /* Add margin for easier tapping */
+    }
+    
+    .project-links a {
+        padding: 0.75rem 1.25rem; /* Larger project links */
+    }
+
+    /* Audio player responsive */
+    .audio-listen-btn {
+        top: 70px;
+        left: 10px;
+        width: 48px;
+        height: 48px;
+    }
+    
+    .audio-listen-btn::after {
+        display: none; /* Hide tooltip on mobile */
+    }
+    
+    .floating-audio-player {
+        right: 10px;
+        bottom: 10px;
+        min-width: 320px;
+        padding: 8px 15px;
+    }
+    /* Responsive for label */
+    .audio-bubble-label {
+        display: none; /* Hide label on smaller screens to save space */
     }
 }
 
@@ -2114,6 +2070,82 @@ footer {
     
     .project-links-bottom {
         flex-direction: column;
+    }
+
+    /* 6. Better Typography and Spacing */
+    .details-section h4 {
+        font-size: var(--text-lg); /* Reduce heading size */
+        line-height: 1.4;
+    }
+    
+    .details-section h5 {
+        font-size: var(--text-base);
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .details-section p {
+        font-size: var(--text-sm); /* Slightly smaller body text */
+        line-height: 1.6;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .implementation-subsection {
+        margin-bottom: var(--spacing-md); /* Reduce spacing */
+    }
+
+    /* 8. Improve Audio Player Mobile Layout */
+    .floating-audio-player {
+        min-width: calc(100vw - 20px); /* Almost full width */
+        bottom: 5px;
+        right: 10px;
+        left: 10px; /* Full width approach */
+        padding: 8px 12px;
+    }
+    
+    .time-display {
+        font-size: 0.7rem; /* Smaller text */
+    }
+    
+    .audio-control-btn {
+        width: 35px; /* Slightly smaller */
+        height: 35px;
+    }
+
+    /* 9. Fix Skills Grid on Small Screens */
+    .skills-container {
+        grid-template-columns: 1fr; /* Single column */
+        gap: var(--spacing-md);
+    }
+    
+    .skill-category {
+        padding: var(--spacing-md); /* Reduce padding */
+    }
+    
+    .skill-category ul {
+        padding-left: var(--spacing-md); /* Reduce indentation */
+    }
+
+    /* 13. Fix Timeline for Mobile */
+    .timeline {
+        padding-left: 40px; /* Reduce left padding */
+    }
+    
+    .timeline::before {
+        left: 15px; /* Move line closer */
+    }
+    
+    .timeline-dot {
+        left: 9px; /* Adjust dot position */
+    }
+    
+    .timeline-content {
+        padding: var(--spacing-md); /* Reduce padding */
+    }
+
+    /* Audio player responsive */
+    .audio-listen-btn {
+        width: 44px;
+        height: 44px;
     }
 }
 
@@ -2427,38 +2459,6 @@ figcaption {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .audio-listen-btn {
-        top: 70px;
-        left: 10px;
-        width: 48px;
-        height: 48px;
-    }
-    
-    .audio-listen-btn::after {
-        display: none; /* Hide tooltip on mobile */
-    }
-    
-    .floating-audio-player {
-        right: 10px;
-        bottom: 10px;
-        min-width: 320px;
-        padding: 8px 15px;
-    }
-}
-
-@media (max-width: 480px) {
-    .floating-audio-player {
-        min-width: calc(100vw - 40px);
-    }
-    
-    .audio-listen-btn {
-        width: 44px;
-        height: 44px;
-    }
-}
-
 /* Pulse animation for the listen button (original, not used for the main bubble now) */
 @keyframes pulse {
     0% {
@@ -2519,16 +2519,6 @@ figcaption {
     }
     100% {
         box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
-    }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .audio-bubble {
-        top: 70px !important;
-        left: 10px !important;
-        width: 48px !important;
-        height: 48px !important;
     }
 }
 
@@ -2596,9 +2586,35 @@ figcaption {
     border-right-color: var(--secondary-color);
 }
 
-/* Responsive for label */
+/* 10. Add Specific Mobile Utilities */
+/* Add these new utility classes */
 @media (max-width: 768px) {
-    .audio-bubble-label {
-        display: none; /* Hide label on smaller screens to save space */
+    .mobile-scroll-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 0 -var(--spacing-md);
+        padding: 0 var(--spacing-md);
+    }
+    
+    .mobile-full-width {
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+    }
+    
+    .mobile-text-center {
+        text-align: center;
+    }
+    
+    .mobile-hide {
+        display: none !important;
+    }
+}
+
+/* 11. CSS Addition for Text Justification */
+@media (max-width: 768px) {
+    .mobile-text-justify {
+        text-align: left; /* Better than justify on mobile */
+        hyphens: auto; /* Enable hyphenation */
+        word-wrap: break-word;
     }
 }
