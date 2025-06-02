@@ -423,7 +423,7 @@ section {
 
 .section-header {
     text-align: center;
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-sm);
 }
 
 .section-header h2 {
@@ -1446,6 +1446,7 @@ section {
 #testimonials {
     background-color: var(--primary-color);
     color: white;
+    padding: var(--spacing-md) 0;
 }
 
 #testimonials .section-header h2 {

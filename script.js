@@ -209,44 +209,98 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Contact Form Validation and Submission
-    const contactForm = document.getElementById('contactForm');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Basic form validation
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            if (!name || !email || !subject || !message) {
-                alert('Please fill out all fields');
-                return;
+// Contact Form Validation and Submission
+const contactForm = document.getElementById('contactForm');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Basic form validation
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+        
+        if (!name || !email || !subject || !message) {
+            alert('Please fill out all fields');
+            return;
+        }
+        
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert('Please enter a valid email address');
+            return;
+        }
+        
+        // Disable submit button and show loading state
+        const submitButton = contactForm.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton.textContent;
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending...';
+        
+        // Create FormData object
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('_replyto', email);
+        formData.append('subject', subject);
+        formData.append('message', message);
+        
+        // Submit to Formspree
+        fetch('https://formspree.io/f/xovwqnqg', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
             }
-            
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address');
-                return;
+        })
+        .then(response => {
+            if (response.ok) {
+                // Success - show success message
+                const successMessage = document.createElement('div');
+                successMessage.className = 'form-success';
+                successMessage.innerHTML = '<p>Thank you for your message! I will get back to you soon.</p>';
+                successMessage.style.cssText = 'background: #4CAF50; color: white; padding: 1rem; border-radius: 5px; margin-top: 1rem;';
+                
+                // Reset form and show success message
+                contactForm.reset();
+                contactForm.appendChild(successMessage);
+                
+                // Remove success message after 5 seconds
+                setTimeout(() => {
+                    if (successMessage.parentNode) {
+                        successMessage.remove();
+                    }
+                }, 5000);
+            } else {
+                throw new Error('Network response was not ok');
             }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // Show error message
+            const errorMessage = document.createElement('div');
+            errorMessage.className = 'form-error';
+            errorMessage.innerHTML = '<p>Sorry, there was an error sending your message. Please try again.</p>';
+            errorMessage.style.cssText = 'background: #f44336; color: white; padding: 1rem; border-radius: 5px; margin-top: 1rem;';
             
-            // Here you would normally send the form data to a server
-            // For now, we'll just show a success message
+            contactForm.appendChild(errorMessage);
             
-            // Create success message
-            const successMessage = document.createElement('div');
-            successMessage.className = 'form-success';
-            successMessage.textContent = 'Thank you for your message! I will get back to you soon.';
-            
-            // Replace form with success message
-            contactForm.innerHTML = '';
-            contactForm.appendChild(successMessage);
+            // Remove error message after 5 seconds
+            setTimeout(() => {
+                if (errorMessage.parentNode) {
+                    errorMessage.remove();
+                }
+            }, 5000);
+        })
+        .finally(() => {
+            // Re-enable submit button
+            submitButton.disabled = false;
+            submitButton.textContent = originalButtonText;
         });
-    }
+    });
+}
     
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
