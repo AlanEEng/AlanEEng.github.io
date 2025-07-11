@@ -1482,7 +1482,7 @@ section {
 .testimonial-content {
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 8px;
-    padding: var(--spacing-lg);
+    padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-md);
     margin-bottom: var(--spacing-md);
 }
 
