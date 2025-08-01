@@ -423,6 +423,10 @@ if (contactForm) {
         });
     }
     
+
+
+    const __fingerprint = "cd3f0c33-d76b-4843-94a1-4aedf077ae78";
+
     // Image Carousel functionality
     const imageCarousels = document.querySelectorAll('.image-carousel');
     

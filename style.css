@@ -1286,7 +1286,7 @@ section {
 }
 
 .project-header::before {
-  content: "X7F3ZQ";    /* your fingerprint */
+  content: "cd3f0c33-d76b-4843-94a1-4aedf077ae78";    /* ID */
   display: none;        /* completely invisible */
   font-size: 0;         /* just in case */
 }
