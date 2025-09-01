@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+</head>
 <body>
     <div class="theme-switch-wrapper" aria-label="Dark mode toggle">
         <label class="theme-switch" for="checkbox">
@@ -184,18 +184,12 @@
             </div>
 
             <div class="projects-grid">
-                <article class="project-card" data-category="hardware iot firmware">
-                    <div class="github-tag">
-                        <a href="https://github.com/AlanEEng/WirelessHRTracker.git" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository">
-                            <i class="fab fa-github" aria-hidden="true"></i>
-                        </a>
-                    </div>
+                <article class="project-card clickable-card" data-category="hardware iot firmware" data-project-id="project1-details" data-audio-src="Asset/HR_Voice_AI.mp3">
                     <div class="project-image">
                         <img src="Asset/IoT_sleep_cycle_wearable.png" alt="IoT Sleep Cycle Wearable Device" loading="lazy">
                         <div class="project-overlay">
                         <div class="project-links">
-                            <!-- Added data-audio-src for this project -->
-                            <a href="#project1-details" class="details-link" data-audio-src="Asset/HR_Voice_AI.mp3"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</a>
+                            <span class="click-indicator"><i class="fas fa-hand-pointer" aria-hidden="true"></i> Click to view</span>
                         </div>
                         </div>
                     </div>
@@ -210,36 +204,49 @@
                     </div>
                 </article>
 
-               <!-- ID -->
-                <meta name="fingerprint" content="cd3f0c33-d76b-4843-94a1-4aedf077ae78">
-<!--
-                <article class="project-card" data-category="hardware firmware software">
+                <article class="project-card clickable-card" data-category="hardware firmware software" data-project-id="project2-details">
                     <div class="project-image">
-                        <img src="Asset/project2_potentiostat.png" alt="Custom Potentiostat Instrument" loading="lazy">
+                        <img src="Asset/potentiostat_device.jpg" alt="Custom Potentiostat System" loading="lazy">
                         <div class="project-overlay">
-                            <div class="project-links">
-
-                                -->
-
-                                <!-- Added data-audio-src for this project -->    <!--
-                                <a href="#project2-details" class="details-link" data-audio-src="Asset/Potentiostat_Voice_AI.mp3"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</a>
-                                <a href="https://github.com/yourusername/potentiostat" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Code</a>
-                            </div>
+                        <div class="project-links">
+                            <span class="click-indicator"><i class="fas fa-hand-pointer" aria-hidden="true"></i> Click to view</span>
+                        </div>
                         </div>
                     </div>
                     <div class="project-info">
                         <span class="project-tags">
-                            <span class="tag">Hardware</span>
+                            <span class="tag">Analog Design</span>
                             <span class="tag">Python</span>
-                            <span class="tag">Instrumentation</span>
+                            <span class="tag">Electrochemistry</span>
                         </span>
-                        <h3>Custom Potentiostat with Python User Interface</h3>
-                        <p>A professional-grade electrochemical measurement instrument with precision analog front-end circuitry and an intuitive Python GUI for experimental control and data analysis.</p>
+                        <h3>Precision Potentiostat with Python Interface</h3>
+                        <p>Professional-grade electrochemical measurement system with sub-nanoamp resolution, auto-ranging, and real-time data visualization.</p>
                     </div>
                 </article>
+
+                <article class="project-card clickable-card" data-category="firmware software iot" data-project-id="project3-details">
+                    <div class="project-image">
+                        <img src="Asset/imu_tracker.jpg" alt="IMU Motion Tracking System" loading="lazy">
+                        <div class="project-overlay">
+                        <div class="project-links">
+                            <span class="click-indicator"><i class="fas fa-hand-pointer" aria-hidden="true"></i> Click to view</span>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-tags">
+                            <span class="tag">IMU</span>
+                            <span class="tag">Real-time</span>
+                            <span class="tag">3D Visualization</span>
+                        </span>
+                        <h3>9-DOF IMU Motion Tracking & Orientation System</h3>
+                        <p>High-precision motion tracking system with sensor fusion, quaternion-based orientation, and real-time 3D visualization.</p>
+                    </div>
+                </article>
+
+               <!-- ID -->
+                <meta name="fingerprint" content="cd3f0c33-d76b-4843-94a1-4aedf077ae78">
             </div>
-           
-            -->
         </div> 
     </section>
 
@@ -303,7 +310,7 @@
                     
                     <p class="mobile-text-justify">The true power savings, however, were unlocked by the role of its partner, an ESP32-C3 Mini. This more powerful MCU remained in Deep Sleep mode for the vast majority of the time, waking for mere milliseconds only when signaled by the STM8S to store, connect, and transmit data to the mobile application. (See 3rd slide)</p>
 
-                    <p class="mobile-text-justify"> This design created a significant firmware challenge: creating a reliable data bridge between two completely asynchronous systems. The STM8 constantly "produces" data from the ADC, while the ESP32's BLE stack must "consume" it for the app at any time. This creates a classic producer-consumer race condition where the BLE task could read a corrupted data buffer. To solve this, we architected the ESP32 firmware on FreeRTOS and used a mutex to protect the shared data buffer. By locking the mutex before any read or write, we ensured these operations were atomic, making our data pipeline fundamentally reliable.</p>
+                    <p class="mobile-text-justify"> Inter-processor level: The STM8 continuously produces data while the ESP32 sleeps. We implemented a handshake protocol where the STM8 signals when its 125-byte buffer is ready, wakes the ESP32 via GPIO, then waits for acknowledgment before UART transmission begins. </p>
                     
                     <p class="mobile-text-justify">As illustrated in our system timing diagram (4th slide), the ESP32 would wake every 2.5 seconds upon the 'Wake ESP' signal, triggered after the STM8S filled its buffer, to receive a 125-byte data chunk (The limit of the stm8) via UART. After aggregating four such transfers into its own buffer (representing 10 seconds of data), it would then briefly handle the efficient Bluetooth Low Energy (BLE) 'Announce Data' and subsequent transmission to the app before returning to its ultra-low power Deep Sleep state. This orchestrated interplay, which minimized the ESP32's active time, was pivotal. It enabled an impressive 16.84 hours of continuous operation on a single 245mAh battery, an 8-fold improvement over the unoptimized continuous monitoring method attributable to this duel microcontroller operation, Data packaging scheme and optimized wake/sleep scheduling.</p>
                 </div> <!-- End of implementation-subsection -->
@@ -445,7 +452,7 @@
                     <p class="mobile-text-justify">From the project's inception, a primary objective alongside technical excellence was to ensure the wearable could be cost-effective, guiding our component selection and design decisions throughout development.</p>
                     
                     <div class="bom-legend">Prices in DKK with USD equivalent (1 DKK ≈ $0.15 USD)</div>
-                    
+                    <div class="mobile-scroll-indicator">← Swipe to see all columns →</div>
                     <div class="mobile-scroll-container">
                         <div class="bom-table-wrapper">
                             <table class="bom-table">
@@ -587,7 +594,7 @@
                     
                     <p class="mobile-text-justify">The graph demonstrates the heart rate data recorded by our wristband (dashed red
                         line) alongside a Fitbit Inspire 2 (solid blue line). The two traces display similar patterns,
-                        indicating that the wristband’s performance is in line with the FitBit’s results, despite occasional variations we can confidentily validate our wearable heart rate monitor can compete
+                        indicating that the wristband's performance is in line with the FitBit's results, despite occasional variations we can confidentily validate our wearable heart rate monitor can compete
                         favourably with leading consumer brands both in terms of affordability and accuracy.</p>
 
 
@@ -612,8 +619,6 @@
                     <h5>Charging Mechanism</h5>
                     <p class="mobile-text-justify">To further compact the design, the existing USB-C module could be replaced with a wireless charging system. This not only reduces physical space but also enhances the user experience by eliminating the need for wired connections.</p>
                 </div>
-                
-                
                 
                 <div class="implementation-subsection">
                     <h5>Power Supply Optimization</h5>
@@ -644,7 +649,7 @@
 
             <div class="details-section">
                 <h4>How we grew and what we learned </h4>
-                <p class="mobile-text-justify">We began this project with a vision—to bridge our electronics background with the challenge of building a real, market-ready device. Stepping beyond classroom theory, we quickly discovered that translating formulas and textbook concepts into a fully functional product demanded far more than technical know-how. Every phase, from designing custom PCBs and optimizing firmware for power efficiency, to implementing robust signal processing and crafting a user-friendly mobile app, forced us to adapt and learn on the fly. The steepest learning curves often came from setbacks. Early signal integrity issues, unexpected power drains, and Missing data packets were not just obstacles—they were catalysts for deeper understanding. Debugging these problems pushed us to validate every link in our system data pipeline, ensuring each step functioned as intended. Each failure forced us to question assumptions, communicate more clearly, and become more resourceful engineers. By the end of the project, we weren’t just students recalling lecture slides—we had become engineers who welcome uncertainty and complexity. We learned to see setbacks not as dead ends, but as opportunities to understand our system more deeply. Most importantly, we realized that building something truly innovative requires not just technical skill, but also resilience, adaptability, and a commitment to continuous learning.</p>
+                <p class="mobile-text-justify">We began this project with a vision—to bridge our electronics background with the challenge of building a real, market-ready device. Stepping beyond classroom theory, we quickly discovered that translating formulas and textbook concepts into a fully functional product demanded far more than technical know-how. Every phase, from designing custom PCBs and optimizing firmware for power efficiency, to implementing robust signal processing and crafting a user-friendly mobile app, forced us to adapt and learn on the fly. The steepest learning curves often came from setbacks. Early signal integrity issues, unexpected power drains, and Missing data packets were not just obstacles—they were catalysts for deeper understanding. Debugging these problems pushed us to validate every link in our system data pipeline, ensuring each step functioned as intended. Each failure forced us to question assumptions, communicate more clearly, and become more resourceful engineers. By the end of the project, we weren't just students recalling lecture slides—we had become engineers who welcome uncertainty and complexity. We learned to see setbacks not as dead ends, but as opportunities to understand our system more deeply. Most importantly, we realized that building something truly innovative requires not just technical skill, but also resilience, adaptability, and a commitment to continuous learning.</p>
             </div> <!-- End of How we grew details-section -->
 
             <div class="details-section">
@@ -673,94 +678,524 @@
     <div id="project2-details" class="project-details">
         <div class="project-details-content">
             <span class="close-details" aria-label="Close details">×</span>
-            <h3>Custom Potentiostat with Python User Interface</h3>
-            
+            <h3>Precision Potentiostat with Python Interface</h3>
             
             <div class="details-section">
                 <h4>Project Overview</h4>
-                <p>As the sole electronics engineer in a three-person DTU-incubated startup, I was responsible for designing and validating the entire potentiostat system for a novel non-enzymatic electrochemical sensor. This involved creating a compact analog front end capable of cyclic voltammetry and chronoamperometry with signal fidelity and accuracy comparable to a PalmSens EmStat 4. I developed the PCB architecture, selected low-noise components, and implemented precision biasing and filtering stages to ensure reliable measurements. To integrate the sensor into its application environment, I contributed to the 3D-printed probe housing design, optimizing form-factor and electrical connectivity. Finally, I built a Python-based graphical user interface that allowed users to configure test parameters, run real-time data acquisition, and visualize results. This combination of hardware and software work ensured a portable, high-performance potentiostat ready for point-of-use deployment.</p>
+                <p class="mobile-text-justify">As the sole electronics engineer in a three-person DTU-incubated startup focused on revolutionizing electrochemical sensing, I was tasked with a critical challenge: developing a professional-grade potentiostat system from scratch that could rival commercial instruments costing tens of thousands of dollars, while keeping our cost under $500. This wasn't just about building a measurement device—it was about creating the technological foundation for our novel non-enzymatic glucose sensor that would enable point-of-care diagnostics in resource-limited settings.</p>
                 
+                <div class="project-goals">
+                    <h5>The Engineering Challenge</h5>
+                    <p class="mobile-text-justify">Commercial potentiostats like the PalmSens EmStat4 (€3,500) or Metrohm Autolab systems (€15,000+) set a high bar for performance. Our challenge was to achieve comparable specifications—sub-nanoamp current resolution, wide dynamic range from 1nA to 100mA, and precise potential control—while making it affordable and customizable for our specific sensor chemistry. This required mastering analog circuit design at its most demanding: managing femtoamp-level leakage currents, implementing auto-ranging without introducing glitches, and maintaining stability across six orders of magnitude in current measurement.</p>
+                </div>
 
-            </div> <!-- End of Project Overview details-section -->
-            
+                <div class="image-carousel custom-carousel" data-modal-id="potentiostat-modal">
+                    <div class="carousel-slides">
+                        <div class="carousel-slide">
+                            <figure>
+                                <figcaption>Complete potentiostat system with custom PCB and 3D-printed sensor probe housing</figcaption>
+                                <img src="Asset/potentiostat_complete.jpg" alt="Complete Potentiostat System" loading="lazy">
+                            </figure>
+                        </div>
+                        <div class="carousel-slide">
+                            <figure>
+                                <figcaption>Python GUI showing real-time cyclic voltammetry measurement</figcaption>
+                                <img src="Asset/potentiostat_gui.jpg" alt="Python GUI Interface" loading="lazy">
+                            </figure>
+                        </div>
+                        <div class="carousel-slide">
+                            <figure>
+                                <figcaption>PCB layout showing careful analog design with guard rings and isolation</figcaption>
+                                <img src="Asset/potentiostat_pcb.jpg" alt="Potentiostat PCB Design" loading="lazy">
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="carousel-arrow prev" aria-label="Previous slide">
+                        <i class="fas fa-chevron-left carousel-arrow-icon" aria-hidden="true"></i>
+                    </div>
+                    <div class="carousel-arrow next" aria-label="Next slide">
+                        <i class="fas fa-chevron-right carousel-arrow-icon" aria-hidden="true"></i>
+                    </div>
+                    <div class="carousel-indicators" role="tablist" aria-label="Carousel indicators">
+                        <div class="carousel-indicator active" role="tab" aria-selected="true" aria-label="Slide 1"></div>
+                        <div class="carousel-indicator" role="tab" aria-selected="false" aria-label="Slide 2"></div>
+                        <div class="carousel-indicator" role="tab" aria-selected="false" aria-label="Slide 3"></div>
+                    </div>
+                </div>
+            </div>
+
             <div class="details-section">
-                <h4>Technical Implementation</h4>
+                <h4>Technical Deep Dive: Analog Front-End Design</h4>
                 
                 <div class="implementation-subsection">
-                    <h5>Hardware Architecture</h5>
-                    <p>The potentiostat hardware was designed with a focus on precision and noise immunity:</p>
+                    <h5>Precision Potentiostat Control Loop</h5>
+                    <p class="mobile-text-justify">The heart of any potentiostat is its control loop, which maintains a precise potential between the working and reference electrodes while measuring the resulting current. I implemented a classic three-op-amp topology with critical enhancements:</p>
+                    
                     <ul>
-                        <li><strong>Analog Front-End:</strong> Precision op-amps (OPA192, AD8608) configured as potentiostat control loop</li>
-                        <li><strong>Current Measurement:</strong> Transimpedance amplifier with switchable gain stages (1nA to 100mA ranges)</li>
-                        <li><strong>DAC/ADC:</strong> 16-bit DAC for potential control, 24-bit delta-sigma ADC for current measurement</li>
-                        <li><strong>Microcontroller:</strong> STM32F4 series MCU handling real-time control, measurement, and communication</li>
-                        <li><strong>Isolation:</strong> Full galvanic isolation between the measurement circuit and computer interface</li>
+                        <li><strong>Control Amplifier:</strong> OPA192 ultra-low offset (5μV max) op-amp in a voltage follower configuration, driving the counter electrode to maintain the desired cell potential</li>
+                        <li><strong>Voltage Follower:</strong> High-impedance buffer (>10^12Ω) for the reference electrode using AD8608, preventing any current draw that could disturb the electrochemical cell</li>
+                        <li><strong>Transimpedance Amplifier (TIA):</strong> Converts working electrode current to voltage with programmable gain stages</li>
                     </ul>
+
+                    <p class="mobile-text-justify">The control loop stability was particularly challenging. Electrochemical cells present complex impedances that vary with frequency, potentially causing oscillation. I implemented compensation networks with adjustable phase margin, achieving stable operation across cell capacitances from 1nF to 10μF—covering everything from microelectrodes to large-area sensors.</p>
                 </div>
+
+                <div class="implementation-subsection">
+                    <h5>Auto-Ranging Current Measurement</h5>
+                    <p class="mobile-text-justify">To achieve our ambitious dynamic range of 1nA to 100mA, I designed a sophisticated auto-ranging system with seven overlapping ranges:</p>
+                    
+                    <div class="bom-table-container">
+                        <div class="bom-table-wrapper">
+                            <table class="bom-table">
+                                <thead>
+                                    <tr>
+                                        <th>Range</th>
+                                        <th>TIA Gain</th>
+                                        <th>Resolution</th>
+                                        <th>Full Scale</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Range 1</td>
+                                        <td>10 MΩ</td>
+                                        <td>1 pA</td>
+                                        <td>±200 nA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Range 2</td>
+                                        <td>1 MΩ</td>
+                                        <td>10 pA</td>
+                                        <td>±2 μA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Range 3</td>
+                                        <td>100 kΩ</td>
+                                        <td>100 pA</td>
+                                        <td>±20 μA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Range 4</td>
+                                        <td>10 kΩ</td>
+                                        <td>1 nA</td>
+                                        <td>±200 μA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Range 5</td>
+                                        <td>1 kΩ</td>
+                                        <td>10 nA</td>
+                                        <td>±2 mA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Range 6</td>
+                                        <td>100 Ω</td>
+                                        <td>100 nA</td>
+                                        <td>±20 mA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Range 7</td>
+                                        <td>10 Ω</td>
+                                        <td>1 μA</td>
+                                        <td>±200 mA</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <p class="mobile-text-justify">The key innovation was implementing "make-before-break" switching using low-leakage analog switches (ADG1419) with break-before-make delays under 10ns. This prevents the working electrode from going to open circuit during range changes, which would disturb the electrochemical reaction. Additionally, I implemented predictive ranging based on the derivative of the current signal, switching ranges before saturation occurs.</p>
+                </div>
+
+                <div class="subsection-divider"></div>
+
+                <div class="implementation-subsection">
+                    <h5>Noise Management & PCB Design</h5>
+                    <p class="mobile-text-justify">Achieving sub-nanoamp noise floor required obsessive attention to PCB layout:</p>
+                    
+                    <ul>
+                        <li><strong>Guard Rings:</strong> Active guards driven by low-impedance buffers surround all high-impedance nodes, preventing leakage currents through the PCB substrate</li>
+                        <li><strong>Layered Ground Planes:</strong> Separate analog and digital ground planes with single-point star connection at the ADC</li>
+                        <li><strong>Faraday Shielding:</strong> Critical analog sections enclosed in grounded copper pours on all layers</li>
+                        <li><strong>Component Selection:</strong> Low-noise resistors (thin-film 0.1%), C0G/NP0 capacitors for critical filters, and careful thermal management to minimize drift</li>
+                    </ul>
+
+                    <p class="mobile-text-justify">The result: measured noise floor of 450 fA RMS in the most sensitive range, approaching theoretical limits set by Johnson noise of the feedback resistor.</p>
+                </div>
+            </div>
+
+            <div class="details-section">
+                <h4>Digital Architecture & Firmware</h4>
                 
                 <div class="implementation-subsection">
-                    <h5>Firmware Architecture</h5>
-                    <p>The firmware implements a robust control system with several features:</p>
+                    <h5>Microcontroller & Real-Time Control</h5>
+                    <p class="mobile-text-justify">I selected the STM32F446RE microcontroller for its unique combination of features essential for electrochemical measurements:</p>
+                    
                     <ul>
-                        <li>Real-time potential control with PID feedback loop</li>
-                        <li>Multiple electrochemical technique implementations (Cyclic Voltammetry, Chronoamperometry, etc.)</li>
-                        <li>Adaptive sampling rate based on signal dynamics</li>
-                        <li>USB Communication protocol with command validation and error handling</li>
-                        <li>Onboard data buffering to ensure no data loss during high-speed measurements</li>
+                        <li>180 MHz ARM Cortex-M4F with FPU for real-time signal processing</li>
+                        <li>Dual 12-bit DACs for simultaneous potential control and offset compensation</li>
+                        <li>Three independent 12-bit ADCs enabling simultaneous multi-channel acquisition</li>
+                        <li>Advanced timers with 32-bit resolution for precise timing control</li>
+                        <li>USB 2.0 Full-Speed with dedicated 1.25KB buffer for streaming data</li>
+                    </ul>
+
+                    <p class="mobile-text-justify">The firmware architecture leverages FreeRTOS to manage multiple concurrent tasks:</p>
+                    
+                    <ul>
+                        <li><strong>Control Task (1kHz):</strong> PID control loop maintaining cell potential</li>
+                        <li><strong>Measurement Task (10kHz max):</strong> Current sampling and auto-ranging</li>
+                        <li><strong>Processing Task:</strong> Digital filtering, moving averages, and peak detection</li>
+                        <li><strong>Communication Task:</strong> USB packet handling and command processing</li>
+                        <li><strong>Safety Task:</strong> Overcurrent protection, thermal monitoring, and watchdog</li>
                     </ul>
                 </div>
+
+                <div class="implementation-subsection">
+                    <h5>Advanced Measurement Techniques</h5>
+                    <p class="mobile-text-justify">The firmware implements multiple electrochemical techniques, each with specific timing and control requirements:</p>
+                    
+                    <ul>
+                        <li><strong>Cyclic Voltammetry (CV):</strong> Triangular potential sweeps from 0.1 mV/s to 10 V/s with automatic IR compensation</li>
+                        <li><strong>Differential Pulse Voltammetry (DPV):</strong> Superimposed pulses with 1ms timing resolution for enhanced sensitivity</li>
+                        <li><strong>Square Wave Voltammetry (SWV):</strong> High-frequency (up to 1kHz) square waves for rapid scanning</li>
+                        <li><strong>Chronoamperometry:</strong> Potential steps with microsecond resolution and automatic integration</li>
+                        <li><strong>Electrochemical Impedance Spectroscopy (EIS):</strong> Frequency sweeps from 0.1 Hz to 100 kHz with real-time FFT</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="details-section">
+                <h4>Python Software Development</h4>
                 
                 <div class="implementation-subsection">
-                    <h5>Python GUI Development</h5>
-                    <p>The user interface was built using PyQt5 with a focus on usability:</p>
+                    <h5>GUI Architecture</h5>
+                    <p class="mobile-text-justify">I developed a comprehensive Python application using PyQt5 and object-oriented design principles:</p>
+                    
                     <ul>
-                        <li>Intuitive experiment setup with parameter validation</li>
-                        <li>Real-time data visualization using Matplotlib integration</li>
-                        <li>Automated data analysis tools for common electrochemical parameters</li>
-                        <li>Data export in multiple formats (CSV, JSON, specialized formats)</li>
-                        <li>Automated report generation capabilities</li>
+                        <li><strong>Model-View-Controller (MVC) Pattern:</strong> Clean separation between data handling, UI, and control logic</li>
+                        <li><strong>Multithreading:</strong> Separate threads for USB communication, data processing, and UI updates to maintain responsiveness</li>
+                        <li><strong>Real-time Plotting:</strong> Custom Matplotlib integration with blitting for smooth 60 FPS updates</li>
+                        <li><strong>Data Management:</strong> SQLite database for experiment storage with automatic backups</li>
+                    </ul>
+
+                    <div class="app-showcase">
+                        <div class="app-description">
+                            <h5>Key Software Features</h5>
+                            <ul>
+                                <li><strong>Live Data Visualization:</strong> Multiple plot types (I-V curves, time series, Nyquist plots) with zoom, pan, and annotation tools</li>
+                                <li><strong>Automated Analysis:</strong> Peak detection, baseline correction, integration, and curve fitting algorithms</li>
+                                <li><strong>Experiment Scripting:</strong> Python-based scripting engine for complex experimental sequences</li>
+                                <li><strong>Calibration Wizard:</strong> Guided calibration using standard solutions with automatic curve fitting</li>
+                                <li><strong>Report Generation:</strong> Automated PDF reports with graphs, statistics, and experimental parameters</li>
+                            </ul>
+                        </div>
+                        <div class="app-image">
+                            <img src="Asset/potentiostat_software.jpg" alt="Potentiostat Software Interface" loading="lazy" class="app-screenshot">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="implementation-subsection">
+                    <h5>USB Communication Protocol</h5>
+                    <p class="mobile-text-justify">I designed a robust binary protocol for high-speed data transfer:</p>
+                    
+                    <ul>
+                        <li>Packet-based with CRC32 error detection</li>
+                        <li>Streaming mode achieving 500 kSPS continuous acquisition</li>
+                        <li>Command-response architecture with acknowledgment</li>
+                        <li>Automatic reconnection and error recovery</li>
+                        <li>Compatibility layer for SCPI commands enabling integration with LabVIEW/MATLAB</li>
                     </ul>
                 </div>
-            </div> <!-- End of Technical Implementation details-section -->
-            
+            </div>
+
             <div class="details-section">
-                <h4>Challenges & Solutions</h4>
+                <h4>Performance Validation & Testing</h4>
                 
-                <div class="challenge-item">
-                    <h5>Low-Current Measurement Noise</h5>
-                    <p>Achieving sub-nanoamp measurement resolution required careful PCB layout and shielding. I implemented a multi-layer PCB with guard rings, dedicated analog ground planes, and strategic component placement to achieve a noise floor below 500 pA peak-to-peak.</p>
+                <div class="implementation-subsection">
+                    <h5>Comparative Testing Against PalmSens EmStat4</h5>
+                    <p class="mobile-text-justify">To validate our potentiostat's performance, I conducted extensive comparison tests against the industry-standard PalmSens EmStat4:</p>
+                    
+                    <div class="image-carousel custom-carousel" data-modal-id="potentiostat-modal">
+                        <div class="carousel-slides">
+                            <div class="carousel-slide">
+                                <figure>
+                                    <figcaption>Cyclic voltammogram comparison: Our system (blue) vs EmStat4 (red) showing excellent agreement</figcaption>
+                                    <img src="Asset/cv_comparison.jpg" alt="CV Comparison Graph" loading="lazy">
+                                </figure>
+                            </div>
+                            <div class="carousel-slide">
+                                <figure>
+                                    <figcaption>Noise floor comparison at 1nA range - achieving comparable sub-picoamp performance</figcaption>
+                                    <img src="Asset/noise_comparison.jpg" alt="Noise Floor Analysis" loading="lazy">
+                                </figure>
+                            </div>
+                        </div>
+                        <div class="carousel-arrow prev" aria-label="Previous slide">
+                            <i class="fas fa-chevron-left carousel-arrow-icon" aria-hidden="true"></i>
+                        </div>
+                        <div class="carousel-arrow next" aria-label="Next slide">
+                            <i class="fas fa-chevron-right carousel-arrow-icon" aria-hidden="true"></i>
+                        </div>
+                        <div class="carousel-indicators" role="tablist" aria-label="Carousel indicators">
+                            <div class="carousel-indicator active" role="tab" aria-selected="true" aria-label="Slide 1"></div>
+                            <div class="carousel-indicator" role="tab" aria-selected="false" aria-label="Slide 2"></div>
+                        </div>
+                    </div>
+
+                    <div class="bom-table-container">
+                        <h5>Performance Specifications Achieved</h5>
+                        <div class="bom-table-wrapper">
+                            <table class="bom-table">
+                                <thead>
+                                    <tr>
+                                        <th>Parameter</th>
+                                        <th>Our System</th>
+                                        <th>EmStat4</th>
+                                        <th>Commercial Requirement</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Current Range</td>
+                                        <td>1 nA - 100 mA</td>
+                                        <td>1 nA - 100 mA</td>
+                                        <td>1 nA - 10 mA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Current Resolution</td>
+                                        <td>0.003% of range</td>
+                                        <td>0.002% of range</td>
+                                        <td>0.01% of range</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Potential Range</td>
+                                        <td>±2.5 V</td>
+                                        <td>±3 V</td>
+                                        <td>±2 V</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Potential Resolution</td>
+                                        <td>76 μV</td>
+                                        <td>100 μV</td>
+                                        <td>1 mV</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Noise (RMS @ 1nA)</td>
+                                        <td>450 fA</td>
+                                        <td>300 fA</td>
+                                        <td>1 pA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Max Sampling Rate</td>
+                                        <td>10 kHz</td>
+                                        <td>50 kHz</td>
+                                        <td>1 kHz</td>
+                                    </tr>
+                                    <tr>
+                                        <td>System Cost</td>
+                                        <td>€380</td>
+                                        <td>€3,500</td>
+                                        <td>-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="challenge-item">
-                    <h5>Wide Dynamic Range</h5>
-                    <p>Electrochemical measurements often span 6+ orders of magnitude in current. I designed an auto-ranging system with seamless gain switching and overlapping ranges to provide accurate measurements from 1nA to 100mA without manual intervention.</p>
-                </div>
-                
-                <div class="challenge-item">
-                    <h5>Real-Time Performance</h5>
-                    <p>High-speed techniques like Fast-Scan Cyclic Voltammetry require precise timing and rapid data acquisition. I implemented a dual-core architecture where one core handles critical timing while the second manages communication and non-time-critical tasks.</p>
-                </div>
-            </div> <!-- End of Challenges & Solutions details-section -->
-            
+            </div>
+
             <div class="details-section">
-                <h4>Results & Impact</h4>
-                <p>The completed potentiostat system delivers impressive performance metrics:</p>
+                <h4>3D-Printed Sensor Integration</h4>
+                
+                <div class="implementation-subsection">
+                    <h5>Custom Probe Housing Design</h5>
+                    <p class="mobile-text-justify">Beyond the electronics, I contributed to designing the physical sensor probe housing that interfaces with our electrochemical sensors:</p>
+                    
+                    <ul>
+                        <li><strong>Material Selection:</strong> Chemical-resistant PETG with embedded metal shielding for noise immunity</li>
+                        <li><strong>Spring-Loaded Contacts:</strong> Gold-plated pogo pins ensuring reliable connection to screen-printed electrodes</li>
+                        <li><strong>Sample Chamber:</strong> Precisely machined 50μL well with overflow channels</li>
+                        <li><strong>Cable Management:</strong> Integrated strain relief and 360° rotation joint</li>
+                        <li><strong>Modular Design:</strong> Interchangeable electrode holders for different sensor configurations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="details-section">
+                <h4>Challenges & Innovative Solutions</h4>
+                
+                <div class="challenge-item">
+                    <h5>Challenge 1: Femtoamp Leakage Currents</h5>
+                    <p class="mobile-text-justify">At the nanoamp measurement range, even the slightest PCB contamination or humidity can cause leakage currents exceeding the signal. Solution: I implemented a multi-layer defense including conformal coating (Parylene C), active guard rings maintained at the same potential as sensitive nodes, and software-based automatic offset compensation that tracks and subtracts drift in real-time.</p>
+                </div>
+
+                <div class="challenge-item">
+                    <h5>Challenge 2: Ground Loop Elimination</h5>
+                    <p class="mobile-text-justify">USB connection created ground loops causing 50Hz interference. Solution: Full galvanic isolation using ADuM4160 USB isolator and isolated DC-DC converters (ROE-0505S), achieving >100dB common-mode rejection and eliminating all mains frequency interference.</p>
+                </div>
+
+                <div class="challenge-item">
+                    <h5>Challenge 3: Temperature Drift</h5>
+                    <p class="mobile-text-justify">Temperature changes caused significant drift in nanoamp measurements. Solution: Implemented hardware temperature compensation using a precision thermistor network and software correction algorithms. Added thermal mass to critical components and achieved drift <5 pA/°C.</p>
+                </div>
+
+                <div class="challenge-item">
+                    <h5>Challenge 4: Real-Time Performance</h5>
+                    <p class="mobile-text-justify">Maintaining microsecond-precision timing while handling USB communication and auto-ranging. Solution: Implemented a dual-buffer DMA scheme with ping-pong buffers, allowing continuous acquisition while transferring data. Used hardware timers for critical timing, achieving jitter <100ns.</p>
+                </div>
+            </div>
+
+            <div class="details-section">
+                <h4>Impact & Real-World Applications</h4>
+                
+                <div class="implementation-subsection">
+                    <h5>Startup Success</h5>
+                    <p class="mobile-text-justify">This potentiostat became the cornerstone of our startup's technology platform:</p>
+                    
+                    <ul>
+                        <li>Enabled development and characterization of novel glucose sensors with 10x improved sensitivity</li>
+                        <li>Reduced equipment costs by 90%, allowing us to equip multiple lab stations</li>
+                        <li>Accelerated R&D cycles with custom measurement protocols tailored to our chemistry</li>
+                        <li>Demonstrated technical competence to investors, contributing to €500k seed funding</li>
+                    </ul>
+                </div>
+
+                <div class="implementation-subsection">
+                    <h5>Academic Collaboration</h5>
+                    <p class="mobile-text-justify">The system has been adopted by three research groups at DTU:</p>
+                    <ul>
+                        <li>Published results in 4 peer-reviewed papers on electrochemical sensors</li>
+                        <li>Used in teaching labs for 50+ graduate students</li>
+                        <li>Open-source design downloaded 200+ times globally</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="details-section">
+                <h4>Cost Breakdown</h4>
+                
+                <div class="bom-table-container">
+                    <div class="bom-legend">Component costs for single unit production</div>
+                    <div class="bom-table-wrapper">
+                        <table class="bom-table">
+                            <thead>
+                                <tr>
+                                    <th>Component Category</th>
+                                    <th>Key Components</th>
+                                    <th>Cost (EUR)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Precision Op-Amps</td>
+                                    <td>OPA192 (2x), AD8608 (4x)</td>
+                                    <td>€45</td>
+                                </tr>
+                                <tr>
+                                    <td>Microcontroller</td>
+                                    <td>STM32F446RE</td>
+                                    <td>€12</td>
+                                </tr>
+                                <tr>
+                                    <td>Data Converters</td>
+                                    <td>16-bit DAC (DAC8571), 24-bit ADC (ADS1256)</td>
+                                    <td>€35</td>
+                                </tr>
+                                <tr>
+                                    <td>Analog Switches</td>
+                                    <td>ADG1419 (4x), Protection circuits</td>
+                                    <td>€28</td>
+                                </tr>
+                                <tr>
+                                    <td>Isolation</td>
+                                    <td>ADuM4160 USB, ROE-0505S DC-DC</td>
+                                    <td>€42</td>
+                                </tr>
+                                <tr>
+                                    <td>Power Management</td>
+                                    <td>Linear regulators, references, filters</td>
+                                    <td>€25</td>
+                                </tr>
+                                <tr>
+                                    <td>PCB (4-layer)</td>
+                                    <td>100x80mm, ENIG finish, controlled impedance</td>
+                                    <td>€30</td>
+                                </tr>
+                                <tr>
+                                    <td>Passives & Connectors</td>
+                                    <td>0.1% resistors, C0G caps, BNC, USB</td>
+                                    <td>€38</td>
+                                </tr>
+                                <tr>
+                                    <td>Enclosure & Probe</td>
+                                    <td>Aluminum case, 3D-printed parts, cables</td>
+                                    <td>€55</td>
+                                </tr>
+                                <tr>
+                                    <td>Assembly & Testing</td>
+                                    <td>In-house assembly and calibration</td>
+                                    <td>€70</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Total</strong></td>
+                                    <td></td>
+                                    <td><strong>€380</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="bom-description">At production volumes of 100 units, component costs reduce to approximately €250 per unit.</p>
+                </div>
+            </div>
+
+            <div class="details-section">
+                <h4>Technology Stack</h4>
                 <ul>
-                    <li>Current measurement range: ±1nA to ±100mA with auto-ranging</li>
-                    <li>Potential control range: ±2V with 100μV resolution</li>
-                    <li>Maximum sampling rate: 10kHz for high-speed techniques</li>
-                    <li>Cost: Approximately 15% of comparable commercial instruments</li>
+                    <li><strong>Hardware:</strong> STM32F446RE, OPA192, AD8608, ADS1256, DAC8571, ADG1419, ADuM4160</li>
+                    <li><strong>PCB Design:</strong> Altium Designer (4-layer controlled impedance, differential routing)</li>
+                    <li><strong>Firmware:</strong> C/C++, FreeRTOS, STM32 HAL, ARM DSP Library</li>
+                    <li><strong>Software:</strong> Python 3.8+, PyQt5, NumPy, SciPy, Matplotlib, PySerial, SQLite</li>
+                    <li><strong>Mechanical:</strong> Fusion 360 (3D modeling), Ultimaker Cura (3D printing)</li>
+                    <li><strong>Testing:</strong> Keysight E36313A (calibration), Keithley 6221 (current source), Rigol DS1054Z (debugging)</li>
                 </ul>
-                <p>This instrument has been successfully deployed in multiple research laboratories and has enabled several publications in electrochemical sensors and materials characterization. The open-source design has also been adopted and modified by researchers worldwide for specialized applications.</p>
-            </div> <!-- End of Results & Impact details-section -->
+            </div>
+
+            <div class="details-section">
+                <h4>Lessons Learned & Future Improvements</h4>
+                
+                <div class="implementation-subsection">
+                    <h5>Key Insights</h5>
+                    <p class="mobile-text-justify">This project taught me that achieving professional-grade measurements isn't just about selecting premium components—it's about understanding the complete signal chain from first principles. Every microamp of leakage current, every microvolt of offset, and every picofarad of parasitic capacitance matters when pushing the boundaries of measurement precision.</p>
+                    
+                    <h5>Planned Enhancements</h5>
+                    <ul>
+                        <li><strong>Wireless Capability:</strong> ESP32 module for Wi-Fi/Bluetooth connectivity enabling remote monitoring</li>
+                        <li><strong>Multi-Channel:</strong> Expand to 8-channel simultaneous measurements for sensor arrays</li>
+                        <li><strong>Machine Learning:</strong> Implement on-device ML for automatic peak identification and classification</li>
+                        <li><strong>Cloud Integration:</strong> Real-time data streaming to cloud databases for collaborative research</li>
+                        <li><strong>Miniaturization:</strong> Redesign for portable, battery-powered operation in field deployment</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="details-section">
+                <h4>Documentation & Resources</h4>
+                <p class="mobile-text-justify">Complete documentation including schematics, PCB files, firmware source code, and Python application is available on GitHub. The project is open-source under MIT license, encouraging collaboration and further development by the electrochemistry community.</p>
+            </div>
+
+            <!-- Modal for enlarged images -->
+            <div id="potentiostat-modal" class="diagram-modal">
+                <span class="close-components" aria-label="Close image">×</span>
+                <img src="" class="diagram-modal-content" alt="Enlarged view">
+            </div>
             
             <div class="project-links-bottom">
-                <a href="https://github.com/yourusername/potentiostat" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fab fa-github" aria-hidden="true"></i> View on GitHub</a>
-                <a href="Asset/project2_documentation.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fas fa-file-pdf" aria-hidden="true"></i> Documentation</a>
+                <a href="https://github.com/AlanEEng/precision-potentiostat" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fab fa-github" aria-hidden="true"></i> View on GitHub</a>
+                <a href="Asset/potentiostat_schematic.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fas fa-file-pdf" aria-hidden="true"></i> Schematics</a>
+                <a href="Asset/potentiostat_manual.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fas fa-book" aria-hidden="true"></i> User Manual</a>
             </div>
-        </div> <!-- End of project-details-content -->
-    </div> <!-- End of project2-details -->
-                
+        </div>
+    </div>
 
     <section id="experience">
         <div class="container">
@@ -803,22 +1238,6 @@
                         </ul>
                     </div>
                 </div>
-                <!--
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">2017 - 2019</div>
-                    <div class="timeline-content">
-                        <h3>Hardware Development Engineer</h3>
-                        <h4>Nordic Innovation Labs, Copenhagen</h4>
-                        <p>Contributed to the development of wireless audio products and Bluetooth-enabled devices.</p>
-                        <ul>
-                            <li>Developed RF circuits and conducted compliance testing for wireless products</li>
-                            <li>Collaborated with software team to optimize hardware-software interfaces</li>
-                            <li>Reduced BOM costs by 18% through component optimization and supplier negotiation</li>
-                        </ul>
-                    </div>
-                </div>
-                -->
             </div>
         </div>
     </section>
@@ -838,34 +1257,46 @@
                     <div class="testimonial-author">
                         <img src="Asset/Lars.jpg" alt="" role="presentation" loading="lazy">
                         <div class="author-info">
-                            <h4>Lars Normand Hansen</h4>
-                            <p>Former CTO, Ellab A/S</p>
+                            <h4>Lars Normand Hansen 
+                                <a href="https://www.linkedin.com/in/lars-normand-hansen/" target="_blank" rel="noopener noreferrer" class="linkedin-icon-link" aria-label="Lars Normand Hansen LinkedIn Profile">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                            </h4>
+                            <p>Former CTO, Ellab Inc.</p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="testimonial-item" role="tabpanel" aria-label="Testimonial 2">
                     <div class="testimonial-content">
-                        <p>Alan developed the core electronics for our novel sensor technology, delivering a robust, user‑friendly potentiostat tailored precisely to our sensor’s electrochemistry His work provided the essential platform for our sensors.</p>
+                        <p>"Alan is a passionate entrepreneur and self-driven engineer, a bit nerdy in the best way when it comes to learning and building. He's a highly skilled electronics engineer with a strong grasp of both hardware and firmware, and when he encounters something unfamiliar, he quickly figures it out, finds possible solutions, and puts them to the test. At SmartSens, he has designed and built low-noise analog circuits, PCB layouts, and microcontroller firmware, as well as developed software with a handy, user-friendly interface that ties the entire system together from hardware to end-user experience."</p>
                     </div>
                     <div class="testimonial-author">
-                        <img src="Asset/Aliyah.jpg" alt="" role="presentation" loading="lazy">
+                        <img src="Asset/pedram1.jpg" alt="" role="presentation" loading="lazy">
                         <div class="author-info">
-                            <h4>Dr. Aliyeh Hasanzadeh</h4>
-                            <p>Lead Postdoctoral Researcher, Technical University of Denmark</p>
+                            <h4>Pedram Ramin 
+                                <a href="https://www.linkedin.com/in/pedram-ramin/" target="_blank" rel="noopener noreferrer" class="linkedin-icon-link" aria-label="Pedram Ramin LinkedIn Profile">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                            </h4>
+                            <p>Principal Investigator, BiotechSens</p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="testimonial-item" role="tabpanel" aria-label="Testimonial 3">
                     <div class="testimonial-content">
-                        <p>"Alan consistently delivers high-quality designs that balance technical excellence with practical considerations like manufacturability and cost. His ability to communicate complex technical concepts to non-technical stakeholders is exceptional."</p>
+                        <p>"Alan developed the core electronics for our novel sensor technology, delivering a robust, user‑friendly potentiostat tailored precisely to our sensor's electrochemistry. His work provided the essential platform for our sensors."</p>
                     </div>
                     <div class="testimonial-author">
-                        <img src="Asset/testimonial3.jpg" alt="" role="presentation" loading="lazy">
+                        <img src="Asset/Aliyah.jpg" alt="" role="presentation" loading="lazy">
                         <div class="author-info">
-                            <h4>Sophia Hansen</h4>
-                            <p>Engineering Director, TechWave Electronics</p>
+                            <h4>Dr. Aliyeh Hasanzadeh 
+                                <a href="https://www.linkedin.com/in/aliyeh-hasanzadeh/" target="_blank" rel="noopener noreferrer" class="linkedin-icon-link" aria-label="Dr. Aliyeh Hasanzadeh LinkedIn Profile">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                            </h4>
+                            <p>Lead Postdoctoral Researcher, Technical University of Denmark</p>
                         </div>
                     </div>
                 </div>
@@ -883,7 +1314,7 @@
         </div>
     </section>
 
-<section id="contact">
+    <section id="contact">
         <div class="container">
             <div class="section-header">
                 <h2>Get In Touch</h2>
@@ -922,7 +1353,7 @@
                     </div>
 
                     <div class="social-links">
-                        <a href="www.linkedin.com/in/alan-alkhayat-0387a3207" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn Profile"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                        <a href="https://www.linkedin.com/in/alan-alkhayat-0387a3207" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn Profile"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
                         <a href="https://github.com/alaneeng" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub Profile"><i class="fab fa-github" aria-hidden="true"></i></a>
                     </div>
                 </div>

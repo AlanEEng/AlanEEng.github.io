@@ -77,15 +77,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Project Details Modal
-    const detailsLinks = document.querySelectorAll('.details-link');
+    // Project Details Modal - FIXED VERSION FOR CLICKABLE CARDS
+    const clickableCards = document.querySelectorAll('.clickable-card');
     
-    if (detailsLinks.length) {
-        detailsLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
+    if (clickableCards.length) {
+        clickableCards.forEach(card => {
+            card.addEventListener('click', function(e) {
                 e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetModal = document.querySelector(targetId);
+                const targetId = this.getAttribute('data-project-id');
+                const targetModal = document.getElementById(targetId);
                 
                 if (targetModal) {
                     targetModal.style.display = 'block';
@@ -209,98 +209,98 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-// Contact Form Validation and Submission
-const contactForm = document.getElementById('contactForm');
+    // Contact Form Validation and Submission
+    const contactForm = document.getElementById('contactForm');
 
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Basic form validation
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const subject = document.getElementById('subject').value;
-        const message = document.getElementById('message').value;
-        
-        if (!name || !email || !subject || !message) {
-            alert('Please fill out all fields');
-            return;
-        }
-        
-        // Email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            alert('Please enter a valid email address');
-            return;
-        }
-        
-        // Disable submit button and show loading state
-        const submitButton = contactForm.querySelector('button[type="submit"]');
-        const originalButtonText = submitButton.textContent;
-        submitButton.disabled = true;
-        submitButton.textContent = 'Sending...';
-        
-        // Create FormData object
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('_replyto', email);
-        formData.append('subject', subject);
-        formData.append('message', message);
-        
-        // Submit to Formspree
-        fetch('https://formspree.io/f/xovwqnqg', {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'Accept': 'application/json'
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic form validation
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            if (!name || !email || !subject || !message) {
+                alert('Please fill out all fields');
+                return;
             }
-        })
-        .then(response => {
-            if (response.ok) {
-                // Success - show success message
-                const successMessage = document.createElement('div');
-                successMessage.className = 'form-success';
-                successMessage.innerHTML = '<p>Thank you for your message! I will get back to you soon.</p>';
-                successMessage.style.cssText = 'background: #4CAF50; color: white; padding: 1rem; border-radius: 5px; margin-top: 1rem;';
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            // Disable submit button and show loading state
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+            
+            // Create FormData object
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('_replyto', email);
+            formData.append('subject', subject);
+            formData.append('message', message);
+            
+            // Submit to Formspree
+            fetch('https://formspree.io/f/xovwqnqg', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Success - show success message
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'form-success';
+                    successMessage.innerHTML = '<p>Thank you for your message! I will get back to you soon.</p>';
+                    successMessage.style.cssText = 'background: #4CAF50; color: white; padding: 1rem; border-radius: 5px; margin-top: 1rem;';
+                    
+                    // Reset form and show success message
+                    contactForm.reset();
+                    contactForm.appendChild(successMessage);
+                    
+                    // Remove success message after 5 seconds
+                    setTimeout(() => {
+                        if (successMessage.parentNode) {
+                            successMessage.remove();
+                        }
+                    }, 5000);
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Show error message
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'form-error';
+                errorMessage.innerHTML = '<p>Sorry, there was an error sending your message. Please try again.</p>';
+                errorMessage.style.cssText = 'background: #f44336; color: white; padding: 1rem; border-radius: 5px; margin-top: 1rem;';
                 
-                // Reset form and show success message
-                contactForm.reset();
-                contactForm.appendChild(successMessage);
+                contactForm.appendChild(errorMessage);
                 
-                // Remove success message after 5 seconds
+                // Remove error message after 5 seconds
                 setTimeout(() => {
-                    if (successMessage.parentNode) {
-                        successMessage.remove();
+                    if (errorMessage.parentNode) {
+                        errorMessage.remove();
                     }
                 }, 5000);
-            } else {
-                throw new Error('Network response was not ok');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            // Show error message
-            const errorMessage = document.createElement('div');
-            errorMessage.className = 'form-error';
-            errorMessage.innerHTML = '<p>Sorry, there was an error sending your message. Please try again.</p>';
-            errorMessage.style.cssText = 'background: #f44336; color: white; padding: 1rem; border-radius: 5px; margin-top: 1rem;';
-            
-            contactForm.appendChild(errorMessage);
-            
-            // Remove error message after 5 seconds
-            setTimeout(() => {
-                if (errorMessage.parentNode) {
-                    errorMessage.remove();
-                }
-            }, 5000);
-        })
-        .finally(() => {
-            // Re-enable submit button
-            submitButton.disabled = false;
-            submitButton.textContent = originalButtonText;
+            })
+            .finally(() => {
+                // Re-enable submit button
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            });
         });
-    });
-}
+    }
     
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -423,8 +423,6 @@ if (contactForm) {
         });
     }
     
-
-
     const __fingerprint = "cd3f0c33-d76b-4843-94a1-4aedf077ae78";
 
     // Image Carousel functionality
@@ -524,11 +522,9 @@ if (contactForm) {
     // Initialize audio player
     initializeAudioPlayer();
     
-    // Initialize floating bubble
+    // Initialize floating bubble - FIXED VERSION
     setupFloatingAudioBubble();
     
-    // Note: setupVideoModal is removed as your HTML uses an inline YouTube iframe,
-    // which does not require this custom JavaScript modal functionality.
 }); // END OF SINGLE DOMContentLoaded
 
 // Audio Player Functionality
@@ -598,11 +594,6 @@ function initializeAudioPlayer() {
         floatingPlayer.classList.remove('active');
         isPlayerActive = false;
         updatePlayPauseButton(false);
-        
-        // The .project-audio-btn is removed from HTML, so this line is no longer needed.
-        // document.querySelectorAll('.project-audio-btn').forEach(btn => {
-        //     btn.style.display = 'inline-flex';
-        // });
     }
     
     // Event Listeners
@@ -633,14 +624,14 @@ function initializeAudioPlayer() {
     }
 }
 
-// Floating bubble (FIXED VERSION from instructions, now with label)
+// Floating bubble - FIXED VERSION FOR CLICKABLE CARDS
 function setupFloatingAudioBubble() {
     let currentBubble = null;
     
-    // Monitor project details opening
-    document.querySelectorAll('.details-link').forEach(link => {
-        link.addEventListener('click', function() {
-            const audioSource = this.dataset.audioSrc; // Get the audio source from the clicked link
+    // Monitor project cards being clicked
+    document.querySelectorAll('.clickable-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const audioSource = this.dataset.audioSrc; // Get the audio source from the clicked card
             
             // Wait a bit for modal to open
             setTimeout(() => {
@@ -653,29 +644,32 @@ function setupFloatingAudioBubble() {
                     }, 350); 
                 }
                 
-                // Create floating bubble
-                const bubble = document.createElement('button');
-                bubble.className = 'audio-bubble'; // Use the new class for the bubble
-                bubble.innerHTML = '<i class="fas fa-headphones"></i>';
-                
-                // Create the label element
-                const label = document.createElement('div');
-                label.className = 'audio-bubble-label';
-                label.innerHTML = '<span>Listen to article</span>';
-                
-                // Append label to the bubble
-                bubble.appendChild(label);
-                
-                // Pass the audioSource to startProjectAudio
-                bubble.onclick = () => window.startProjectAudio(audioSource);
-                
-                document.body.appendChild(bubble);
-                currentBubble = bubble; // Manage the bubble itself
-                
-                // Add a class to trigger label visibility after a short delay
-                setTimeout(() => {
-                    bubble.classList.add('show-label');
-                }, 350); // Slightly after bubble appears
+                // Only create bubble if there's an audio source
+                if (audioSource) {
+                    // Create floating bubble
+                    const bubble = document.createElement('button');
+                    bubble.className = 'audio-bubble';
+                    bubble.innerHTML = '<i class="fas fa-headphones"></i>';
+                    
+                    // Create the label element
+                    const label = document.createElement('div');
+                    label.className = 'audio-bubble-label';
+                    label.innerHTML = '<span>Listen to article</span>';
+                    
+                    // Append label to the bubble
+                    bubble.appendChild(label);
+                    
+                    // Pass the audioSource to startProjectAudio
+                    bubble.onclick = () => window.startProjectAudio(audioSource);
+                    
+                    document.body.appendChild(bubble);
+                    currentBubble = bubble;
+                    
+                    // Add a class to trigger label visibility after a short delay
+                    setTimeout(() => {
+                        bubble.classList.add('show-label');
+                    }, 350);
+                }
             }, 300); // Delay for modal to open
         });
     });
@@ -684,8 +678,8 @@ function setupFloatingAudioBubble() {
     document.querySelectorAll('.close-details').forEach(closeBtn => {
         closeBtn.addEventListener('click', function() {
             if (currentBubble) {
-                currentBubble.classList.remove('show-label'); // Hide label first
-                setTimeout(() => { // Allow transition to finish before removing
+                currentBubble.classList.remove('show-label');
+                setTimeout(() => {
                     currentBubble.remove();
                     currentBubble = null;
                 }, 350); 
@@ -697,8 +691,8 @@ function setupFloatingAudioBubble() {
     document.querySelectorAll('.project-details').forEach(modal => {
         modal.addEventListener('click', function(e) {
             if (e.target === this && currentBubble) {
-                currentBubble.classList.remove('show-label'); // Hide label first
-                setTimeout(() => { // Allow transition to finish before removing
+                currentBubble.classList.remove('show-label');
+                setTimeout(() => {
                     currentBubble.remove();
                     currentBubble = null;
                 }, 350); 
@@ -723,11 +717,6 @@ window.startProjectAudio = function(audioSource) {
     
     // Set the new audio source
     audio.src = audioSource;
-    
-    // Hide all audio buttons (this targets .project-audio-btn, which is now removed from HTML)
-    document.querySelectorAll('.project-audio-btn').forEach(btn => {
-        btn.style.display = 'none';
-    });
     
     // Show player
     floatingPlayer.classList.add('active');
